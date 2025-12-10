@@ -18,6 +18,7 @@ use App\Models\Media;
 use App\Models\CaseLaw;
 use App\Models\Contact;
 use App\Models\ExecutiveBody;
+use App\Models\HomeMedia;
 use App\Models\Visitor;
 use App\Models\Mails;
 use Validator;
@@ -38,7 +39,10 @@ class IndexController extends Controller
 		$events = Event::where('status','1')->where('event_date','>',date('Y-m-d'))->orderby('event_sort','asc')->get()->toArray(); 
 		$meeting_types = MeetingType::where('status',1)->orderby('sort','asc')->get()->toArray(); 
 		$executive_body = ExecutiveBody::where('show_on_home',1)->where('status',1)->orderby('sort','asc')->get()->toArray(); 
-		return view('front.pages.home.index')->with(compact('banners','meeting_types','events','executive_body'));
+		$media_images = HomeMedia::where('status',1)->where('media_type','image')->orderby('sort','asc')->get()->toArray();  
+		$media_videos = HomeMedia::where('status',1)->where('media_type','video')->orderby('sort','asc')->get()->toArray(); 
+		
+		return view('front.pages.home.index')->with(compact('banners','meeting_types','events','executive_body','media_images','media_videos'));
     }
 
     
