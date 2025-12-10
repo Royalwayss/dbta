@@ -1,0 +1,95 @@
+<?php $__env->startSection('content'); ?>
+
+<style>
+.info-box:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  transition: all 0.3s ease-in-out;
+  background-color: #f0f8ff; /* Light background color on hover */
+}
+
+.info-box .info-box-text,
+.info-box .info-box-number {
+  transition: all 0.3s ease-in-out;
+}
+
+.info-box:hover .info-box-text,
+.info-box:hover .info-box-number {
+  font-weight: bold; /* Make text bold */
+  color: #007bff; /* Highlight text with primary color */
+}
+
+.info-box .info-box-icon:hover {
+  background-color: rgba(0, 123, 255, 0.8); /* Change icon background on hover */
+}
+
+</style>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Dashboard</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="<?php echo e('/admin/dashboard'); ?>">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <?php if(Session::has('error_message')): ?>
+    <div class="alert alert-danger alert-dismissible fade show mx-3" role="alert">
+      <strong>Error:</strong> <?php echo e(Session::get('error_message')); ?>
+
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <?php endif; ?>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <!-- Info boxes -->
+      <div class="row">
+        <?php /*
+		
+		<div class="col-12 col-sm-6 col-md-3">
+          <a href="{{ url('admin/categories') }}">
+          <div class="info-box">
+            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-tasks"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Categories</span>
+              <span class="info-box-number">
+                {{ $categoriesCount }}
+                <!-- <small>%</small> -->
+              </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div></a>
+          <!-- /.info-box -->
+        </div>
+       
+         */ ?>
+    
+	 </div>
+      <!-- /.row -->
+
+    </div><!--/. container-fluid -->
+
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layout.layout', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /home/rtpltechin/dbta.rtpltech.in/resources/views/admin/dashboard.blade.php ENDPATH**/ ?>
