@@ -7,6 +7,7 @@ use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Http\Request;
 use App\Models\SearchResult;
 use App\Models\AdminsRole;
+use App\Models\Membership;
 use App\Models\Subscriber;
 use App\Models\Contact;
 use Session;
@@ -32,6 +33,22 @@ class UserController extends Controller
 	  return view('admin.contacts.view_contact')->with(compact('contact'));  
 	}
 	
-   
+	
+	public function memberships(){ 
+		Session::put('page','memberships');
+		$rows = Membership::get();
+		$module['view_access'] = 1;
+		$module['edit_access'] = 1;
+		$module['full_access'] = 1; 
+		return view('admin.memberships.memberships')->with(compact('rows','module'));    
+	}
+	
+   public function viewMembership($id){  
+	  $contact = Membership::where('id',$id)->firstOrFail();
+	  if($contact['view_status'] == '0'){ 
+	     Membership::where('id',$id)->update(['view_status'=>1]);
+	  }
+	  return view('admin.memberships.view_membership')->with(compact('contact'));  
+	}
 
 }

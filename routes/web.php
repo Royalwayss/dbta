@@ -104,6 +104,15 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
 	   //contacts
         Route::get('contacts',[UserController::class,'contacts']);
         Route::get('view-contact/{id}',[UserController::class,'viewContact']);
+		
+		
+		
+		//memberships
+		
+		Route::get('memberships',[UserController::class,'memberships']);
+        Route::get('view-membership/{id}',[UserController::class,'viewMembership']);
+		
+		
     });
 });
 
@@ -116,7 +125,8 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
     Route::get('executive-body-2025', [IndexController::class,'executive'])->name('executive');
     Route::get('list-of-dtba-committees', [IndexController::class,'committes'])->name('committes');
     Route::get('newsletter-and-publications', [IndexController::class,'newsletter'])->name('newsletter');
-    Route::get('new-membership', [IndexController::class,'new_membership'])->name('new_membership');
+    Route::get('membership', [IndexController::class,'new_membership'])->name('new_membership');
+    Route::post('save-membership', [IndexController::class,'save_membership'])->name('save_membership');
     Route::get('contact-us', [IndexController::class,'contactus'])->name('contactus');
     Route::post('save-contact', [IndexController::class,'save_contact'])->name('save_contact');
     Route::get('downloads', [IndexController::class,'downloads'])->name('downloads');

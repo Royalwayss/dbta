@@ -296,6 +296,31 @@
             </p>
           </a>
         </li>
+		
+		@if(Session::get('page')=="memberships")
+            @php $active="active" @endphp
+        @else
+            @php $active = "" @endphp
+        @endif
+		
+		<li class="nav-item">
+          <a href="{{ url('admin/memberships') }}" class="nav-link {{ $active }}">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Memberships
+            </p>
+          </a>
+        </li>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
        
       
        

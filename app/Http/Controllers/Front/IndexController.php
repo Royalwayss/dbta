@@ -17,6 +17,7 @@ use App\Models\Downloads;
 use App\Models\Media;
 use App\Models\CaseLaw;
 use App\Models\Contact;
+use App\Models\Membership;
 use App\Models\ExecutiveBody;
 use App\Models\HomeMedia;
 use App\Models\Visitor;
@@ -154,6 +155,99 @@ class IndexController extends Controller
         $case_laws = CaseLaw::where('status',1)->orderby('sort','asc')->get()->toArray(); 
         return view('front.pages.case_laws.case_laws')->with(compact('meta','case_laws'));
     } 
+	
+	
+	public function save_membership(Request $request){
+		
+		 
+		
+        if($request->ajax()){
+			
+			$validation_data = $request->all();
+	 	   
+            $validator = Validator::make($validation_data, [
+                    'name' =>  'required',
+					'parent_name' =>  'required',
+                    'residence_address' =>  'required',
+                    'office_address' =>  'required',
+					'phone_office'=>'required|numeric|digits:10',
+					'phone_residence'=>'required|numeric|digits:10',
+					'mobile'=>'required|numeric|digits:10',
+					'email' => 'required|string|regex:/^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i|max:255',
+					'professional_area'=>'required',
+					'membership_no'=>'required',
+					'kyc'=>'required|file|max:2000|mimes:pdf,jpg,png',
+					'qualification_proof'=>'required|file|max:2000|mimes:pdf,jpg,png',
+					'practice_certificate'=>'required|file|max:2000|mimes:pdf,jpg,png',
+					'fees_paid_amount'=>'required',
+					'transaction_id'=>'required',
+					'date_of_payment'=>'required',
+					'signature_of_applicant'=>'required|file|max:2000|mimes:pdf,jpg,png',
+					'remarks'=>'required', 
+					
+                ],
+                [
+                    'name1.required'=>'Enter the name.',
+                    
+                ]);
+            if($validator->passes()) {
+                $data = $request->all();
+                //save Membership
+                $membership = new Membership;
+                $membership->name = $data['name']; 
+                $membership->parent_name = $data['parent_name']; 
+                $membership->residence_address = $data['residence_address']; 
+                $membership->office_address = $data['office_address']; 
+                $membership->phone_office = $data['phone_office']; 
+                $membership->phone_residence = $data['phone_residence']; 
+                $membership->mobile = $data['mobile']; 
+                $membership->email = $data['email']; 
+                $membership->professional_area = $data['professional_area']; 
+                $membership->membership_no = $data['membership_no']; 
+                $membership->fees_paid_amount = $data['fees_paid_amount']; 
+                $membership->transaction_id = $data['transaction_id']; 
+                $membership->date_of_payment = $data['date_of_payment']; 
+                $membership->remarks = $data['remarks']; 
+				
+				$upload_files = [
+				
+				         'kyc'=>'kyc',
+				         'qualification_proof'=>'qualification_proof',
+				         'practice_certificate'=>'practice_certificate',
+				         'signature_of_applicant'=>'signature_of_applicant',
+				
+				];
+				
+				foreach( $upload_files as $folder=>$file_name){
+					    if($request->hasFile($file_name)) {
+							$file = $request->file($file_name);       
+							$originalname = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+							$extension = $file->getClientOriginalExtension();
+							$allowed_extension = array('pdf','jpg','jped','png');
+							if(in_array($extension, $allowed_extension)){
+								$fileName = time()."". rand(1111,9999).".".$extension;
+								$destinationPath = 'uploads/'.$folder.'/';
+								$file->move($destinationPath, $fileName);
+								$membership->$file_name = $fileName;
+							}
+
+						}
+			    }
+				
+			
+				
+                $membership->save();
+                if(env('MAIL_MODE') =="live"){
+                    
+                }
+                return response()->json(['status'=>true,'message'=>'Message has been sent, we will contact you soon.']);
+            }else{
+                return response()->json(['status'=>false,'type'=>'validation','errors'=>$validator->messages()]);
+            }
+        }
+    }
+    
+	
 	
 	
 	 public function checkVistor() {

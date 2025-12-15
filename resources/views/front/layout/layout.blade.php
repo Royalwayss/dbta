@@ -5,6 +5,7 @@
 	@include('front.elements.style')
 </head>
 <body>
+	@include('front.elements.loader')
 	@include('front.elements.header')
 	@yield('content')
 	@include('front.elements.footer')
