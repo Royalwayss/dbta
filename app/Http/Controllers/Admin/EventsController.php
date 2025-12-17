@@ -39,21 +39,13 @@ class EventsController extends Controller
 			$rules = [
 				'event_title' => 'required',
 				'event_slug' => 'required',
-				'description' => 'required',
 				'event_date' => 'required',
-				'meta_title' => 'required',
-				'meta_description' => 'required',
-				'meta_keywords' => 'required',
 				'event_sort' => 'required',
 			];
 			$customMessages = [
 				'event_title.required' => 'Enter the event title',
 				'event_slug.required' => 'Enter the event slug',
-				'description.required' => 'Enter the event description',
 				'event_date.required' => 'Enter the event date',
-				'meta_title.required' => 'Enter the meta tilte',
-				'meta_description.required' => 'Enter the meta description',
-				'meta_keywords.required' => 'Enter the meta keywords',
 				'event_sort.required' => 'Enter the event sort',
 			];
 			
