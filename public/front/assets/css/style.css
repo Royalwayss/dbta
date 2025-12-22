@@ -1574,3 +1574,9 @@ section.media_galery_wrapper.our_sponser{
     font-weight: 600;
     margin-bottom: 4px;
 }
+.case-laws_wrapper table{
+  border-radius: 4px;
+}
+.case-laws_wrapper table tr td{
+  padding: 6px 10px;
+}

@@ -8,7 +8,7 @@
     </div>
   </section> -->
   <section class="list_committes_wrap_sec">
-    <div class="heading-one heading_one_dtba mb-5"data-aos="fade-up">
+    <div class="heading-one heading_one_dtba mb-5" data-aos="fade-up">
       <h1 class="text-center img-text">Case Laws</h1>
       <div class="underline mx-auto mt-2"></div>
     </div>
@@ -16,25 +16,70 @@
   <section>
     <div class="container">
       <div class="row">
-        
-		@foreach($case_laws as $case_law)
-		<div class="col-12">
-          <div class="case-laws_wrapper"data-aos="fade-down">
+        <div class="col-12">
+          <div class="case-laws_wrapper" data-aos="fade-down">
+            <h2 class="about-heading">Income Tax</h2>
+            <table class="table-bordered w-100">
+              <tr>
+                <td>PDF Title</td>
+                <td>
+                  <div class="login_btn">
+                    <a href="javascript::void()" class="btn btn-sm pdf_icon" target="_blank">Open PDF<i
+                        class="fa-solid fa-file-pdf"></i></a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>PDF Title</td>
+                <td>
+                  <div class="login_btn">
+                    <a href="javascript::void()" class="btn btn-sm pdf_icon" target="_blank">Open PDF<i
+                        class="fa-solid fa-file-pdf"></i></a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>PDF Title</td>
+                <td>
+                  <div class="login_btn">
+                    <a href="javascript::void()" class="btn btn-sm pdf_icon" target="_blank">Open PDF<i
+                        class="fa-solid fa-file-pdf"></i></a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>PDF Title</td>
+                <td>
+                  <div class="login_btn">
+                    <a href="javascript::void()" class="btn btn-sm pdf_icon" target="_blank">Open PDF<i
+                        class="fa-solid fa-file-pdf"></i></a>
+                  </div>
+                </td>
+              </tr>
+            </table>
+
+
+          </div>
+
+        </div>
+        @foreach($case_laws as $case_law)
+        <div class="col-12">
+          <div class="case-laws_wrapper" data-aos="fade-down">
             <h2 class="about-heading">{{ $case_law['title'] }}</h2>
             <p class="subheading">
-			    <?php echo $case_law['description']; ?>
-			</p>
+              <?php echo $case_law['description']; ?>
+            </p>
             <div class="login_btn">
-              <a href="{{ asset('front/pdf/caselaws/'.$case_law['pdf']) }}" class="btn btn-sm pdf_icon" target="_blank">Open PDF<i
-                  class="fa-solid fa-file-pdf"></i></a>
+              <a href="{{ asset('front/pdf/caselaws/'.$case_law['pdf']) }}" class="btn btn-sm pdf_icon"
+                target="_blank">Open PDF<i class="fa-solid fa-file-pdf"></i></a>
             </div>
 
           </div>
 
         </div>
-		@endforeach
-		
-        
+        @endforeach
+
+
       </div>
     </div>
   </section>
