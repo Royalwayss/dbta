@@ -34,7 +34,7 @@
 		<div class="d-flex align-items-center justify-content-between foot_social_icons_wrapper">
 			<h3 class="footer_heading_three heading_three ">© Copyrights District Tax Bar Association 2025</h3>
 			<div class="wrapper_icons">
-				<div class="button">
+			 <?php /*	<div class="button">
 					<div class="icon">
 						<i class="fa-brands fa-facebook-f"></i>
 					</div>
@@ -57,7 +57,7 @@
 						<i class="fa-brands fa-linkedin"></i>
 					</div>
 					<span>Linkdin</span>
-				</div>
+				</div> */ ?>
 				<div class="button">
 					<div class="icon">
 						<i class="fab fa-youtube"></i>

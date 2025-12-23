@@ -46,7 +46,7 @@
 									@endif
 									
 								</div>
-								<a  class="read-link" @if(!empty($event['event_file'])) target="_blank" href="{{ url('front/events/'.$event['event_file']) }}" @else href="javascript:;" @endif>Read Full Story →</a>
+								<a  class="read-link" @if(!empty($event['event_file'])) target="_blank" href="{{ url('front/events/'.$event['event_file']) }}" @else href="javascript:;" @endif>View Details →</a>
 								
 							</div>
 							@endforeach

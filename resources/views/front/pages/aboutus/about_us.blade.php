@@ -16,7 +16,7 @@
 		<div class="container my-5">
 			<div class="row about-wrapper">
 				<div class="col-lg-6 col-12 about_us_left_side" data-aos="fade-right">
-					<div class="about-left">
+					<div class="about-left text-justify">
 						<h2 class="about-heading">About Us</h2>
 						<p>The District Tax Bar Association, Direct Taxes, Ludhiana was established on 29.05.1981 as a
 							unified platform for tax professionals in the region. The association comprises Chartered
