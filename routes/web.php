@@ -67,6 +67,15 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::match(['get','post'],'add-edit-meeting/{id?}',[MettingController::class,'addEditMeeting']);
         Route::get('delete-meeting-image/{id}',[MettingController::class,'deleteMeetingImage']);
        
+	   // Meeting
+        Route::get('metting-types',[MettingController::class,'meeting_types']);
+        Route::match(['get','post'],'add-edit-metting-type/{id?}',[MettingController::class,'addEditMeetingType']);
+        
+       
+	 
+	   
+	   
+	   
 	    // Newsletters
         Route::get('newsletters',[NewslettersController::class,'newsletters']);
         Route::match(['get','post'],'add-edit-newsletter/{id?}',[NewslettersController::class,'addEditNewsletter']);

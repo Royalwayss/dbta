@@ -154,6 +154,26 @@
           </a>
         </li>
 		
+		
+		
+		@if(Session::get('page')=="metting-types")
+            @php $active="active" @endphp
+        @else
+            @php $active = "" @endphp
+        @endif
+		
+		<li class="nav-item">
+          <a href="{{ url('admin/metting-types') }}" class="nav-link {{ $active }}">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Metting Types
+            </p>
+          </a>
+        </li>
+		
+		
+		
+		
 		@if(Session::get('page')=="mettings")
             @php $active="active" @endphp
         @else

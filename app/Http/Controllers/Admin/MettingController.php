@@ -6,6 +6,7 @@ use Intervention\Image\ImageManager;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Meeting;
+use App\Models\MeetingType;
 use App\Models\AdminsRole;
 use Session;
 class MettingController extends Controller
@@ -140,5 +141,117 @@ class MettingController extends Controller
 	}
 	
 	
+	
+	
+	public function meeting_types(){ 
+		Session::put('page','meeting-types');
+		$rows = MeetingType::get();
+		$module['view_access'] = 1;
+		$module['edit_access'] = 1;
+		$module['full_access'] = 1; 
+		return view('admin.meeting_types.meeting_types')->with(compact('rows','module'));    
+	}
+	
+	
+	 
+	public function addEditMeetingType(request $request,$id=null){
+		
+		if($id==""){
+			$title = "Add Meeting Type";
+			$row = new MeetingType;
+			$prevId = 0; 
+			$nextId = 0;
+		}else{
+			$title = "Edit Meeting Type";
+			$row = MeetingType::find($id);
+			$model = 'MeetingType'; 
+			$prevId = findPreviousId($id, $model); 
+			$nextId = findNextId($id, $model);  
+		}
+		
+		if($request->isMethod('post')){
+			
+			$rules = [
+				
+				'name' => 'required',
+				'description' => 'required',
+				
+				
+			];
+			$customMessages = [
+				
+			];
+			
+			$this->validate($request,$rules,$customMessages);
+			
+			$data = $request->all(); 
+			if(isset($data['id']) && $data['id']!=""){
+				$row = MeetingType::find($data['id']);
+				$message = "Meeting Type updated successfully!";
+			}else{
+				$row = new MeetingType;
+				
+				$slug = strtolower(trim($data['name']));
+                $slug = preg_replace('/[^a-z0-9-]+/', '-', $slug);
+                $slug = preg_replace('/-+/', '-', $slug);
+				
+				$row->slug = $slug;
+				$message = "Meeting Type added successfully!";    
+			}
+			
+			
+			
+			
+			
+			
+			if($request->hasFile('image1')){
+				$image_tmp = $request->file('image1'); 
+					if($image_tmp->isValid()){
+						$manager = new ImageManager(new Driver());
+						$image = $manager->read($image_tmp);
+						$extension = $image_tmp->getClientOriginalExtension();
+						$imageName = time().'.'.$extension;
+						$image_path = 'front/assets/images/'.$imageName; 
+						$image->save($image_path);
+						$row->image1 = $imageName;
+					}
+			}
+			
+			if($request->hasFile('image2')){
+				$image_tmp = $request->file('image2'); 
+					if($image_tmp->isValid()){
+						$manager = new ImageManager(new Driver());
+						$image = $manager->read($image_tmp);
+						$extension = $image_tmp->getClientOriginalExtension();
+						$imageName = time().'.'.$extension;
+						$image_path = 'front/assets/images/'.$imageName; 
+						$image->save($image_path);
+						$row->image2 = $imageName;
+					}
+			}
+			
+			
+		
+			$row->name = $data['name'];
+			$row->description = $data['description'];
+			$row->sort = $data['sort'];
+			
+			
+			if(!empty($data['show_in_home'])){
+				$row->show_in_home = 1;
+			}else{
+				$row->show_in_home = 0;
+			}
+			
+			if(!empty($data['status'])){
+				$row->status = 1;
+			}else{
+				$row->status = 0;
+			}
+			$row->save(); 
+			return redirect('admin/metting-types')->with('success_message',$message);
+		}
+		return view('admin.meeting_types.add_edit_metting_type')->with(compact('title','row','prevId','nextId')); 
+	}
 	
 }
