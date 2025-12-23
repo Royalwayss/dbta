@@ -6,6 +6,8 @@ use Intervention\Image\ImageManager;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CaseLaw;
+use App\Models\CaseLawSection;
+use App\Models\CaseLawSectionFiles;
 use App\Models\AdminsRole;
 use Session;
 class CaselawsController extends Controller
@@ -83,4 +85,110 @@ class CaselawsController extends Controller
 		}
 		return view('admin.case-laws.add_edit_case-law')->with(compact('title','row','prevId','nextId')); 
 	}
+	
+	
+	
+	
+	public function caselaws_section(){ 
+		Session::put('page','case-laws-section');
+		$rows = CaseLawSection::get(); 
+		$module['view_access'] = 1;
+		$module['edit_access'] = 1;
+		$module['full_access'] = 1; 
+		return view('admin.case-laws-section.case-laws-section')->with(compact('rows','module'));    
+	}
+	 
+	public function addEditCaselawSection(request $request,$id=null){
+		
+		if($id==""){
+			$title = "Add Case law";
+			$row = new CaselawSection;
+			$prevId = 0; 
+			$nextId = 0;
+		}else{
+			$title = "Edit Case law";
+			$row = CaselawSection::with('pdf_files')->find($id);
+			$model = 'Caselaw'; 
+			$prevId = findPreviousId($id, $model); 
+			$nextId = findNextId($id, $model);  
+		}
+		
+		if($request->isMethod('post')){
+			
+			$rules = [
+				'section' => 'required',
+				'sort' => 'required',
+				
+			];
+			$customMessages = [
+				
+			];
+			
+			$this->validate($request,$rules,$customMessages);
+			
+			$data = $request->all();  
+			if(isset($data['id']) && $data['id']!=""){
+				$row = CaselawSection::find($data['id']);
+				$message = "Case law Section has been updated successfully!";
+			}else{
+				$row = new CaselawSection;
+				$message = "Case law Section  has been added successfully!";    
+			}
+	         $row->section = $data['section'];
+	         $row->sort = $data['sort'];
+			 
+			if(!empty($data['status'])){
+				$row->status = 1;
+			}else{
+				$row->status = 0;
+			}
+			$row->save();
+			
+			$section_id = $row->id; 
+			
+			
+			
+			if($request->hasFile('files')) {
+			    foreach($request->file('files') as $key=>$file){
+					$extension = $file->getClientOriginalExtension();
+					$allowed_extension = array('pdf','PDF',);
+					if(in_array($extension, $allowed_extension)){
+						$file_name = time().''.rand(100,999).'.'.$extension; 
+						$destinationPath = 'front/pdf/caselaws/';
+						$file->move($destinationPath, $file_name);
+						$row->file = $file_name; 
+						$caselawsection_files = new CaseLawSectionFiles;
+						$caselawsection_files->section_id = $section_id;
+						$caselawsection_files->title = $data['title'][$key];
+						$caselawsection_files->file = $file_name; 
+						$caselawsection_files->sort = $data['sort'][$key];
+						$caselawsection_files->status = $data['status'][$key];
+						$caselawsection_files->save();
+					}
+				}
+
+			}
+			
+			if(isset($data['pdf_id']) && !empty($data['pdf_id'])){
+				
+				foreach($data['pdf_id'] as $pdf_id){
+					$caselawsection_files = CaseLawSectionFiles::find($pdf_id);
+					$caselawsection_files->title = $data['edit_title_'.$pdf_id];
+					$caselawsection_files->sort = $data['edit_sort_'.$pdf_id];
+					$caselawsection_files->status = $data['edit_status_'.$pdf_id];
+					$caselawsection_files->save();
+				}
+			}
+			
+			
+			
+			return redirect('admin/case-laws-section')->with('success_message',$message);
+		} 
+		return view('admin.case-laws-section.add_edit_case_law_section')->with(compact('title','row','prevId','nextId')); 
+	}
+	
+	
+	
+	
+	
 }

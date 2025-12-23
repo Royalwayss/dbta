@@ -99,7 +99,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
 		//case-laws-section
 		Route::get('case-laws-section',[CaselawsController::class,'caselaws_section']);
         Route::match(['get','post'],'add-edit-case-law-section/{id?}',[CaselawsController::class,'addEditCaselawSection']);
-        Route::post('add-edit-case-law-section-pdf/{id}',[CaselawsController::class,'delete']);
+        Route::get('delete-law-section-pdf/{id}',[CaselawsController::class,'deleteCaselawSection']);
 	    
 		
         //executive-body

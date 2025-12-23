@@ -39,7 +39,7 @@
             <div class="col-sm-6">
                <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="{{'/admin/dashboard'}}"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-                  <li class="breadcrumb-item active">Downloads</li>
+                  <li class="breadcrumb-item active">Case Laws</li>
                </ol>
             </div>
             <!-- /.col -->
@@ -64,7 +64,7 @@
                @endif
                <div class="card">
                   <div class="card-header">
-                     <h3 class="card-title">Downloads</h3>
+                     <h3 class="card-title">Case Laws</h3>
                      @if($module['edit_access']==1 || $module['full_access']==1)
                     
                      <a style="max-width: 150px; margin-top: 0px ; display: inline-block; float:right; margin-right: 10px;" href="{{ url('admin/add-edit-case-law') }}" class="btn btn-block btn-primary">Add Case Law</a>

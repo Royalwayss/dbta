@@ -74,10 +74,10 @@
               <div class="col-12">
                 <div style="float:right;">
                 @if($prevId!=0)
-                  <a href="{{ url('admin/add-edit-case-law/'.$prevId) }}" class="btn btn-primary btn-animated-link"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Previous Download</a>
+                  <a href="{{ url('admin/add-edit-case-law/'.$prevId) }}" class="btn btn-primary btn-animated-link"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Previous Case Laws<a>
                 @endif
                 @if($nextId!=0)
-                  <a href="{{ url('admin/add-edit-case-law/'.$nextId) }}" class="btn btn-primary btn-animated-link"> Next Download  <i class="fas fa-arrow-right"></i> </a>
+                  <a href="{{ url('admin/add-edit-case-law/'.$nextId) }}" class="btn btn-primary btn-animated-link"> Next Case Laws  <i class="fas fa-arrow-right"></i> </a>
                 @endif
                 </div>
                 </div>

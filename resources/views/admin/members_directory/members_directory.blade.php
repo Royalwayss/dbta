@@ -77,7 +77,9 @@
                         <thead>
                            <tr>
                               <th>ID</th>
-                              <th>Media Title</th>
+                              <th>Designation</th>
+                              <th>Member Name</th>
+                              <th>Serial No</th>
                               <th>Sort</th>
                               <th>Created on</th>
                               <th>Actions</th>
@@ -87,8 +89,10 @@
                            @foreach($rows as $row)
                            <tr>
                               <td>{{ $row['id'] }}</td>
-                              <td>{{ $row['title'] }}</td>
-                              <td>{{ $row['media_sort'] }}</td>
+                              <td>{{ $row['designation_prefix'] }}</td>
+                              <td>{{ $row['member_name'] }}</td>
+                              <td>{{ $row['serial_no'] }}</td>
+                              <td>{{ $row['sort'] }}</td>
                               <td>{{ date("d-m-Y, g:i a", strtotime($row['created_at'])) }}</td>
                               <td>
                                  @if($module['edit_access']==1 || $module['full_access']==1)
