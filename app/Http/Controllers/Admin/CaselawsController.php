@@ -189,6 +189,9 @@ class CaselawsController extends Controller
 	
 	
 	
-	
+	public function deleteCaselawSection(request $request,$id){
+		CaseLawSectionFiles::where('id',$id)->delete();
+		return true;
+	}
 	
 }

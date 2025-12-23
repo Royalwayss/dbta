@@ -263,7 +263,7 @@ $(document).ready(function () {
 					url:deleteURL,
 					type:'get',
 					success:function(data) { 
-						$("#media-file-"+id).remove();
+						$("#pdf-file-"+id).remove();
 					}
 				});
 			     $('.preloader').hide();

@@ -76,8 +76,8 @@
                         <thead>
                            <tr>
                               <th>ID</th>
-                              <th>Title</th>
-                              <th>Pdf</th>
+                              <th>Section</th>
+                             
                               <th>Sort</th>
                               <th>Created on</th>
                               <th>Actions</th>
@@ -87,21 +87,17 @@
                            @foreach($rows as $row)
                            <tr>
                               <td>{{ $row['id'] }}</td>
-                              <td>{{ $row['title'] }}</td>
+                              <td>{{ $row['section'] }}</td>
                             
-                              <td>
-								  @if(!empty($row['pdf']))
-								  <a target="_block" href="{{ asset('front/pdf/caselaws/'.$row['pdf']) }}">{{ $row['pdf'] }}</a>
-								  @endif
-							  </td>
+                              
 							   <td>{{ $row['sort'] }}</td>
                               <td>{{ date("d-m-Y, g:i a", strtotime($row['created_at'])) }}</td>
                               <td>
                                  @if($module['edit_access']==1 || $module['full_access']==1)
                                  @if($row['status']==1)
-                                 <a class="updateStatus" data-table="case_laws" id="status-{{ $row['id'] }}" data-id="{{ $row['id'] }}" style='color:#3f6ed3' href="javascript:void(0)"><i class="fas fa-toggle-on" status="Active"></i></a>
+                                 <a class="updateStatus" data-table="case_law_sections" id="status-{{ $row['id'] }}" data-id="{{ $row['id'] }}" style='color:#3f6ed3' href="javascript:void(0)"><i class="fas fa-toggle-on" status="Active"></i></a>
                                  @else
-                                 <a class="updateStatus" data-table="case_laws" id="status-{{ $row['id'] }}"  data-id="{{ $row['id'] }}" style="color:grey" href="javascript:void(0)"><i class="fas fa-toggle-off" status="Inactive"></i></a>
+                                 <a class="updateStatus" data-table="case_law_sections" id="status-{{ $row['id'] }}"  data-id="{{ $row['id'] }}" style="color:grey" href="javascript:void(0)"><i class="fas fa-toggle-off" status="Inactive"></i></a>
                                  @endif
                                  @endif
                                  @if($module['edit_access']==1 || $module['full_access']==1)
