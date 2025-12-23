@@ -72,3 +72,29 @@ use App\Models\MeetingType;
 		
 		return $meeting_types;
 	}
+	function get_time($time=''){
+	
+		if(!empty($time)){
+
+		// Create a DateTime object from the 24-hour time format
+		$datetime = DateTime::createFromFormat('H:i', $time);
+
+		// Format the DateTime object to 12-hour format with AM/PM
+		$formattedTime = $datetime->format('g:i A');
+
+		return $formattedTime;
+		}
+	}
+	
+	function designation_prefix(){
+	
+		$designation_prefix = [
+		        'CA'=>'CA',
+		        'Advocate'=>'Advocate',
+		        'Company Secratory'=>'Company Secratory',
+		        'ITP'=>'ITP'
+		
+		];
+		
+		return $designation_prefix;
+	}

@@ -57,15 +57,15 @@ class DownloadsController extends Controller
 				$message = "Download pdf has been added successfully!";    
 			}
 	         $row->title = $data['title'];
-			 if($request->hasFile('pdf')) {
-				$file = $request->file('pdf');       
+			 if($request->hasFile('file')) {
+				$file = $request->file('file');       
 				$extension = $file->getClientOriginalExtension();
-				$allowed_extension = array('pdf','PDF');
+				$allowed_extension = array('pdf','PDF','jpg','jpeg','png','JPG','JPEG','PNG');
 				if(in_array($extension, $allowed_extension)){
 					$file_name = time().''.rand(100,999).'.'.$extension; 
-					$destinationPath = 'front/pdf/downloads/';
+					$destinationPath = 'front/downloads/';
 					$file->move($destinationPath, $file_name);
-					$row->pdf = $file_name; 
+					$row->file = $file_name; 
 				}
 
 			}

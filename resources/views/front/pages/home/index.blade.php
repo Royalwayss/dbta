@@ -10,9 +10,11 @@
 							@foreach($banners as $key => $banner)
 							<div class="carousel-item @if($key== 0) active @endif">
 								<img src="{{ asset('front/images/banners/'.$banner['image']) }}" class="d-block w-100" alt="Slide {{ $key+1 }}">
+								@if(!empty($banner['title']))
 								<div class="carousel-caption text-white">
 									{{ $banner['title'] }}
 								</div>
+								@endif
 							</div>
 							@endforeach
 						</div>
@@ -35,12 +37,17 @@
 							@foreach($events as $event)
 							<div class="swiper-slide event_box">
 								<div class="news-date">
-									<h5>📅 {{ date("d F Y", strtotime($event['event_date'])) }}</h5>
+									<h5>📅 {{ date("d F Y", strtotime($event['event_date'])) }} @if(!empty($event['event_time'])) {{ get_time($event['event_time']) }} @endif</h5>
 								</div>
 								<div>
 									<p>{{ $event['event_title'] }}</p>
+									@if(!empty($event['description']))
+										<p> @php echo $event['description'] @endphp</p>
+									@endif
+									
 								</div>
-								<a href="#" class="read-link">Read Full Story →</a>
+								<a  class="read-link" @if(!empty($event['event_file'])) target="_blank" href="{{ url('front/events/'.$event['event_file']) }}" @else href="javascript:;" @endif>Read Full Story →</a>
+								
 							</div>
 							@endforeach
 							

@@ -79,6 +79,7 @@
                               <th>ID</th>
                               <th>Event Title</th>
                               <th>Event Date</th>
+                              <th>File</th>
                               <th>Sort</th>
                               <th>Created on</th>
                               <th>Actions</th>
@@ -88,8 +89,13 @@
                            @foreach($events as $event)
                            <tr>
                               <td>{{ $event['id'] }}</td>
-                              <td>{{ $event['event_title'] }}</td>
+                              <td><?php echo   wordwrap($event['event_title'],45,'<br>')  ?></td>
                               <td>{{ date("d-m-Y", strtotime($event['event_date'])); }}</td>
+                              <td>
+							   @if(!empty($event['event_file']))
+                               <a target="_blank" href="{{ url('front/events/'.$event['event_file']) }}">View File</a>
+                                @endif
+							  </td>
 							    <td>{{ $event['event_sort'] }}</td>
                                 <td>{{ date("d-m-Y, g:i a", strtotime($event['created_at'])) }}</td>
                             

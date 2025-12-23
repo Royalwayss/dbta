@@ -177,7 +177,7 @@
 					</div>
 
 					<!-- Membership Number -->
-					<div class="mb-4">
+					<div class="mb-4" style="display:none">
 						<label class="form-label">Membership No. (or other Enrolment No., if applicable)</label>
 						<input type="text" class="form-control" name="membership_no" id="form-membership_no">
 						<p class="error-message" id="form-err-membership_no"></p>
@@ -209,21 +209,21 @@
 								<p class="error-message" id="form-err-practice_certificate"></p>
 							</div>
 						</div>
-						<div class="col-md-6 col-12">
+						<div class="col-md-6 col-12" style="display:none">
 							<div class="mb-3">
 								<label class="form-label">Fees Paid Amount (Rs.)</label>
 								<input type="text" class="form-control" name="fees_paid_amount" id="form-fees_paid_amount" placeholder="Amount" >
 								<p class="error-message" id="form-err-fees_paid_amount"></p>
 							</div>
 						</div>
-						<div class="col-md-6 col-12">
+						<div class="col-md-6 col-12" style="display:none">
 							<div class="mb-3">
 								<label class="form-label">Transaction / Cheque / Receipt No.</label>
 								<input type="text" class="form-control" name="transaction_id" id="form-transaction_id" >
 								<p class="error-message" id="form-err-transaction_id"></p>
 							</div>
 						</div>
-						<div class="col-md-6 col-12">
+						<div class="col-md-6 col-12" style="display:none">
 
 							<div class="mb-4">
 								<label class="form-label">Date of Payment</label>

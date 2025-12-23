@@ -60,23 +60,30 @@ class EventsController extends Controller
 				$message = "Event added successfully!";    
 			}
 			
-			if($request->hasFile('image')){
-				$image_tmp = $request->file('image');
-				if($image_tmp->isValid()){
-					$manager = new ImageManager(new Driver());
-					$image = $manager->read($image_tmp);
-					$extension = $image_tmp->getClientOriginalExtension();
-					$imageName = time().''.rand(11,99).'.'.$extension;
-					$image_path = 'front/images/events/'.$imageName; 
-					$image->save($image_path);
-					$row->image = $imageName;
+			
+			if($request->hasFile('event_file')) {
+				$file = $request->file('event_file');
+				$extension = $file->getClientOriginalExtension();
+				$allowed_extension = array('pdf','PDF','jpg','jpeg','png','JPG','JPEG','PNG');
+				if(in_array($extension, $allowed_extension)){
+					$file_name = time().''.rand(100,999).'.'.$extension; 
+					$destinationPath = 'front/events/';
+					$file->move($destinationPath, $file_name);
+					$row->event_file = $file_name; 
 				}
+
 			}
+			
+			
+			
+			
+			
 			
 			$row->event_title = $data['event_title'];
 			$row->event_slug = $data['event_slug'];
 			$row->description = $data['description'];
 			$row->event_date = $data['event_date'];
+			$row->event_time = $data['event_time'];
 			$row->meta_title = $data['meta_title'];
 			$row->meta_description = $data['meta_description'];
 			$row->meta_keywords = $data['meta_keywords'];

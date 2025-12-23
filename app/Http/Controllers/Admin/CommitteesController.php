@@ -71,6 +71,7 @@ class CommitteesController extends Controller
 			  
 			  
 			  foreach($data['name'] as $key=>$name){
+			  if(!empty($name)){
 			   $committee_member = new CommitteeMember;
 			   $imageName = '';
 				if(isset($request->file('images')[$key])){
@@ -97,6 +98,7 @@ class CommitteesController extends Controller
 					$committee_member->status = '0';
 				}
 				$committee_member->save();
+			  }
 			  }
 				
 				

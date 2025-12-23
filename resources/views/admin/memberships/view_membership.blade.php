@@ -97,7 +97,7 @@
                               <th>Professional Area</th>
                               <td>{{ $contact['professional_area'] }}</td>
                            </tr>
-                           <tr>
+                           <tr style="display:none">
                               <th>Membership No. (or other Enrolment No., if applicable)</th>
                               <td>{{ $contact['membership_no'] }}</td>
                            </tr>
@@ -125,15 +125,15 @@
                                  @endif
                               </td>
                            </tr>
-                           <tr>
+                           <tr style="display:none">
                               <th>Fees Paid Amount (Rs.)</th>
                               <td>{{ $contact['fees_paid_amount'] }}</td>
                            </tr>
-                           <tr>
+                           <tr style="display:none">
                               <th>Transaction / Cheque / Receipt No.</th>
                               <td>{{ $contact['transaction_id'] }}</td>
                            </tr>
-                           <tr>
+                           <tr style="display:none">
                               <th>Date of Payment</th>
                               <td>
 							  @if(!empty($contact['date_of_payment']))

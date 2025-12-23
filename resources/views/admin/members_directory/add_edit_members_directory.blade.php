@@ -74,10 +74,10 @@
               <div class="col-12">
                 <div style="float:right;">
                 @if($prevId!=0)
-                  <a href="{{ url('admin/add-edit-category/'.$prevId) }}" class="btn btn-primary btn-animated-link"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Previous Category</a>
+                  <a href="{{ url('admin/add-edit-member-directory/'.$prevId) }}" class="btn btn-primary btn-animated-link"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Previous Member Directory</a>
                 @endif
                 @if($nextId!=0)
-                  <a href="{{ url('admin/add-edit-category/'.$nextId) }}" class="btn btn-primary btn-animated-link"> Next Category  <i class="fas fa-arrow-right"></i> </a>
+                  <a href="{{ url('admin/add-edit-member-directory/'.$nextId) }}" class="btn btn-primary btn-animated-link"> Next Member Directory  <i class="fas fa-arrow-right"></i> </a>
                 @endif
                 </div>
                 </div>
@@ -98,64 +98,62 @@
                   </button>
                 </div>
                 @endif
-                <form name="categoryForm" id="categoryForm" action="{{ url('admin/add-edit-event') }}" method="post" enctype="multipart/form-data">@csrf
+                <form name="categoryForm" id="categoryForm" action="{{ url('admin/add-edit-member-directory') }}" method="post" enctype="multipart/form-data">@csrf
                 @if(!empty($row['id']))
                   <input type="hidden" name="id" value="{{ $row['id'] }}">
                 @endif
                 <div class="card-body">
                   <div class="row">
-				  <div class="form-group col-md-6">
-                    <label for="category_name">Event Title*</label>
-                    <input type="text" class="form-control" id="event_title" name="event_title" placeholder="Enter Event Title" @if(!empty($row['event_title'])) value="{{ $row['event_title'] }}" @else value="{{ old('event_title') }}" @endif pattern="[-a-zA-Z0-9_\.]+" required>
-                  </div>
+				 
                    <div class="form-group col-md-6">
-                    <label for="event_date">Event URL</label>
-                    <input type="text" class="form-control" id="event_slug" name="event_slug" placeholder="Event URL" @if(!empty($row['event_slug'])) value="{{ $row['event_slug'] }}" @else value="{{ old('event_slug') }}" @endif required>
+                    <label for="title">Designation Prefix*</label>
+                    <select class="form-control" id="designation_prefix" name="designation_prefix"  required>
+						<option value="">Select Designation</option>
+						@foreach(designation_prefix() as $designation_prefix)
+						<option value="{{ $designation_prefix }}" @if(!empty($row['designation_prefix']) && $row['designation_prefix'] == $designation_prefix) selected  @endif>{{ $designation_prefix }}</option>
+						@endforeach
+					</select>
                   </div>
+				  <div class="form-group col-md-6">
+                    <label for="mediasort">Member Name*</label>
+                    <input type="text" class="form-control" id="member_name" name="member_name" placeholder="Name" @if(!empty($row['member_name'])) value="{{ $row['member_name'] }}" @else value="{{ old('member_name') }}" @endif  required>
+                  </div>
+				  
                   
                   <div class="form-group col-md-6">
-                    <label for="file">File (image or pdf)</label>
-                    <input type="file" class="form-control" name="event_file" id="event_file">
-                    @if(!empty($row['event_file']))
-                      <a target="_blank" href="{{ url('front/events/'.$row['event_file']) }}">View File</a>
-                    @endif
+                    <label for="serial_no">Serial No*</label>
+                    <input type="text" class="form-control" id="serial_no" name="serial_no" placeholder="Serial No" @if(!empty($row['serial_no'])) value="{{ $row['serial_no'] }}" @else value="{{ old('serial_no') }}" @endif  required>
+                  </div>
+				  
+				   <div class="form-group col-md-6">
+                    <label for="serial_no">Contact No*</label>
+                    <input type="text" class="form-control" id="contact_no" name="contact_no" placeholder="Contact No" @if(!empty($row['contact_no'])) value="{{ $row['contact_no'] }}" @else value="{{ old('contact_no') }}" @endif  required>
+                  </div>
+				  
+				   
+				  
+				   <div class="form-group col-md-12">
+                    <label for="serial_no">Address*</label>
+                   <input type="text" class="form-control" id="address" name="address" placeholder="Address" @if(!empty($row['address'])) value="{{ $row['address'] }}" @else value="{{ old('address') }}" @endif  required>
+				  </div>
+				  
+				  
+				   <div class="form-group col-md-6">
+                    <label for="serial_no">Email*</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" @if(!empty($row['email'])) value="{{ $row['email'] }}" @else value="{{ old('email') }}" @endif  required>
                   </div>
 				  
 				  <div class="form-group col-md-6">
-                    <label for="event_sort">Event Sort</label>
-                    <input type="no" class="form-control" id="event_sort" name="event_sort" placeholder="Event Event Sort" @if(!empty($row['event_sort'])) value="{{ $row['event_sort'] }}" @else value="{{ old('event_sort') }}" @endif required>
+                    <label for="sort">Sort</label>
+                    <input type="no" class="form-control" id="sort" name="sort" placeholder="Event Sort" @if(!empty($row['sort'])) value="{{ $row['sort'] }}" @else value="{{ old('sort') }}" @endif required>
                   </div>
                  
-                   <div class="form-group col-md-12">
-                    <label for="event_description">Event Description</label>
-                    <textarea class="form-control" rows="3" id="event_description" name="description" placeholder="Enter Event Description">@if(!empty($row['description'])) {{ $row['description'] }} @else {{ old('description') }} @endif</textarea>
-                  </div>
-                 
-                
-				 
-				<div class="form-group col-md-6">
-                    <label for="event_date">Event Date</label>
-                    <input type="date" class="form-control" id="event_date" name="event_date" placeholder="Event Event Date" @if(!empty($row['event_date'])) value="{{ $row['event_date'] }}" @else value="{{ old('event_date') }}" @endif required>
-                  </div>
-				  
-				  <div class="form-group col-md-6">
-                    <label for="event_date">Event Time</label>
-                    <input type="time" class="form-control" id="event_time" name="event_time" placeholder="Event Event Time" @if(!empty($row['event_time'])) value="{{ $row['event_time'] }}" @else value="{{ old('event_time') }}" @endif required>
-                  </div>
-				 
+                  
 				
-                  <div class="form-group col-md-6">
-                    <label for="meta_title">Meta Title</label>
-                    <input type="text" class="form-control" id="meta_title" name="meta_title" placeholder="Enter Meta Title" @if(!empty($row['meta_title'])) value="{{ $row['meta_title'] }}" @else value="{{ old('meta_title') }}" @endif required>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="meta_description">Meta Description</label>
-                    <input type="text" class="form-control" id="meta_description" name="meta_description" placeholder="Enter Meta Description" @if(!empty($row['meta_description'])) value="{{ $row['meta_description'] }}" @else value="{{ old('meta_description') }}" @endif required>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="meta_keywords">Meta Keywords</label>
-                    <input type="text" class="form-control" id="meta_keywords" name="meta_keywords" placeholder="Enter Meta Keywords" @if(!empty($row['meta_keywords'])) value="{{ $row['meta_keywords'] }}" @else value="{{ old('meta_keywords') }}" @endif required>
-                  </div>
+				  
+				 
+                
+                
                  <div class="form-group col-md-6">
                       <label for="link">Status</label>
                      <select class="form-control" id="status" name="status" required="">

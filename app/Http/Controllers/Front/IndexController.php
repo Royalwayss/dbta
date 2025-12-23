@@ -170,21 +170,15 @@ class IndexController extends Controller
 					'parent_name' =>  'required',
                     'residence_address' =>  'required',
                     'office_address' =>  'required',
-					'phone_office'=>'required|numeric|digits:10',
-					'phone_residence'=>'required|numeric|digits:10',
+					
 					'mobile'=>'required|numeric|digits:10',
 					'email' => 'required|string|regex:/^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i|max:255',
 					'professional_area'=>'required',
-					'membership_no'=>'required',
+					
 					'kyc'=>'required|file|max:2000|mimes:pdf,jpg,png',
 					'qualification_proof'=>'required|file|max:2000|mimes:pdf,jpg,png',
 					'practice_certificate'=>'required|file|max:2000|mimes:pdf,jpg,png',
-					'fees_paid_amount'=>'required',
-					'transaction_id'=>'required',
-					'date_of_payment'=>'required',
-					'signature_of_applicant'=>'required|file|max:2000|mimes:pdf,jpg,png',
-					'remarks'=>'required', 
-					
+					'signature_of_applicant'=>'file|max:2000|mimes:pdf,jpg,png',
                 ],
                 [
                     'name1.required'=>'Enter the name.',
@@ -206,7 +200,9 @@ class IndexController extends Controller
                 $membership->membership_no = $data['membership_no']; 
                 $membership->fees_paid_amount = $data['fees_paid_amount']; 
                 $membership->transaction_id = $data['transaction_id']; 
+				if(!empty($data['date_of_payment'])){
                 $membership->date_of_payment = $data['date_of_payment']; 
+				}
                 $membership->remarks = $data['remarks']; 
 				
 				$upload_files = [

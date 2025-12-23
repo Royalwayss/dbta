@@ -281,6 +281,29 @@
           </a>
         </li>
 		
+		
+		@if(Session::get('page')=="members-directory")
+            @php $active="active" @endphp
+        @else
+            @php $active = "" @endphp
+        @endif
+		
+		<li class="nav-item">
+          <a href="{{ url('admin/members-directory') }}" class="nav-link {{ $active }}">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+             Member's directory
+            </p>
+          </a>
+        </li>
+		
+		
+		
+		
+		
+		
+		
+		
 	
 		@if(Session::get('page')=="contacts")
             @php $active="active" @endphp

@@ -33,13 +33,13 @@
       <div class="container-fluid">
          <div class="row mb-2">
             <div class="col-sm-6">
-               <h1 class="m-0">Downloads Management</h1>
+               <h1 class="m-0">Member's Directory Management</h1>
             </div>
             <!-- /.col -->
             <div class="col-sm-6">
                <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="{{'/admin/dashboard'}}"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-                  <li class="breadcrumb-item active">Downloads</li>
+                  <li class="breadcrumb-item active">Member's Directory</li>
                </ol>
             </div>
             <!-- /.col -->
@@ -64,10 +64,11 @@
                @endif
                <div class="card">
                   <div class="card-header">
-                     <h3 class="card-title">Downloads</h3>
+                     <h3 class="card-title">Member's Directory</h3>
                      @if($module['edit_access']==1 || $module['full_access']==1)
-                    
-                     <a style="max-width: 150px; margin-top: 0px ; display: inline-block; float:right; margin-right: 10px;" href="{{ url('admin/add-edit-download') }}" class="btn btn-block btn-primary">Add Download pdf</a>
+                     <!-- <a style="max-width: 150px; float:right; display: inline-block;" href="{{ url('admin/export-categories') }}" class="btn btn-block btn-primary">Export Categories</a>
+                        &nbsp; -->
+                     <a style="max-width: 250px; margin-top: 0px ; display: inline-block; float:right; margin-right: 10px;" href="{{ url('admin/add-edit-member-directory') }}" class="btn btn-block btn-primary">Add Member's Directory</a>
                      @endif
                   </div>
                   <!-- /.card-header -->
@@ -76,8 +77,7 @@
                         <thead>
                            <tr>
                               <th>ID</th>
-                              <th>Title</th>
-                              <th>Pdf</th>
+                              <th>Media Title</th>
                               <th>Sort</th>
                               <th>Created on</th>
                               <th>Actions</th>
@@ -88,25 +88,19 @@
                            <tr>
                               <td>{{ $row['id'] }}</td>
                               <td>{{ $row['title'] }}</td>
-                            
-                              <td>
-								  @if(!empty($row['file']))
-								  <a target="_block" href="{{ asset('front/downloads/'.$row['file']) }}">View File</a>
-								  @endif
-							  </td>
-							   <td>{{ $row['pdf_sort'] }}</td>
+                              <td>{{ $row['media_sort'] }}</td>
                               <td>{{ date("d-m-Y, g:i a", strtotime($row['created_at'])) }}</td>
                               <td>
                                  @if($module['edit_access']==1 || $module['full_access']==1)
                                  @if($row['status']==1)
-                                 <a class="updateStatus" data-table="downloads" id="status-{{ $row['id'] }}" data-id="{{ $row['id'] }}" style='color:#3f6ed3' href="javascript:void(0)"><i class="fas fa-toggle-on" status="Active"></i></a>
+                                 <a class="updateStatus" data-table="members_directories" id="status-{{ $row['id'] }}" data-id="{{ $row['id'] }}" style='color:#3f6ed3' href="javascript:void(0)"><i class="fas fa-toggle-on" status="Active"></i></a>
                                  @else
-                                 <a class="updateStatus" data-table="downloads" id="status-{{ $row['id'] }}"  data-id="{{ $row['id'] }}" style="color:grey" href="javascript:void(0)"><i class="fas fa-toggle-off" status="Inactive"></i></a>
+                                 <a class="updateStatus" data-table="members_directories" id="status-{{ $row['id'] }}"  data-id="{{ $row['id'] }}" style="color:grey" href="javascript:void(0)"><i class="fas fa-toggle-off" status="Inactive"></i></a>
                                  @endif
                                  @endif
                                  @if($module['edit_access']==1 || $module['full_access']==1)
                                  &nbsp;&nbsp;
-                                 <a style='color:#3f6ed3;' href="{{ url('admin/add-edit-download/'.$row['id']) }}"><i class="fas fa-edit"></i></a>
+                                 <a style='color:#3f6ed3;' href="{{ url('admin/add-edit-member-directory/'.$row['id']) }}"><i class="fas fa-edit"></i></a>
                                  &nbsp;&nbsp;
                                  @endif
                               </td>

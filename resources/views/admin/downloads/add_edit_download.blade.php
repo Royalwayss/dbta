@@ -109,10 +109,10 @@
                     <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" @if(!empty($row['title'])) value="{{ $row['title'] }}" @else value="{{ old('title') }}" @endif  required>
                   </div>
                    <div class="form-group col-md-6">
-                    <label for="pdf">Pdf</label>
-                    <input type="file" class="form-control" id="pdf" name="pdf">
-					@if(!empty($row['pdf']))
-					<a target="_block" href="{{ asset('front/pdf/downloads/'.$row['pdf']) }}">View Pdf</a>
+                    <label for="pdf">File</label>
+                    <input type="File" class="form-control" id="file" name="file">
+					@if(!empty($row['file']))
+					<a target="_black" href="{{ asset('front/downloads/'.$row['file']) }}">View File</a>
 				   @endif
                   </div>
                   

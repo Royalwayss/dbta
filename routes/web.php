@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\CommitteesController;
 use App\Http\Controllers\Admin\CaselawsController;
 use App\Http\Controllers\Admin\ExecutivebodyController;
+use App\Http\Controllers\Admin\MembersdirectoryController;
 use App\Http\Controllers\Admin\UserController;
 
 
@@ -111,6 +112,17 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
 		
 		Route::get('memberships',[UserController::class,'memberships']);
         Route::get('view-membership/{id}',[UserController::class,'viewMembership']);
+		
+		
+		Route::get('members-directory',[MembersdirectoryController::class,'members_directory']);
+         Route::match(['get','post'],'add-edit-member-directory/{id?}',[MembersdirectoryController::class,'addedit_member_directory']);
+		
+		
+		
+		
+		
+		
+		
 		
 		
     });

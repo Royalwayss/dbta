@@ -1,13 +1,13 @@
 <footer class="footer">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-4 col-md-6 col-12">
+			<div class="col-lg-6 col-md-6 col-12">
 				<h3 class="footer_heading_three heading_three">District Tax Bar Association – <br> A Voice for
 					Tax
 					Advocacy &
 					Excellence</h3>
 			</div>
-			<div class="col-lg-4 col-md-6 col-12">
+			<div class="col-lg-6 col-md-6 col-12">
 				<div class="linkWrap">
 					<h5>Useful Links</h5>
 					<ul>
@@ -20,7 +20,7 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-lg-4 col-md-6 col-12">
+			<?php /*<div class="col-lg-4 col-md-6 col-12">
 				<div class="linkWrap">
 					<h5>Our Policies</h5>
 					<ul>
@@ -29,7 +29,7 @@
 						<li><a target="_blank" href="javascript::void()">Disclaimer</a></li>
 					</ul>
 				</div>
-			</div>
+			</div> */ ?>
 		</div>
 		<div class="d-flex align-items-center justify-content-between foot_social_icons_wrapper">
 			<h3 class="footer_heading_three heading_three ">© Copyrights District Tax Bar Association 2025</h3>
