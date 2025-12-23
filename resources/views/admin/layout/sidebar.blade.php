@@ -266,6 +266,29 @@
           </a>
         </li>
 		
+		
+		
+		@if(Session::get('page')=="case-laws-section")
+            @php $active="active" @endphp
+        @else
+            @php $active = "" @endphp
+        @endif
+		
+		<li class="nav-item">
+          <a href="{{ url('admin/case-laws-section') }}" class="nav-link {{ $active }}">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Case Laws Section
+            </p>
+          </a>
+        </li>
+		
+		
+		
+		
+		
+		
+		
 		@if(Session::get('page')=="executive-body")
             @php $active="active" @endphp
         @else
