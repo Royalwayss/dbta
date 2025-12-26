@@ -16,7 +16,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-12" data-aos="fade-up">
-					<p class="subheading paragraph">New Membership in DTBA opens the door to a thriving community of tax
+					<p class="subheading paragraph text-justify">New Membership in DTBA opens the door to a thriving community of tax
 						professionals, accountants, and advisors. It provides access to exclusive networking
 						opportunities, knowledge-sharing sessions, and professional development resources. New members
 						benefit from educational webinars, industry updates, and committee involvement that fosters

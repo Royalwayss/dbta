@@ -66,7 +66,7 @@
         <div class="col-12">
           <div class="case-laws_wrapper" data-aos="fade-down">
             <h2 class="about-heading">{{ $case_law['title'] }}</h2>
-            <p class="subheading">
+            <p class="subheading text-justify">
               <?php echo $case_law['description']; ?>
             </p>
             <div class="login_btn">

@@ -63,7 +63,7 @@
 		<div class="container my-5">
 			<div class="row about-wrapper">
 				<div class="col-lg-6 col-12 about_us_left_side" data-aos="fade-right">
-					<div class="about-left">
+					<div class="about-left text-justify">
 						<h2 class="about-heading">About Us</h2>
 						<p>The District Tax Bar Association, Direct Taxes, Ludhiana was established on 29.05.1981 as a
 							unified platform for tax professionals in the region. The association comprises Chartered
@@ -93,7 +93,7 @@
 	</section>
 	<section class="service-section section-services pt-0">
 		<div class="container">
-			<div class="row">
+			<div class="row text-justify">
 				<div class="col-md-4 col-lg-4 col-12">
 					<div class="hover-img-wrapper" data-aos="fade-down">
 						<div class="service-card">
@@ -189,7 +189,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="row justify-content-center" data-aos="fade-down">
+			<div class="row justify-content-center " data-aos="fade-down">
 				<div class="col-md-6 col-lg-4">
 					<div class="single-service">
 						<div class="content">
@@ -213,7 +213,7 @@
 								<i class="fab fa-asymmetrik"></i>
 							</span>
 							<h3 class="heading_three">Meeting with Income tax department</h3>
-							<p class="description subheading">A formal meeting was held with the Income Tax
+							<p class="description subheading text-justify">A formal meeting was held with the Income Tax
 								Department to discuss key compliance updates, address member concerns, and
 								strengthen professional coordination.</p>
 
@@ -229,7 +229,7 @@
 								<i class="fab fa-artstation"></i>
 							</span>
 							<h3 class="heading_three">Monthly Newsletters & Circulars</h3>
-							<p class="description subheading">Publishing timely legal amendments, tax judgments, and
+							<p class="description subheading text-justify">Publishing timely legal amendments, tax judgments, and
 								expert
 								articles.</p>
 
@@ -245,7 +245,7 @@
 								<i class="fab fa-500px"></i>
 							</span>
 							<h3 class="heading_three"> Study Circles & Discussion Forums</h3>
-							<p class="description subheading">Facilitating knowledge sharing and peer learning among
+							<p class="description subheading text-justify">Facilitating knowledge sharing and peer learning among
 								tax
 								professionals.</p>
 
@@ -261,7 +261,7 @@
 								<i class="fas fa-chart-pie"></i>
 							</span>
 							<h3 class="heading_three">Sports and cultural Events for members and there families</h3>
-							<p class="description subheading">Organized sports and cultural events to promote
+							<p class="description subheading text-justify">Organized sports and cultural events to promote
 								bonding, relaxation, and active participation among members and their families.</p>
 
 						</div>
@@ -284,7 +284,7 @@
 			</div>
 			<div class="row">
 				@foreach($meeting_types as $meeting_type)
-				<div class="col-md-4 col-lg-4 col-12">
+				<div class="col-md-4 col-lg-4 col-12 text-justify">
 					<div class="hover-img-wrapper" data-aos="fade-down">
 						<img src="{{ asset('front/assets/images/'.$meeting_type['image1']) }}" alt="" title="img" class="hover-img">
 						<img src="{{ asset('front/assets/images/'.$meeting_type['image2']) }}" alt="" title="img" class="service-img">
