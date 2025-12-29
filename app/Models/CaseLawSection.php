@@ -13,6 +13,9 @@ class CaseLawSection extends Model
     	return $this->hasMany('App\Models\CaseLawSectionFiles','section_id')->orderby('sort','asc');
     }
 	
+	public function active_pdf_files(){
+    	return $this->hasMany('App\Models\CaseLawSectionFiles','section_id')->where('status','1')->orderby('sort','asc');
+    }
 	public function active_media_images(){
     	return $this->hasMany('App\Models\CaseLawSectionFiles','section_id')->where('status','1')->orderby('sort','asc');
     }

@@ -16,6 +16,7 @@ use App\Models\Event;
 use App\Models\Downloads;
 use App\Models\Media;
 use App\Models\CaseLaw;
+use App\Models\CaseLawSection;
 use App\Models\Contact;
 use App\Models\Membership;
 use App\Models\ExecutiveBody;
@@ -153,8 +154,8 @@ class IndexController extends Controller
 	
 	public function case_laws (){
 		$meta = meta(Route::currentRouteName());
-        $case_laws = CaseLaw::where('status',1)->orderby('sort','asc')->get()->toArray(); 
-        return view('front.pages.case_laws.case_laws')->with(compact('meta','case_laws'));
+        $caselaw_sections = CaseLawSection::with('active_pdf_files')->where('status',1)->orderby('sort','asc')->get()->toArray(); 
+        return view('front.pages.case_laws.case_laws')->with(compact('meta','caselaw_sections'));
     } 
 	
 	public function save_membership(Request $request){

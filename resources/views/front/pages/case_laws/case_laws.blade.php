@@ -16,52 +16,34 @@
   <section>
     <div class="container">
       <div class="row">
-        <div class="col-12">
+        
+		@foreach($caselaw_sections as $caselaw_section)
+		<div class="col-12">
           <div class="case-laws_wrapper" data-aos="fade-down">
-            <h2 class="about-heading">Income Tax</h2>
-            <table class="table-bordered w-100">
-              <tr>
-                <td>PDF Title</td>
+            <h2 class="about-heading">{{ $caselaw_section['section'] }}</h2>
+            @if(!empty($caselaw_section['active_pdf_files']))
+			<table class="table-bordered w-100">
+              @foreach($caselaw_section['active_pdf_files'] as $pdf)
+			  <tr>
+                <td>{{ $pdf['title'] }}</td>
                 <td>
                   <div class="login_btn">
-                    <a href="javascript::void()" class="btn btn-sm pdf_icon" target="_blank">Open PDF<i
+                    <a href="{{ asset('front/pdf/caselaws/'.$pdf['file']) }}" class="btn btn-sm pdf_icon" target="_blank">Open PDF<i
                         class="fa-solid fa-file-pdf"></i></a>
                   </div>
                 </td>
               </tr>
-              <tr>
-                <td>PDF Title</td>
-                <td>
-                  <div class="login_btn">
-                    <a href="javascript::void()" class="btn btn-sm pdf_icon" target="_blank">Open PDF<i
-                        class="fa-solid fa-file-pdf"></i></a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>PDF Title</td>
-                <td>
-                  <div class="login_btn">
-                    <a href="javascript::void()" class="btn btn-sm pdf_icon" target="_blank">Open PDF<i
-                        class="fa-solid fa-file-pdf"></i></a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>PDF Title</td>
-                <td>
-                  <div class="login_btn">
-                    <a href="javascript::void()" class="btn btn-sm pdf_icon" target="_blank">Open PDF<i
-                        class="fa-solid fa-file-pdf"></i></a>
-                  </div>
-                </td>
-              </tr>
+			  @endforeach
             </table>
-
+            @endif
 
           </div>
 
         </div>
+		@endforeach
+		
+		
+		<?php /*
         @foreach($case_laws as $case_law)
         <div class="col-12">
           <div class="case-laws_wrapper" data-aos="fade-down">
@@ -78,7 +60,7 @@
 
         </div>
         @endforeach
-
+        */ ?>
 
       </div>
     </div>
