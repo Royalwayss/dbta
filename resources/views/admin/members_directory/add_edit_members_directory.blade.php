@@ -105,7 +105,16 @@
                 <div class="card-body">
                   <div class="row">
 				 
-                   <div class="form-group col-md-6">
+                   
+				   
+				   <div class="form-group col-md-6">
+                    <label for="role">Role*</label>
+                    <input type="text" class="form-control" id="role" name="role" placeholder="Role" @if(!empty($row['role'])) value="{{ $row['role'] }}" @else value="{{ old('role') }}" @endif  required>
+                  </div>
+				   
+				   
+				   
+				   <div class="form-group col-md-6">
                     <label for="title">Designation Prefix*</label>
                     <select class="form-control" id="designation_prefix" name="designation_prefix"  required>
 						<option value="">Select Designation</option>

@@ -40,7 +40,7 @@
           <hr>
 
           <h3 class="heading_three detail_subheading">Meeting Summary</h3>
-          <p class="subheading">
+          <p class="subheading editor_text">
 		    <?php echo $meeting['description']; ?>
 		  </p>
         </div>

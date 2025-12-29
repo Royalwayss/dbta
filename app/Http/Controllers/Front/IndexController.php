@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
@@ -19,6 +19,7 @@ use App\Models\CaseLaw;
 use App\Models\Contact;
 use App\Models\Membership;
 use App\Models\ExecutiveBody;
+use App\Models\MembersDirectory;
 use App\Models\HomeMedia;
 use App\Models\Visitor;
 use App\Models\Mails;
@@ -156,7 +157,6 @@ class IndexController extends Controller
         return view('front.pages.case_laws.case_laws')->with(compact('meta','case_laws'));
     } 
 	
-	
 	public function save_membership(Request $request){
 		
 		 
@@ -244,7 +244,34 @@ class IndexController extends Controller
     }
     
 	
-	
+	public function members_directory (Request $request){
+		 if($request->isMethod('post')){
+			$data = $request->all();
+			$members_directory = MembersDirectory::where('status',1);
+			
+			if(isset($data['keyword']) && !empty($data['keyword'])){
+				$keyword = $data['keyword'];
+				$members_directory = $members_directory->where(function ($query) use ($keyword) { 
+					$query->orWhere("member_name","like","%".$keyword."%")
+						  ->orWhere("designation_prefix","like","%".$keyword."%")
+						  ->orWhere("role","like","%".$keyword."%")
+						  ->orWhere("serial_no","like","%".$keyword."%");
+						  
+				});
+			}
+			
+			$members_directory = $members_directory->orderby('sort','asc')->get()->toArray(); 
+			$data['members_directory'] = $members_directory;
+			$html = (String)View::make('front.pages.members_directory.members_directory_list',$data);
+			return response()->json(['status'=>true,'html'=>$html]);
+		}
+		
+		
+		$meta = meta(Route::currentRouteName());
+        $members_directory = MembersDirectory::where('status',1)->orderby('sort','asc')->get()->toArray(); 
+        return view('front.pages.members_directory.members_directory')->with(compact('meta','members_directory'));
+    } 
+	 
 	
 	 public function checkVistor() {
         $ip = $_SERVER['REMOTE_ADDR']; 

@@ -59,8 +59,8 @@
 							<img src="front/assets/images/missiom.jpg" alt="Mission" class="circle-img">
 							<div>
 								<h4 class="fw-bold">Our Mission</h4>
-								<p>This slide is 100% editable. Adapt it to your needs and capture your audience's
-									attention.
+								<p>
+								To enhance professional knowledge, safeguard members’ rights, and promote unity and collective representation within the tax fraternity.
 								</p>
 							</div>
 						</div>
@@ -72,8 +72,8 @@
 							<img src="front/assets/images/vison.jpg" alt="Mission" class="circle-img">
 							<div>
 								<h4 class="fw-bold">Our Vision</h4>
-								<p>This slide is 100% editable. Adapt it to your needs and capture your audience's
-									attention.
+								<p>
+								To build a unified and respected community of tax professionals committed to excellence and continuous learning in direct taxation.
 								</p>
 							</div>
 						</div>

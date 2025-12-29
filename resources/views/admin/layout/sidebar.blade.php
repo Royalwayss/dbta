@@ -270,7 +270,7 @@
           </a>
         </li>
 		
-		
+		<?php /*
 		@if(Session::get('page')=="case-laws")
             @php $active="active" @endphp
         @else
@@ -285,7 +285,7 @@
             </p>
           </a>
         </li>
-		
+		*/ ?>
 		
 		
 		@if(Session::get('page')=="case-laws-section")
@@ -335,11 +335,10 @@
           <a href="{{ url('admin/members-directory') }}" class="nav-link {{ $active }}">
             <i class="nav-icon fas fa-th"></i>
             <p>
-             Member's directory
+             Member's Directory
             </p>
           </a>
         </li>
-		
 		
 		
 		
@@ -381,6 +380,11 @@
 		
 		
 		
+		<li class="nav-item">
+          <a href="#" class="nav-link">
+         
+          </a>
+        </li>
 		
 		
 		

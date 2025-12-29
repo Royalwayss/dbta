@@ -1,16 +1,16 @@
 <footer class="footer">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-6 col-md-6 col-12">
-				<h3 class="footer_heading_three heading_three">District Tax Bar Association – <br> A Voice for
-					Tax
-					Advocacy &
-					Excellence</h3>
+			<div class="col-lg-12 col-md-12 col-12">
+				<h3 class="footer_heading_three heading_three footer_text">District Tax Bar Association –  A Voice for Tax Advocacy & Excellence</h3>
 			</div>
-			<div class="col-lg-6 col-md-6 col-12">
+			
+			
+			<div class="col-lg-12 col-md-12 col-12 text-cnter">
 				<div class="linkWrap">
-					<h5>Useful Links</h5>
-					<ul>
+					
+					<ul class="footer-useful-links">
+						<li><h5>Useful Links</h5></li>
 						<li><a target="_blank" href="https://www.incometax.gov.in/iec/foportal/">Income Tax
 								Department</a></li>
 						<li><a target="_blank" href="https://www.gst.gov.in">GST Portal</a></li>

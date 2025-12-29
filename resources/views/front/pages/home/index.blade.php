@@ -40,7 +40,7 @@
 									<h5>📅 {{ date("d F Y", strtotime($event['event_date'])) }} @if(!empty($event['event_time'])) {{ get_time($event['event_time']) }} @endif</h5>
 								</div>
 								<div>
-									<p>{{ $event['event_title'] }}</p>
+									<p class="event_title">{{ $event['event_title'] }}</p>
 									@if(!empty($event['description']))
 										<p> @php echo $event['description'] @endphp</p>
 									@endif
@@ -196,10 +196,8 @@
 							<span class="icon">
 								<i class="fab fa-battle-net"></i>
 							</span>
-							<h3 class="heading_three"> Representation Before Tax Authorities</h3>
-							<p class="description subheading">Supporting members in appearing before Income Tax,
-								GST, and other
-								tax tribunals.</p>
+							<h3 class="heading_three">Representation Before Tax Authorities</h3>
+							<p class="description subheading">Our Association represents collective issues of members before tax authorities, including assessment difficulties, procedural challenges etc.</p>
 
 						</div>
 						<span class="circle-before"></span>
@@ -212,10 +210,8 @@
 							<span class="icon">
 								<i class="fab fa-asymmetrik"></i>
 							</span>
-							<h3 class="heading_three">Meeting with Income tax department</h3>
-							<p class="description subheading text-justify">A formal meeting was held with the Income Tax
-								Department to discuss key compliance updates, address member concerns, and
-								strengthen professional coordination.</p>
+							<h3 class="heading_three">Meeting with Income Tax Department</h3>
+							<p class="description subheading text-justify"> Our Association engages in regular dialogue with Income Tax Department authorities to address members’ issues and improve administrative processes.</p>
 
 						</div>
 						<span class="circle-before"></span>
@@ -229,9 +225,7 @@
 								<i class="fab fa-artstation"></i>
 							</span>
 							<h3 class="heading_three">Monthly Newsletters & Circulars</h3>
-							<p class="description subheading text-justify">Publishing timely legal amendments, tax judgments, and
-								expert
-								articles.</p>
+							<p class="description subheading text-justify">We circulate regular newsletters highlighting important tax updates and professional insights for our members.</p>
 
 						</div>
 						<span class="circle-before"></span>
@@ -244,10 +238,8 @@
 							<span class="icon">
 								<i class="fab fa-500px"></i>
 							</span>
-							<h3 class="heading_three"> Study Circles & Discussion Forums</h3>
-							<p class="description subheading text-justify">Facilitating knowledge sharing and peer learning among
-								tax
-								professionals.</p>
+							<h3 class="heading_three">Study Circles and Discussions Forums</h3>
+							<p class="description subheading text-justify">We host regular study circles and interactive discussion forums to promote knowledge sharing and professional updates among members.</p>
 
 						</div>
 						<span class="circle-before"></span>
@@ -260,14 +252,13 @@
 							<span class="icon">
 								<i class="fas fa-chart-pie"></i>
 							</span>
-							<h3 class="heading_three">Sports and cultural Events for members and there families</h3>
-							<p class="description subheading text-justify">Organized sports and cultural events to promote
-								bonding, relaxation, and active participation among members and their families.</p>
+							<h3 class="heading_three">Sports and Cultural Events</h3>
+							<p class="description subheading text-justify">We organize sports and cultural events for members and their families to promote bonding, wellness, and community spirit.</p>
 
 						</div>
 						<span class="circle-before"></span>
 					</div>
-				</div>
+				</div> 
 			</div>
 		</div>
 	</section>
@@ -306,6 +297,7 @@
 			</div>
 		</div>
 	</section>
+	<?php /*
 	<section class="blogs_wrapper">
 		<div class="container">
 			<div class="row align-items-center">
@@ -394,7 +386,8 @@
 			</div>
 		</div>
 
-	</section>
+	</section> 
+	*/ ?>
 	<section class="service-section section-services">
 		<div class="header-section justify-content-center text-center d-flex" data-aos="fade-up">
 			<h2 class="title about-heading">Media and Gallery</h2>
@@ -423,6 +416,7 @@
 			</div>
 		</div>
 	</section>
+	<?php /*
 	<section class="media_galery_wrapper our_sponser">
 		<div class="container">
 			<div class="mb-4 text-left" data-aos="fade-left">
@@ -476,7 +470,8 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> 
+	*/ ?>
 </main>
 
 @endsection

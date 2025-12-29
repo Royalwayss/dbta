@@ -229,3 +229,25 @@ box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1
 .text-justify,text-justify p{
  text-align: justify;
 }
+
+.editor_text div,p{
+	text-align: justify !important;
+}
+
+.event_title{
+	font-weight:bold;
+}
+
+.footer_text{
+	text-align:center;
+}
+
+.footer-useful-links {
+	display: flex;
+	text-align:center;
+	justify-content: center;
+}
+
+.footer-useful-links li { 
+margin-right: 10px; 
+}

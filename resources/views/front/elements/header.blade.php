@@ -36,6 +36,7 @@
 							</li>
 							<li class="nav-item"><a class="nav-link" href="{{ route('executive') }}">Executive Committee</a></li>
 							<li class="nav-item"><a class="nav-link" href="{{ route('new_membership') }}">Membership</a></li>
+							<li class="nav-item"><a class="nav-link" href="{{ route('members_directory') }}">Members Directory</a></li>
 							<li class="nav-item"><a class="nav-link" href="{{ route('contactus') }}">Contact</a></li>
 							<li class="nav-item"><a class="nav-link" href="{{ route('downloads') }}">Downloads</a></li>
 							<li class="nav-item"><a class="nav-link" href="{{ route('media') }}">Media</a></li>

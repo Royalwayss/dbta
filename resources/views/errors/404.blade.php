@@ -1,22 +1,18 @@
 @extends('front.layout.layout')
 @section('content')
 <!-- breadcrumb start -->
-<div class="breadcrumb">
-    <div class="container">
-        <ul class="list-unstyled d-flex align-items-center m-0">
-            <li><a href="{{ route('home') }}">Home</a></li>
-            <li>
-                <i class="fa-solid fa-angle-right"></i>
-            </li>
-            <li>404 - Page Not Found</li>
-        </ul>
-    </div>
-</div> 
+<section class="list_committes_wrap_sec">
+		<div class="heading-one heading_one_dtba"data-aos="fade-up">
+			<h1 class="text-center img-text">404 - Page Not Found</h1>
+			<div class="underline mx-auto mt-2"></div>
+		</div>
+	</section>
+
 <!-- breadcrumb end -->
 <section class="bg-light text-black text-center py-5 about-header">
     <div class="container">
-        <h2 class="text-danger">404 - Page Not Found</h2>
-        <p class="lead">Oops! The page you're looking for doesn't exist or might have been moved.</p>
+        
+        <p class="lead" style="text-align:center !important">Oops! The page you're looking for doesn't exist or might have been moved.</p>
     </div>
 </section>
 

@@ -38,6 +38,7 @@ class MembersdirectoryController extends Controller
 		if($request->isMethod('post')){
 			
 			$rules = [
+				'role' => 'required',
 				'designation_prefix' => 'required',
 				'member_name' => 'required',
 				'serial_no' => 'required',
@@ -60,6 +61,7 @@ class MembersdirectoryController extends Controller
 				$message = "Member's Directory added successfully!";    
 			}
 			
+			$row->role = $data['role'];
 			$row->designation_prefix = $data['designation_prefix'];
 			$row->member_name = $data['member_name'];
 			$row->serial_no = $data['serial_no'];

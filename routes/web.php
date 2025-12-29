@@ -130,7 +130,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
 		
 		
 		Route::get('members-directory',[MembersdirectoryController::class,'members_directory']);
-         Route::match(['get','post'],'add-edit-member-directory/{id?}',[MembersdirectoryController::class,'addedit_member_directory']);
+        Route::match(['get','post'],'add-edit-member-directory/{id?}',[MembersdirectoryController::class,'addedit_member_directory']);
 		
 		
 		
@@ -159,6 +159,8 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
     Route::get('downloads', [IndexController::class,'downloads'])->name('downloads');
     Route::get('media', [IndexController::class,'media'])->name('media');
     Route::get('case-laws', [IndexController::class,'case_laws'])->name('case_laws');
+    Route::match(['get','post'],'members-directory',[IndexController::class,'members_directory'])->name('members_directory');
+		
     $meeting_types = meeting_types();
 	foreach($meeting_types as $meeting_type){
       Route::get($meeting_type['slug'], [IndexController::class,'meeting'])->name('meeting');

@@ -76,6 +76,7 @@
 								</div>
 
 							</div>
+							<?php /*
 							<div class="Social-media">
 								<a href="#">
 									<i class="fab fa-facebook"></i>
@@ -89,7 +90,8 @@
 								<a href="#">
 									<i class="fab fa-youtube"></i>
 								</a>
-							</div>
+							</div> 
+							*/ ?>
 						</div>
 					</div>
 				</div>
