@@ -3,11 +3,16 @@
    </button>
 	<header>
 		<div class="header_bar">
-			<nav class="navbar navbar-expand-lg navbar-dark bottom-header">
-				<div class="container">
-					<div class="dtba_logo">
-						<a href="{{ route('home') }}"><img src="front/assets/images/logo-dtba.png" alt="Logo"></a>
+		
+		   <div class="header-logo" style="background-image: url('front/assets/images/header-bg-image.png');">
+		            <div class="header_logo">
+						<a href="{{ route('home') }}"><img src="front/assets/images/logo-new.png" alt="Logo"></a>
 					</div>
+		  </div>
+		
+			<nav class="navbar navbar-expand-lg navbar-dark bottom-header">
+				<div class="header-menu">
+					
 
 					<button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
 						data-bs-target="#mainNavbar">

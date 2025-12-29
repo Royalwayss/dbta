@@ -108,7 +108,7 @@
 								community.
 							</p>
 							<div class="login_btn read-more">
-								<a href="assets/doc/President-Message.pdf" target="_blank">Read More<i class="fa-solid fa-arrow-right-long"></i></a>
+								<a href="{{ asset('front/pdf/home/president-message.pdf') }}" target="_blank">Read More<i class="fa-solid fa-arrow-right-long"></i></a>
 							</div>
 
 						</div>
@@ -126,7 +126,7 @@
 								designed with your needs and convenience in mind.
 							</p>
 							<div class="login_btn read-more">
-								<a href="assets/doc/Convenor-message.pdf" target="_blank">Read More<i class="fa-solid fa-arrow-right-long"></i></a>
+								<a href="{{ asset('front/pdf/home/convenor-message.pdf') }}" target="_blank">Read More<i class="fa-solid fa-arrow-right-long"></i></a>
 							</div>
 
 						</div>
@@ -147,7 +147,7 @@
 
 							</p>
 							<div class="login_btn read-more">
-								<a href="assets/doc/Secretary-message.pdf" target="_blank">Read More<i class="fa-solid fa-arrow-right-long"></i></a>
+								<a href="{{ asset('front/pdf/home/secretary-message.pdf') }}" target="_blank">Read More<i class="fa-solid fa-arrow-right-long"></i></a>
 							</div>
 
 						</div>

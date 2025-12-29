@@ -73,8 +73,36 @@ p {
   display: inline-block;
   margin-left: 0.3em;
 }
+.header_logo img {
+  max-width: 80%px;
+  margin-left:10px;
+}
 .dtba_logo img {
   max-width: 190px;
+}
+.header-menu{ width:100%; margin-top: -8px;}
+#mainNavbar{
+	background: #00608f;
+	
+}
+ul.dropdown-menu {
+    background: #00608f; 
+}
+#mainNavbar li a{ color:#fff; }
+.nav-link{
+	min-height: 49px;
+}
+.nav-item a:hover{
+	background: #fff;
+	color: #000;
+}
+.dropdown-menu li a{
+	background: #00608f !important;
+	
+}
+.dropdown-menu li a:hover{
+	background: #fff !important;
+	color: #000 !important;;
 }
 .education_logo img {
   max-width: 150px;
