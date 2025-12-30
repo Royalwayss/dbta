@@ -118,8 +118,8 @@
                     <label for="title">Designation Prefix*</label>
                     <select class="form-control" id="designation_prefix" name="designation_prefix"  required>
 						<option value="">Select Designation</option>
-						@foreach(designation_prefix() as $designation_prefix)
-						<option value="{{ $designation_prefix }}" @if(!empty($row['designation_prefix']) && $row['designation_prefix'] == $designation_prefix) selected  @endif>{{ $designation_prefix }}</option>
+						@foreach($designation_list as $designation_prefix)
+						<option value="{{ $designation_prefix['designation_prefix'] }}" @if(!empty($row['designation_prefix']) && $row['designation_prefix'] == $designation_prefix['designation_prefix']) selected  @endif>{{ $designation_prefix['designation_prefix'] }}</option>
 						@endforeach
 					</select>
                   </div>

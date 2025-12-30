@@ -106,7 +106,7 @@
 	<section>
     <div class="container">
         <!-- Search Box -->
-        <input type="text" id="search-box" placeholder="Search by name, prefix, or serial number..." class="search-box" />
+        <input type="text" id="search-box" placeholder="Search by name or prefix or serial number..." class="search-box" />
 
         <!-- Grid Container -->
         <div class="grid-container" id="members_directory">

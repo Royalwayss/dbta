@@ -255,7 +255,6 @@ class IndexController extends Controller
 				$members_directory = $members_directory->where(function ($query) use ($keyword) { 
 					$query->orWhere("member_name","like","%".$keyword."%")
 						  ->orWhere("designation_prefix","like","%".$keyword."%")
-						  ->orWhere("role","like","%".$keyword."%")
 						  ->orWhere("serial_no","like","%".$keyword."%");
 						  
 				});

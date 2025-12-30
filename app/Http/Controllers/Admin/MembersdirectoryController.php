@@ -83,7 +83,8 @@ class MembersdirectoryController extends Controller
 			
 			return redirect('admin/members-directory')->with('success_message',$message);
 		}
-		return view('admin.members_directory.add_edit_members_directory')->with(compact('title','row','prevId','nextId')); 
+		$designation_list = MembersDirectory::select('designation_prefix')->where('designation_prefix','!=','')->groupby('designation_prefix')->orderby('designation_prefix','asc')->get()->toArray(); 
+		return view('admin.members_directory.add_edit_members_directory')->with(compact('title','row','designation_list','prevId','nextId')); 
 	}
 	
 	
