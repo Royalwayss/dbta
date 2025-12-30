@@ -280,7 +280,7 @@
 						<img src="{{ asset('front/assets/images/'.$meeting_type['image1']) }}" alt="" title="img" class="hover-img">
 						<img src="{{ asset('front/assets/images/'.$meeting_type['image2']) }}" alt="" title="img" class="service-img">
 						<div class="service-card">
-							<h3 class="heading_three">Study Circle Meetings</h3>
+							<h3 class="heading_three"><?php echo $meeting_type['name']; ?></h3>
 							<p class="description subheading"> 
 							<?php echo $meeting_type['description']; ?>
 							</p>

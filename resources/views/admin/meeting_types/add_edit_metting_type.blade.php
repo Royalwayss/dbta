@@ -134,7 +134,7 @@
 						   
 						   
 						   <div class="form-group col-md-6">
-							   <label for="link">Status</label>
+							   <label for="link">Show on Home</label>
 							   <select class="form-control" id="show_in_home" name="show_in_home" required="">
 								   <option value="">Select</option>
 								   <option @if(empty($row['show_in_home']) || $row['show_in_home']=="1") selected="" @endif value="1">Yes</option>
