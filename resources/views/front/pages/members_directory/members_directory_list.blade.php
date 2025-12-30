@@ -1,8 +1,8 @@
 @if(!empty($members_directory))
 	@foreach($members_directory as $member)
 				<div class="member-card">
-					<div class="name">{{ $member['member_name'] }}</div>
-					<div class="role">{{ $member['designation_prefix'] }}</div>
+					<div class="name"> {{ $member['designation_prefix'] }} {{ $member['member_name'] }}</div>
+					<!--<div class="role">{{ $member['designation_prefix'] }}</div> -->
 					<div class="details">
 						<?php /*<div><strong>Prefix:</strong> {{ $member['designation_prefix'] }}</div> */ ?>
 						<div><strong>Serial No:</strong> {{ $member['serial_no'] }}</div>
