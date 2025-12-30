@@ -16,7 +16,7 @@
 								<div class="team-card text-center bg-white  rounded shadow-sm">
 									<img src="{{ asset('front/images/executive-body/'.$val['image']) }}" alt="" class="img-fluid mb-3">
 									<h6>{{ $val['name'] }}</h6>
-									<p class="subheading">{{ $val['destination'] }}</p>
+									<p class="subheading text-center">{{ $val['destination'] }}</p>
 								</div>
 							</div>
                           @endforeach

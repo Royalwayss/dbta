@@ -108,7 +108,7 @@ class CaselawsController extends Controller
 		}else{
 			$title = "Edit Case law";
 			$row = CaselawSection::with('pdf_files')->find($id);
-			$model = 'Caselaw'; 
+			$model = 'CaseLawSection'; 
 			$prevId = findPreviousId($id, $model); 
 			$nextId = findNextId($id, $model);  
 		}

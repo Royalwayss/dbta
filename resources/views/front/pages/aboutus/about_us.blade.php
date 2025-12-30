@@ -32,9 +32,7 @@
 							professional courtesy or the legitimate rights of tax practitioners. Through these
 							objectives, the association serves as an essential institution for fostering professional
 							excellence and collective representation in the field of direct taxation.</p>
-						<div class="login_btn">
-							<a href="{{ route('aboutus') }}">Learn More</a>
-						</div>
+						
 					</div>
 				</div>
 				<div class="col-lg-6 col-12 about-image" data-aos="fade-left">
