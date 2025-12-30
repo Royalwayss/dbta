@@ -494,4 +494,28 @@ section.media_galery_wrapper.gallery_image_wrapper_sec{
   .gridBody {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
+  .header_bar .header_logo{
+    background-image:linear-gradient(to left,
+            rgba(0, 96, 143),
+            rgba(0, 0, 0, 0)
+        );
+
+    background-position: right;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+}
+.header-menu {
+    width: 100%;
+    margin-top: 0;
+    text-align: center;
+}
+}
+@media (max-width: 525px){
+  .footer-useful-links{
+    flex-direction: column;
+  }
+  .ftLine{
+    display: none;
+  }
 }

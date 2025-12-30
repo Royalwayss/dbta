@@ -185,7 +185,7 @@
 				<div class="col-md-10 col-lg-8">
 					<div class="header-section" data-aos="fade-up">
 						<h2 class="title about-heading">What We Do</h2>
-						<p class="description subheading">Our Services at the District Tax Bar Association</p>
+						<p class="description subheading text-center">Our Services at the District Tax Bar Association</p>
 					</div>
 				</div>
 			</div>

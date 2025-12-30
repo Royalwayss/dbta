@@ -25,7 +25,7 @@
 
         /* Search Box Focus Effect */
         .search-box:focus {
-            border-color: #1f4fd8;
+            border-color: #00608e;
             box-shadow: 0 0 5px rgba(31, 79, 216, 0.5);
         }
 
@@ -64,7 +64,7 @@
         .member-card .name {
             font-size: 18px;
             font-weight: 600;
-            color: #1f4fd8;
+            color: #00608e;
         }
 
         .member-card .role {

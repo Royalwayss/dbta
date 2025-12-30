@@ -2,20 +2,28 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-12">
-				<h3 class="footer_heading_three heading_three footer_text">District Tax Bar Association –  A Voice for Tax Advocacy & Excellence</h3>
+				<h3 class="footer_heading_three heading_three footer_text">District Tax Bar Association – A Voice for
+					Tax Advocacy & Excellence</h3>
 			</div>
-			
-			
+
+
 			<div class="col-lg-12 col-md-12 col-12 text-cnter">
 				<div class="linkWrap">
-					
+
 					<ul class="footer-useful-links">
-						<li><h5>Useful Links</h5></li>
+						<li>
+							<h5>Useful Links</h5>
+						</li>
 						<li><a target="_blank" href="https://www.incometax.gov.in/iec/foportal/">Income Tax
 								Department</a></li>
+						<span class="ftLine">|</span>
 						<li><a target="_blank" href="https://www.gst.gov.in">GST Portal</a></li>
-						<li><a target="_blank" href="https://www.mca.gov.in/content/mca/global/en/home.html">MCA</a></li>
+						<span class="ftLine">|</span>
+						<li><a target="_blank" href="https://www.mca.gov.in/content/mca/global/en/home.html">MCA</a>
+						</li>
+						<span class="ftLine">|</span>
 						<li><a target="_blank" href="https://msme.gov.in/">MSME</a></li>
+						<span class="ftLine">|</span>
 						<li><a target="_blank" href="https://icai.org/">ICAI</a></li>
 					</ul>
 				</div>
@@ -34,7 +42,7 @@
 		<div class="d-flex align-items-center justify-content-between foot_social_icons_wrapper">
 			<h3 class="footer_heading_three heading_three ">© Copyrights District Tax Bar Association 2025</h3>
 			<div class="wrapper_icons">
-			 <?php /*	<div class="button">
+				<?php /*	<div class="button">
 					<div class="icon">
 						<i class="fa-brands fa-facebook-f"></i>
 					</div>
@@ -58,12 +66,12 @@
 					</div>
 					<span>Linkdin</span>
 				</div> */ ?>
-				<div class="button">
+				<a class="button" target="_blank" href="https://www.youtube.com/@districttaxationbarassocia3071">
 					<div class="icon">
 						<i class="fab fa-youtube"></i>
 					</div>
 					<span>YouTube</span>
-				</div>
+				</a>
 			</div>
 		</div>
 	</div>

@@ -4,7 +4,7 @@
 	<header>
 		<div class="header_bar">
 		
-		   <div class="header-logo" style="background-image: url('{{ asset('front/assets/images/header-bg-image.png') }}');">
+		   <div class="header-logo">
 		            <div class="header_logo">
 						<a href="{{ route('home') }}"><img src="{{ asset('front/assets/images/logo-new.png') }}" alt="Logo"></a>
 					</div>

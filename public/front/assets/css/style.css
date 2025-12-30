@@ -42,7 +42,7 @@ p {
 .bottom-header a {
   color: #00608f;
   text-decoration: none;
-  padding: 4px 20px;
+  padding: 14px 20px;
   display: block;
   font-size: 15px;
   font-weight: 500;
@@ -295,6 +295,10 @@ ul.dropdown-menu {
 }
 .wrapper_icons .button:hover {
   width: 200px;
+}
+.wrapper_icons a.button{
+  text-decoration: none;
+  color: #00608e;
 }
 .wrapper_icons .button .icon {
   display: inline-block;
@@ -1607,4 +1611,15 @@ section.media_galery_wrapper.our_sponser{
 }
 .case-laws_wrapper table tr td{
   padding: 6px 10px;
+}
+.header_bar .header_logo{
+    background-image:url('../images/logo-dbtaa.png'),linear-gradient(to left,
+            rgba(0, 96, 143),
+            rgba(0, 0, 0, 0)
+        );
+
+    background-position: right;
+    background-size: contain;
+    background-repeat: no-repeat;
+
 }
