@@ -10,10 +10,10 @@
 						<div><strong>Contact:</strong> {{ $member['contact_no'] }}</div>
 					    @endif
 						@if(!empty($member['email']))
-						<div><strong>Email:</strong>{{ $member['email'] }}</div>
+						<div><strong>Email:</strong> {{ $member['email'] }}</div>
 						@endif
 						@if(!empty($member['address']))
-						<div><strong>Address:</strong>{{ $member['address'] }}</div>
+						<div><strong>Address:</strong> {{ $member['address'] }}</div>
 					    @endif
 					</div>
 				</div>
