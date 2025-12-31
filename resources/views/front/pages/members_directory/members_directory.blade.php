@@ -123,7 +123,7 @@ $(document).ready(function() {
   $("#search-box").keyup(function() {
     var keyword = $(this).val(); 
 	
-	
+	$('.PleaseWaitDiv').show();
 	$.ajax({
 				url: "{{ route('members_directory') }}",
 				type:'POST',
