@@ -1,3 +1,6 @@
+<div class="member-form">
+	<a href="{{ asset('front/pdf/membership-form.pdf') }}" target="_blank">Membership Form</a>
+</div>
 <footer class="footer">
 	<div class="container">
 		<div class="row">

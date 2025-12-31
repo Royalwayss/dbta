@@ -1,6 +1,8 @@
 @media (max-width: 767px) {
 
-
+.video_image_wrap{
+  position: relative;
+}
   /*nav-start*/
 
   .custom-toggler .navbar-toggler-icon {
@@ -54,8 +56,11 @@ ul.navbar-nav {
    /*homepage-start*/
 
   .carousel-caption{
-    font-size: 13px!important;
+    font-size: 15px!important;
+     padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
   }
+
   .owl-carousel.owl-theme.media-carousel.owl-loaded.owl-drag .owl-nav .owl-next span{
     display: none;
   }

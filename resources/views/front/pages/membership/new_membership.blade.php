@@ -16,14 +16,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-12" data-aos="fade-up">
-					<p class="subheading paragraph text-justify">New Membership in DTBA opens the door to a thriving community of tax
-						professionals, accountants, and advisors. It provides access to exclusive networking
-						opportunities, knowledge-sharing sessions, and professional development resources. New members
-						benefit from educational webinars, industry updates, and committee involvement that fosters
-						leadership and growth. The registration process is simple and transparent, with flexible
-						membership categories tailored to individual needs. As a member, you'll stay connected with the
-						latest developments in tax laws and practices. Joining DTBA means being part of a trusted
-						network committed to excellence and ethical standards.</p>
+					<p class="subheading paragraph text-justify">New Membership in DTBA opens the door to a thriving community of Chartered Accountants, Advocates, Company secretaries and ITP. It provides access to exclusive networking opportunities, knowledge-sharing sessions, and professional development resources. New members benefit from Study Circle Meetings, Discussion forums, webinars, newsletters, Direct tax updates, and committee involvement that fosters leadership and growth. The registration process is simple and transparent, with flexible membership categories tailored to individual needs. As a member, you'll stay connected with the latest developments in tax laws and practices. Joining DTBA means being part of a trusted member’snetwork committed to excellence and ethical standards.</p>
 				</div>
 			</div>
 		</div>

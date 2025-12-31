@@ -418,13 +418,18 @@ ul.dropdown-menu {
 }
 
 .newsSwiper {
-  height: 400px;
+  max-height: 400px;
+  height: auto;
   overflow: hidden;
+}
+.our_mission_wrapper {
+  padding: 16px;
 }
 
 .swiper-wrapper {
   overflow-y: scroll;
-  height: 400px;
+  max-height: 400px;
+  height: auto
 }
 div#mainSlider img {
   height: 460px;
@@ -871,10 +876,10 @@ section.about_us_sec {
 .gallery_image_wrap {
   position: relative;
 }
-.video_image_wrap {
+/* .video_image_wrap {
   position: absolute;
   left: 50%;
-}
+} */
 .gallery_image_wrap img {
   width: 100%;
 }
@@ -1622,4 +1627,22 @@ section.media_galery_wrapper.our_sponser{
     background-size: contain;
     background-repeat: no-repeat;
 
+}
+.member-form {
+    position: fixed;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 16px 4px;
+    background: #00608f;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    z-index: 1050;
+}
+.member-form a{
+    writing-mode: sideways-lr;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 400;
+    letter-spacing: .5px;
 }
