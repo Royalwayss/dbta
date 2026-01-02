@@ -144,7 +144,7 @@ class MettingController extends Controller
 	
 	
 	public function meeting_types(){ 
-		Session::put('page','meeting-types');
+		Session::put('page','metting-types');
 		$rows = MeetingType::get();
 		$module['view_access'] = 1;
 		$module['edit_access'] = 1;

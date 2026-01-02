@@ -76,7 +76,7 @@ a .fas.fa-unlock {
               @endif
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="banners" class="table table-bordered table-striped">
+                <table id="dataTable" class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>

@@ -116,7 +116,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Jquery Multiple Image Upload with Preview and Delete -->
 <script>
-
+ 
   function product_attr_status_update(_this){
         var id = $(_this).attr('data-id');
          var attr = $(_this).attr('data-attr');
@@ -136,6 +136,9 @@
     }
   
   $(document).ready(function() {
+  $("#dataTable").DataTable({
+      "order": [[ 0, "desc" ]], //or asc 
+    });
   if (window.File && window.FileList && window.FileReader) {
     $("#files").on("change", function(e) {
       var files = e.target.files,

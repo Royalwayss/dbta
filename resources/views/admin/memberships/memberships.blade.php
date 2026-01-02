@@ -72,7 +72,7 @@ a .fas.fa-unlock {
               
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="users" class="table table-bordered table-striped">
+                <table id="dataTable" class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>ID</th>
