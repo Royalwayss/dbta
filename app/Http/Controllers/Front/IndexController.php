@@ -39,7 +39,7 @@ class IndexController extends Controller
 	    $meta = meta(Route::currentRouteName());
         $this->checkVistor();	
         $banners =Banner::where('status','1')->orderby('sort','asc')->get()->toArray(); 
-		$events = Event::where('status','1')->where('event_date','>',date('Y-m-d'))->orderby('event_sort','asc')->get()->toArray(); 
+		$events = Event::where('status','1')->where('event_date','>=',date('Y-m-d'))->orderby('event_sort','asc')->get()->toArray(); 
 		$meeting_types = MeetingType::where('status',1)->where('show_in_home','1')->orderby('sort','asc')->get()->toArray(); 
 		$executive_body = ExecutiveBody::where('show_on_home',1)->where('status',1)->orderby('sort','asc')->get()->toArray(); 
 		$media_images = HomeMedia::where('status',1)->where('media_type','image')->orderby('sort','asc')->get()->toArray();  
