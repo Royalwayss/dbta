@@ -40,8 +40,8 @@ class IndexController extends Controller
 	    $meta = meta(Route::currentRouteName());
         $this->checkVistor();	
         $banners =Banner::where('status','1')->orderby('sort','asc')->get()->toArray(); 
-        $publicnotice_count =PublicNotice::where('status','1')->count(); 
-        $publicnotices =PublicNotice::where('status','1')->orderby('sort','asc')->limit(5)->get()->toArray(); 
+        $publicnotice_count =PublicNotice::where('status','1')->where('date','>=',date('Y-m-d'))->count(); 
+        $publicnotices =PublicNotice::where('status','1')->where('date','>=',date('Y-m-d'))->orderby('sort','asc')->limit(5)->get()->toArray(); 
 		$events = Event::where('status','1')->where('event_date','>=',date('Y-m-d'))->orderby('event_sort','asc')->get()->toArray(); 
 		$meeting_types = MeetingType::where('status',1)->where('show_in_home','1')->orderby('sort','asc')->get()->toArray(); 
 		$executive_body = ExecutiveBody::where('show_on_home',1)->where('status',1)->orderby('sort','asc')->get()->toArray(); 
@@ -60,7 +60,7 @@ class IndexController extends Controller
 	
 	public function public_notice (){
 		$meta = meta(Route::currentRouteName());
-		$publicnotices =PublicNotice::where('status','1')->orderby('sort','asc')->get()->toArray();
+		$publicnotices =PublicNotice::where('status','1')->where('date','>=',date('Y-m-d'))->orderby('sort','asc')->get()->toArray();
         return view('front.pages.public-notice.public-notice')->with(compact('meta','publicnotices'));
     }  
 	
