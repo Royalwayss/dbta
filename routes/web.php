@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\EventsController;
+use App\Http\Controllers\Admin\PublicNoticeController;
 use App\Http\Controllers\Admin\MettingController;
 use App\Http\Controllers\Admin\NewslettersController;
 use App\Http\Controllers\Admin\DownloadsController;
@@ -61,6 +62,18 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('events',[EventsController::class,'events']);
         Route::match(['get','post'],'add-edit-event/{id?}',[EventsController::class,'addEditEvent']);
         
+	   
+	  
+	   // Events
+        Route::get('public-notice',[PublicNoticeController::class,'public_notice']);
+        Route::match(['get','post'],'add-edit-public-notice/{id?}',[PublicNoticeController::class,'addEditPublicNotice']);
+        
+	   
+	   
+	   
+	   
+	   
+	   
 	   
 	   // Meeting
         Route::get('meetings',[MettingController::class,'meeting']);
@@ -148,6 +161,7 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
    
     //Route::get('/', [IndexController::class,'comingSoon'])->name('comingSoon');
     Route::get('/', [IndexController::class,'index'])->name('home');
+    Route::get('public-notice', [IndexController::class,'public_notice'])->name('public_notice');
     Route::get('about-us', [IndexController::class,'aboutus'])->name('aboutus');
     Route::get('executive-body-2025', [IndexController::class,'executive'])->name('executive');
     Route::get('list-of-dtba-committees', [IndexController::class,'committes'])->name('committes');

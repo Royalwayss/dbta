@@ -155,6 +155,27 @@
         </li>
 		
 		
+		@if(Session::get('page')=="public-notice")
+            @php $active="active" @endphp
+        @else
+            @php $active = "" @endphp
+        @endif
+		
+		<li class="nav-item">
+          <a href="{{ url('admin/public-notice') }}" class="nav-link {{ $active }}">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Public Notice
+            </p>
+          </a>
+        </li>
+		
+		
+		
+		
+		
+		
+		
 		
 		@if(Session::get('page')=="metting-types")
             @php $active="active" @endphp

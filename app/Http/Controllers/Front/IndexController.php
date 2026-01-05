@@ -22,6 +22,7 @@ use App\Models\Membership;
 use App\Models\ExecutiveBody;
 use App\Models\MembersDirectory;
 use App\Models\HomeMedia;
+use App\Models\PublicNotice;
 use App\Models\Visitor;
 use App\Models\Mails;
 use Validator;
@@ -39,20 +40,29 @@ class IndexController extends Controller
 	    $meta = meta(Route::currentRouteName());
         $this->checkVistor();	
         $banners =Banner::where('status','1')->orderby('sort','asc')->get()->toArray(); 
+        $publicnotice_count =PublicNotice::where('status','1')->count(); 
+        $publicnotices =PublicNotice::where('status','1')->orderby('sort','asc')->limit(5)->get()->toArray(); 
 		$events = Event::where('status','1')->where('event_date','>=',date('Y-m-d'))->orderby('event_sort','asc')->get()->toArray(); 
 		$meeting_types = MeetingType::where('status',1)->where('show_in_home','1')->orderby('sort','asc')->get()->toArray(); 
 		$executive_body = ExecutiveBody::where('show_on_home',1)->where('status',1)->orderby('sort','asc')->get()->toArray(); 
 		$media_images = HomeMedia::where('status',1)->where('media_type','image')->orderby('sort','asc')->get()->toArray();  
 		$media_videos = HomeMedia::where('status',1)->where('media_type','video')->orderby('sort','asc')->get()->toArray(); 
 		
-		return view('front.pages.home.index')->with(compact('banners','meeting_types','events','executive_body','media_images','media_videos'));
+		return view('front.pages.home.index')->with(compact('banners','meeting_types','publicnotices','publicnotice_count','events','executive_body','media_images','media_videos'));
     }
+
 
     
 	public function aboutus (){
 		$meta = meta(Route::currentRouteName());
         return view('front.pages.aboutus.about_us')->with(compact('meta'));
     }
+	
+	public function public_notice (){
+		$meta = meta(Route::currentRouteName());
+		$publicnotices =PublicNotice::where('status','1')->orderby('sort','asc')->get()->toArray();
+        return view('front.pages.public-notice.public-notice')->with(compact('meta','publicnotices'));
+    }  
 	
 	public function executive (){
 		$meta = meta(Route::currentRouteName());
