@@ -24,8 +24,14 @@
                      <td>{{ date("d-m-Y", strtotime($publicnotice['date'])) }}</td>
                      <td><?php echo wordwrap($publicnotice['message'],75,"<br>\n"); ?></td>
                      <td>
-                        <a href="{{ asset('front/images/public-notice/'.$publicnotice['file']) }}" class="read-link" target="_blank">View Details →</a>
-                     </td>
+                       
+                         @if($publicnotice['file'] != '')
+						    <a href="{{ asset('front/images/public-notice/'.$publicnotice['file']) }}" class="read-link" target="_blank">View Details →</a>
+                        @else
+							 -
+						@endif
+					 
+					 </td>
                      @endforeach
                </tbody>
             </table>
