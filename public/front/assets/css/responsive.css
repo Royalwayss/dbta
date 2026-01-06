@@ -523,4 +523,7 @@ section.media_galery_wrapper.gallery_image_wrapper_sec{
   .ftLine{
     display: none;
   }
+  .header_bar .header_logo {
+    background-image: linear-gradient(to left, rgb(0 96 143 / 27%), rgba(0, 0, 0, 0));
+  }
 }

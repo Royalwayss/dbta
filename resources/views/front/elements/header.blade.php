@@ -6,7 +6,7 @@
 		
 		   <div class="header-logo">
 		            <div class="header_logo">
-						<a href="{{ route('home') }}"><img src="{{ asset('front/assets/images/logo-new.png') }}?v=2.0" alt="Logo"></a>
+						<a href="{{ route('home') }}"><img src="{{ asset('front/assets/images/new-logo.png') }}?v=2.1" alt="Logo"></a>
 					</div>
 		  </div>
 		

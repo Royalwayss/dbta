@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-12">
-				<h3 class="footer_heading_three heading_three footer_text">District Tax Bar Association – A Voice for
+				<h3 class="footer_heading_three heading_three footer_text">District Taxation Bar Association – A Voice for
 					Tax Advocacy & Excellence</h3>
 			</div>
 
@@ -43,7 +43,7 @@
 			</div> */ ?>
 		</div>
 		<div class="d-flex align-items-center justify-content-between foot_social_icons_wrapper">
-			<h3 class="footer_heading_three heading_three ">© Copyrights District Tax Bar Association 2025</h3>
+			<h3 class="footer_heading_three heading_three ">© Copyrights District Taxation Bar Association 2025</h3>
 			<div class="wrapper_icons">
 				<?php /*	<div class="button">
 					<div class="icon">
