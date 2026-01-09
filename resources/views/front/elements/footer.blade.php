@@ -43,7 +43,7 @@
 			</div> */ ?>
 		</div>
 		<div class="d-flex align-items-center justify-content-between foot_social_icons_wrapper">
-			<h3 class="footer_heading_three heading_three ">© Copyrights District Taxation Bar Association 2025</h3>
+			<h3 class="footer_heading_three heading_three ">© Copyrights District Taxation Bar Association {{ date('Y') }}</h3>
 			<div class="wrapper_icons">
 				<?php /*	<div class="button">
 					<div class="icon">

@@ -196,28 +196,8 @@
                         <p class="error-message" id="form-err-practice_certificate"></p>
                      </div>
                   </div>
-                  <div class="col-md-6 col-12">
-                     <div class="mb-3">
-                        <label class="form-label">Fees Paid Amount (Rs.)</label>
-                        <input type="text" class="form-control" name="fees_paid_amount" id="form-fees_paid_amount" placeholder="Amount" >
-                        <p class="error-message" id="form-err-fees_paid_amount"></p>
-                     </div>
-                  </div>
-                  <div class="col-md-6 col-12">
-                     <div class="mb-3">
-                        <label class="form-label">Transaction / Cheque / Receipt No.</label>
-                        <input type="text" class="form-control" name="transaction_id" id="form-transaction_id" >
-                        <p class="error-message" id="form-err-transaction_id"></p>
-                     </div>
-                  </div>
-                  <div class="col-md-6 col-12">
-                     <div class="mb-4">
-                        <label class="form-label">Date of Payment</label>
-                        <input type="date" class="form-control" name="date_of_payment" id="form-date_of_payment">
-                        <p class="error-message" id="form-err-date_of_payment"></p>
-                     </div>
-                  </div>
-               </div>
+                 
+			   </div>
                <hr>
                <!-- Signature -->
                <div class="mb-4">
@@ -280,6 +260,43 @@
 					 <br>From <strong>1st April onwards</strong>, the applicable annual membership fee will be <strong>₹1,100/-.</strong>
                   </div>
                </div>
+			   
+			   
+			   <div class="row">
+			    <div class="col-md-6 col-12">
+                     <div class="mb-3">
+                        <label class="form-label">Fees Paid Amount (Rs.)</label>
+                        <input type="text" class="form-control" name="fees_paid_amount" id="form-fees_paid_amount" placeholder="Amount" >
+                        <p class="error-message" id="form-err-fees_paid_amount"></p>
+                     </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                     <div class="mb-3">
+                        <label class="form-label">Transaction / Cheque / Receipt No.</label>
+                        <input type="text" class="form-control" name="transaction_id" id="form-transaction_id" >
+                        <p class="error-message" id="form-err-transaction_id"></p>
+                     </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                     <div class="mb-4">
+                        <label class="form-label">Date of Payment</label>
+                        <input type="date" class="form-control" name="date_of_payment" id="form-date_of_payment">
+                        <p class="error-message" id="form-err-date_of_payment"></p>
+                     </div>
+                  </div>
+               
+			   
+			   </div>
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
                <!-- Submit -->
                <div class="login_btn">
                   <button type="submit" class="btn btn-primary w-100">Submit</button>
