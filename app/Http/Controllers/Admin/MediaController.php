@@ -68,6 +68,42 @@ class MediaController extends Controller
 			
 			
 			if($request->hasFile('images')){
+				
+				
+				
+			  
+			  if($request->hasFile('images')) {
+				foreach($request->file('images') as $key=>$file){
+				$file = $request->file('images');
+				$extension = $file->getClientOriginalExtension();
+				$allowed_extension = array('jpg','jpeg','png','JPG','JPEG','PNG');
+				if(in_array($extension, $allowed_extension)){
+					$imageName = time().''.rand(100,999).'.'.$extension; 
+					$destinationPath = 'front/events/';
+					$destinationPath = 'front/images/media/';
+					$file->move($destinationPath, $imageName);
+					    $media_image = new MediaImage;
+						$media_image->file = $imageName;
+						$media_image->media_id = $media_id;
+						$media_image->media_sort = $data['media_sort'][$key];
+						if(!empty($data['status'][$key])){
+							$media_image->status = '1';
+						}else{
+							$media_image->status = '0';
+						}
+						$media_image->save();
+				}
+				}
+
+			}
+			  
+			  
+			  
+			  
+			  
+			  
+/*
+			  
 			  foreach($request->file('images') as $key=>$file){
 					$image_tmp = $file;
 					if($image_tmp->isValid()){
@@ -90,7 +126,7 @@ class MediaController extends Controller
 					}
 				}
 			}
-			
+			*/
 			
 			if(isset($data['media_id']) && !empty($data['media_id'])){ 
 				foreach($data['media_id'] as $mediaid){
