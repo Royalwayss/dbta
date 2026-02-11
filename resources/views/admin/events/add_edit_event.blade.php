@@ -146,15 +146,15 @@
 				
                   <div class="form-group col-md-6">
                     <label for="meta_title">Meta Title</label>
-                    <input type="text" class="form-control" id="meta_title" name="meta_title" placeholder="Enter Meta Title" @if(!empty($row['meta_title'])) value="{{ $row['meta_title'] }}" @else value="{{ old('meta_title') }}" @endif required>
+                    <input type="text" class="form-control" id="meta_title" name="meta_title" placeholder="Enter Meta Title" @if(!empty($row['meta_title'])) value="{{ $row['meta_title'] }}" @else value="{{ old('meta_title') }}" @endif >
                   </div>
                   <div class="form-group col-md-6">
                     <label for="meta_description">Meta Description</label>
-                    <input type="text" class="form-control" id="meta_description" name="meta_description" placeholder="Enter Meta Description" @if(!empty($row['meta_description'])) value="{{ $row['meta_description'] }}" @else value="{{ old('meta_description') }}" @endif required>
+                    <input type="text" class="form-control" id="meta_description" name="meta_description" placeholder="Enter Meta Description" @if(!empty($row['meta_description'])) value="{{ $row['meta_description'] }}" @else value="{{ old('meta_description') }}" @endif >
                   </div>
                   <div class="form-group col-md-6">
                     <label for="meta_keywords">Meta Keywords</label>
-                    <input type="text" class="form-control" id="meta_keywords" name="meta_keywords" placeholder="Enter Meta Keywords" @if(!empty($row['meta_keywords'])) value="{{ $row['meta_keywords'] }}" @else value="{{ old('meta_keywords') }}" @endif required>
+                    <input type="text" class="form-control" id="meta_keywords" name="meta_keywords" placeholder="Enter Meta Keywords" @if(!empty($row['meta_keywords'])) value="{{ $row['meta_keywords'] }}" @else value="{{ old('meta_keywords') }}" @endif >
                   </div>
                  <div class="form-group col-md-6">
                       <label for="link">Status</label>
