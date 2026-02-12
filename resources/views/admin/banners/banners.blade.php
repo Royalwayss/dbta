@@ -125,11 +125,11 @@ a .fas.fa-unlock {
                         </td>
                         <td>
                            @if($bannersModule['edit_access']==1 || $bannersModule['full_access']==1)
-                            @if($banner['status']==1)
-                                <a class="updateBannerStatus" id="banner-{{ $banner['id'] }}" banner_id="{{ $banner['id'] }}" style='color:#3f6ed3' href="javascript:void(0)"><i class="fas fa-toggle-on" status="Active"></i></a>
-                              @else
-                                <a class="updateBannerStatus" id="banner-{{ $banner['id'] }}" banner_id="{{ $banner['id'] }}" style="color:grey" href="javascript:void(0)"><i class="fas fa-toggle-off" status="Inactive"></i></a>
-                              @endif
+								@if($banner['status']==1)
+                                 <a class="updateStatus" data-table="banners" id="status-{{ $banner['id'] }}" data-id="{{ $banner['id'] }}" style='color:#3f6ed3' href="javascript:void(0)"><i class="fas fa-toggle-on" status="Active"></i></a>
+                                 @else
+                                 <a class="updateStatus" data-table="banners" id="status-{{ $banner['id'] }}"  data-id="{{ $banner['id'] }}" style="color:grey" href="javascript:void(0)"><i class="fas fa-toggle-off" status="Inactive"></i></a>
+                                 @endif
                           @endif
                           @if($bannersModule['edit_access']==1 || $bannersModule['full_access']==1)
                             &nbsp;&nbsp;
