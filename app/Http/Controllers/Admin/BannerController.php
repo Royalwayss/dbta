@@ -79,7 +79,7 @@ class BannerController extends Controller
     }
 
     public function addEditBannerRequest(Request $request,$id=null){
-        ini_set('memory_limit','256M');
+        ini_set('memory_limit','512M');
         if($request->isMethod('post')){
             $service = new BannerService();
             $result = $service->addEditBanner($request);

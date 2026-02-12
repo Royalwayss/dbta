@@ -76,24 +76,30 @@ class MettingController extends Controller
 			
 			
 			
-			if($request->hasFile('images')){
-				$images = $request->file('images'); 
-				foreach($images as $key=>$img){
-					$image_tmp = $img;
-					if($image_tmp->isValid()){
-						$manager = new ImageManager(new Driver());
-						$image = $manager->read($image_tmp);
-						$extension = $image_tmp->getClientOriginalExtension();
-						$imageName = ($key+1).'-'.time().'.'.$extension;
-						$image_path = 'front/images/meetings/'.$imageName; 
-						$image->save($image_path);
-						
+			
+			
+			 
+			  if($request->hasFile('images')) {
+				foreach($request->file('images') as $key=>$file){
+				
+				$extension = $file->getClientOriginalExtension();
+				$allowed_extension = array('jpg','jpeg','png','JPG','JPEG','PNG');
+					if(in_array($extension, $allowed_extension)){
+						$imageName = time().''.rand(100,999).'.'.$extension; 
+						$destinationPath = 'front/images/meetings/';
+						$file->move($destinationPath, $imageName);
 						$imagesNames[] = $imageName;
 					}
-			   }
-			    $imagesNames_implode = implode(',',$imagesNames);
+				}
+				
+				$imagesNames_implode = implode(',',$imagesNames);
 				$row->images = $imagesNames_implode; 
+				
 			}
+			  
+			
+			
+		
 			
 			
 			
@@ -200,35 +206,34 @@ class MettingController extends Controller
 			}
 			
 			
-			
-			
-			
-			
-			if($request->hasFile('image1')){
-				$image_tmp = $request->file('image1'); 
-					if($image_tmp->isValid()){
-						$manager = new ImageManager(new Driver());
-						$image = $manager->read($image_tmp);
-						$extension = $image_tmp->getClientOriginalExtension();
-						$imageName = time().'.'.$extension;
-						$image_path = 'front/assets/images/'.$imageName; 
-						$image->save($image_path);
-						$row->image1 = $imageName;
-					}
+			 if($request->hasFile('image1')) {
+				$file = $request->file('image1');       
+				$extension = $file->getClientOriginalExtension();
+				$allowed_extension = array('jpg','jpeg','png');
+				if(in_array($extension, $allowed_extension)){
+					$file_name = time().''.rand(100,999).'.'.$extension; 
+					$destinationPath = 'front/assets/images/';
+					$file->move($destinationPath, $file_name);
+					$row->image1 = $file_name; 
+				}
+
 			}
 			
-			if($request->hasFile('image2')){
-				$image_tmp = $request->file('image2'); 
-					if($image_tmp->isValid()){
-						$manager = new ImageManager(new Driver());
-						$image = $manager->read($image_tmp);
-						$extension = $image_tmp->getClientOriginalExtension();
-						$imageName = time().'.'.$extension;
-						$image_path = 'front/assets/images/'.$imageName; 
-						$image->save($image_path);
-						$row->image2 = $imageName;
-					}
+			
+			if($request->hasFile('image2')) {
+				$file = $request->file('image2');       
+				$extension = $file->getClientOriginalExtension();
+				$allowed_extension = array('jpg','jpeg','png');
+				if(in_array($extension, $allowed_extension)){
+					$file_name = time().''.rand(100,999).'.'.$extension; 
+					$destinationPath = 'front/assets/images/';
+					$file->move($destinationPath, $file_name);
+					$row->image2 = $file_name; 
+				}
+
 			}
+			
+			
 			
 			
 		

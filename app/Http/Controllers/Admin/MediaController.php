@@ -67,14 +67,12 @@ class MediaController extends Controller
 			$media_id = $row->id;
 			
 			
-			if($request->hasFile('images')){
-				
-				
+			
 				
 			  
 			  if($request->hasFile('images')) {
 				foreach($request->file('images') as $key=>$file){
-				$file = $request->file('images');
+				
 				$extension = $file->getClientOriginalExtension();
 				$allowed_extension = array('jpg','jpeg','png','JPG','JPEG','PNG');
 				if(in_array($extension, $allowed_extension)){
@@ -145,7 +143,7 @@ class MediaController extends Controller
 			
 			
 			return redirect('admin/media')->with('success_message',$message);
-		}
+	}
 		return view('admin.media.add_edit_media')->with(compact('title','row','prevId','nextId')); 
 	}
 	
@@ -172,7 +170,33 @@ class MediaController extends Controller
 		
 		
 		   if($request->hasFile('images')){
+			  
 			  foreach($request->file('images') as $key=>$file){
+					
+					
+					
+				    $extension = $file->getClientOriginalExtension();
+					$allowed_extension = array('jpg','jpeg','png','JPG','JPEG','PNG');
+					if(in_array($extension, $allowed_extension)){
+						$file_name = time().''.rand(100,999).'.'.$extension; 
+						$destinationPath = 'front/images/home-media/';
+						$file->move($destinationPath, $file_name);
+						
+						$media_image = new HomeMedia;
+						$media_image->media_file = $file_name;
+						$media_image->media_type = 'image';
+						$media_image->sort = $data['media_sort'][$key];
+						if(!empty($data['status'][$key])){
+							$media_image->status = '1';
+						}else{
+							$media_image->status = '0';
+						}
+						$media_image->save(); 
+						
+					}
+					
+					
+					/*
 					$image_tmp = $file;
 					if($image_tmp->isValid()){
 						$manager = new ImageManager(new Driver());
@@ -192,7 +216,14 @@ class MediaController extends Controller
 						}
 						$media_image->save();
 					}
+					
+					*/
+					
+					
+					
 				}
+				
+				
 			}
 			
 			

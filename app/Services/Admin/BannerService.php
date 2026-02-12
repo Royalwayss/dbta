@@ -101,7 +101,9 @@ class BannerService {
             $width = "1920";
             $height = "1100";
         }
-
+        
+		
+		/*
         // Upload Banner Image
         if($request->hasFile('image')){
             $image_tmp = $request->file('image');
@@ -120,6 +122,41 @@ class BannerService {
                 $banner->image = $imageName;
             }
         }
+		*/
+		
+		
+			if($request->hasFile('image')) { 
+				$file = $request->file('image');
+				$extension = $file->getClientOriginalExtension();
+				$allowed_extension = array('jpg','jpeg','png','JPG','JPEG','PNG');
+				if(in_array($extension, $allowed_extension)){
+					$imageName = time().''.rand(100,999).'.'.$extension; 
+					$destinationPath = 'front/images/banners/';
+					$file->move($destinationPath, $imageName);
+					$banner->image = $imageName;
+				}
+
+			}
+			
+
+		  if($request->hasFile('mobile_image')) {
+				$file = $request->file('mobile_image');
+				$extension = $file->getClientOriginalExtension();
+				$allowed_extension = array('jpg','jpeg','png','JPG','JPEG','PNG');
+				if(in_array($extension, $allowed_extension)){
+					$imageName = time().''.rand(100,999).'.'.$extension; 
+					$destinationPath = 'front/images/banners/';
+					$file->move($destinationPath, $imageName);
+					$banner->mobile_image = $imageName;
+				}
+
+			}
+		
+		
+ 
+		
+		
+		/*
 
         // Upload mobile banner
         if($request->hasFile('mobile_image')){
@@ -138,7 +175,7 @@ class BannerService {
                 $image->save($imagePath);
                 $banner->mobile_banner = $imageName;
             }
-        }
+        } */
         $banner->save();
         return array("status"=>$status,"message"=>$message);
     }

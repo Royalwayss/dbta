@@ -74,19 +74,21 @@ class CommitteesController extends Controller
 			  if(!empty($name)){
 			   $committee_member = new CommitteeMember;
 			   $imageName = '';
+				
+				
 				if(isset($request->file('images')[$key])){
-					$image_tmp = $request->file('images')[$key];
-					if($image_tmp->isValid()){ 
-						$manager = new ImageManager(new Driver());
-						$image = $manager->read($image_tmp); 
-						$extension = $image_tmp->getClientOriginalExtension();
-						$imageName = time().''.rand(11,99).'.'.$extension; 
-						$image_path = 'front/images/committees/members/'.$imageName;  
-						$image->save($image_path); 
+					$file = $request->file('images')[$key];     
+					$extension = $file->getClientOriginalExtension();
+					$allowed_extension = array('jpg','jpeg','png','JPG','JPEG','PNG');
+					if(in_array($extension, $allowed_extension)){
+						$imageName = time().''.rand(100,999).'.'.$extension; 
+						$destinationPath = 'front/images/committees/members/';
+						$file->move($destinationPath, $imageName);
+						 
 					}
 				}
-					
-						
+
+			
 				$committee_member->profile = $imageName;
 				$committee_member->committee_id = $committee_id;
 				$committee_member->name = $name;
@@ -108,18 +110,25 @@ class CommitteesController extends Controller
 			if(isset($data['member_id']) && !empty($data['member_id'])){  
 				foreach($data['member_id'] as $memberid){
 					$committee_member = CommitteeMember::find($memberid); 
-					if(isset($request->file('edit_image')[$memberid])){
-					$image_tmp = $request->file('edit_image')[$memberid];
-					if($image_tmp->isValid()){ 
-						$manager = new ImageManager(new Driver());
-						$image = $manager->read($image_tmp); 
-						$extension = $image_tmp->getClientOriginalExtension();
-						$imageName = time().''.rand(11,99).'.'.$extension; 
-						$image_path = 'front/images/committees/members/'.$imageName;  
-						$image->save($image_path); 
-						$committee_member->profile = $imageName;
+					
+					
+					
+					
+					
+					if(isset($request->file('edit_image')[$key])){
+						$file =	$request->file('edit_image')[$memberid];
+						$extension = $file->getClientOriginalExtension();
+						$allowed_extension = array('jpg','jpeg','png','JPG','JPEG','PNG');
+						if(in_array($extension, $allowed_extension)){
+							$imageName = time().''.rand(100,999).'.'.$extension; 
+							$destinationPath = 'front/images/committees/members/';
+							$file->move($destinationPath, $imageName);
+							$committee_member->profile = $imageName;
+						 
+						}
 					}
-				}
+					
+				    
 					
 					
 					
