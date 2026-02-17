@@ -163,7 +163,7 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
     Route::get('/', [IndexController::class,'index'])->name('home');
     Route::get('public-notice', [IndexController::class,'public_notice'])->name('public_notice');
     Route::get('about-us', [IndexController::class,'aboutus'])->name('aboutus');
-    Route::get('executive-body-2026', [IndexController::class,'executive'])->name('executive');
+    Route::get('executive-body-2026-27', [IndexController::class,'executive'])->name('executive');
     Route::get('list-of-dtba-committees', [IndexController::class,'committes'])->name('committes');
     Route::get('newsletter-and-publications', [IndexController::class,'newsletter'])->name('newsletter');
     Route::get('membership', [IndexController::class,'new_membership'])->name('new_membership');
@@ -182,7 +182,8 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
    
    
    //Permanent Redirect (301 – best for SEO)
-   Route::redirect('/executive-body-2025', '/executive-body-2026', 301);
+   Route::redirect('/executive-body-2025', '/executive-body-2026-27', 301);
+   Route::redirect('/executive-body-2026', '/executive-body-2026-27', 301);
 
     
 

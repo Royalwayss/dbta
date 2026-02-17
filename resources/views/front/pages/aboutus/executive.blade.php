@@ -4,7 +4,7 @@
 		<section class="team-section  committes_wrap_sec">
 			<div class="heading-one  mb-5"data-aos="fade-up">
 				
-				<h1 class="text-center">Executive Committee 2026</h1>
+				<h1 class="text-center">Executive Committee 2026-27</h1>
 				<div class="underline mx-auto mt-2"></div>
 			</div>
 			<div class="container">
