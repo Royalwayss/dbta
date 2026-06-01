@@ -168,6 +168,7 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
     Route::get('newsletter-and-publications', [IndexController::class,'newsletter'])->name('newsletter');
     Route::get('membership', [IndexController::class,'new_membership'])->name('new_membership');
     Route::post('save-membership', [IndexController::class,'save_membership'])->name('save_membership');
+	Route::get('view-membership', [IndexController::class,'view_membership'])->name('view_membership');
     Route::get('contact-us', [IndexController::class,'contactus'])->name('contactus');
     Route::post('save-contact', [IndexController::class,'save_contact'])->name('save_contact');
     Route::get('downloads', [IndexController::class,'downloads'])->name('downloads');

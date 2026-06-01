@@ -26,6 +26,9 @@ use App\Models\PublicNotice;
 use App\Models\Visitor;
 use App\Models\Mails;
 use Validator;
+use Session;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 use App\Services\Front\HomeWidgetService;
 
 class IndexController extends Controller
@@ -64,7 +67,7 @@ class IndexController extends Controller
         return view('front.pages.public-notice.public-notice')->with(compact('meta','publicnotices'));
     }  
 	
-	public function executive (){
+	public function executive(){
 		$meta = meta(Route::currentRouteName());
         $executive_body = ExecutiveBody::where('status',1)->orderby('sort','asc')->get()->toArray(); 
         return view('front.pages.aboutus.executive')->with(compact('meta','executive_body'));
@@ -74,7 +77,8 @@ class IndexController extends Controller
 	public function meeting(request $request){
 		$meta = meta(Route::currentRouteName()); 
         $seo = Route::getFacadeRoot()->current()->uri(); 
-		$meetings = Meeting::where('meeting_type',$seo)->where('status',1)->orderby('meeting_sort','asc')->get()->toArray(); 
+		$meetings = Meeting::where('meeting_type',$seo)->where('status',1)->orderby('meeting_sort','asc')
+		            ->simplePaginate(4); 
         $meeting_type = MeetingType::where('slug',$seo)->first();
 		return view('front.pages.meeting.meeting')->with(compact('meta','seo','meetings','meeting_type'));
     }
@@ -176,25 +180,63 @@ class IndexController extends Controller
 			
 			$validation_data = $request->all();
 	 	   
-            $validator = Validator::make($validation_data, [
-                    'name' =>  'required',
-					'parent_name' =>  'required',
-                    'residence_address' =>  'required',
-                    'office_address' =>  'required',
-					
-					'mobile'=>'required|numeric|digits:10',
-					'email' => 'required|string|regex:/^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i|max:255',
-					'professional_area'=>'required',
-					
-					'kyc'=>'required|file|max:2000|mimes:pdf,jpg,png',
-					'qualification_proof'=>'required|file|max:2000|mimes:pdf,jpg,png',
-					'practice_certificate'=>'required|file|max:2000|mimes:pdf,jpg,png',
-					'signature_of_applicant'=>'file|max:2000|mimes:pdf,jpg,png',
-                ],
-                [
-                    'name1.required'=>'Enter the name.',
-                    
-                ]);
+				$validator = Validator::make($validation_data, [
+				'name' => 'required',
+				'parent_name' => 'required',
+				'residence_address' => 'required',
+				'office_address' => 'required',
+
+				'mobile' => 'required|numeric|digits:10',
+				'email' => 'required|string|regex:/^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i|max:255',
+
+				'professional_area' => 'required',
+
+				'kyc' => 'required|file|max:2000|mimes:pdf,jpg,png',
+				'qualification_proof' => 'required|file|max:2000|mimes:pdf,jpg,png',
+				'practice_certificate' => 'required|file|max:2000|mimes:pdf,jpg,png',
+				'signature_of_applicant' => 'nullable|file|max:2000|mimes:pdf,jpg,png',
+				'photo' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+			   ], [
+
+				'name.required' => 'Please enter your full name.',
+				'parent_name.required' => 'Please enter father\'s/mother\'s name.',
+
+				'residence_address.required' => 'Please enter your residential address.',
+				'office_address.required' => 'Please enter your office address.',
+
+				'mobile.required' => 'Please enter your mobile number.',
+				'mobile.numeric' => 'Mobile number must contain only digits.',
+				'mobile.digits' => 'Mobile number must be exactly 10 digits.',
+
+				'email.required' => 'Please enter your email address.',
+				'email.regex' => 'Please enter a valid email address.',
+				'email.max' => 'Email address may not be greater than 255 characters.',
+
+				'professional_area.required' => 'Please select your professional area.',
+
+				'kyc.required' => 'Please upload a KYC document.',
+				'kyc.mimes' => 'KYC document must be a PDF, JPG, or PNG file.',
+				'kyc.max' => 'KYC document size must not exceed 2 MB.',
+
+				'qualification_proof.required' => 'Please upload proof of qualification.',
+				'qualification_proof.mimes' => 'Qualification proof must be a PDF, JPG, or PNG file.',
+				'qualification_proof.max' => 'Qualification proof size must not exceed 2 MB.',
+
+				'practice_certificate.required' => 'Please upload a practice certificate.',
+				'practice_certificate.mimes' => 'Practice certificate must be a PDF, JPG, or PNG file.',
+				'practice_certificate.max' => 'Practice certificate size must not exceed 2 MB.',
+
+				'signature_of_applicant.mimes' => 'Signature file must be a PDF, JPG, or PNG file.',
+				'signature_of_applicant.max' => 'Signature file size must not exceed 2 MB.',
+				
+				'photo.required' => 'Please upload your passport size photograph.',
+				'photo.image' => 'The photo must be an image file.',
+				'photo.mimes' => 'The photo must be in JPG, JPEG, or PNG format.',
+				'photo.max' => 'The photo size must not exceed 2 MB.',
+				
+				
+			]);
+			
             if($validator->passes()) {
                 $data = $request->all();
                 //save Membership
@@ -222,6 +264,7 @@ class IndexController extends Controller
 				         'qualification_proof'=>'qualification_proof',
 				         'practice_certificate'=>'practice_certificate',
 				         'signature_of_applicant'=>'signature_of_applicant',
+						 'photo' => 'photo'
 				
 				];
 				
@@ -247,13 +290,55 @@ class IndexController extends Controller
                 if(env('MAIL_MODE') =="live"){
                     
                 }
-                return response()->json(['status'=>true,'message'=>'Message has been sent, we will contact you soon.']);
+				
+				 $url = route('view_membership');
+				 Session::put('membership_form_id',$membership->id);
+				
+                return response()->json(['status'=>true,'url'=>$url,'message'=>'Message has been sent, we will contact you soon.']);
             }else{
                 return response()->json(['status'=>false,'type'=>'validation','errors'=>$validator->messages()]);
             }
         }
     }
     
+	
+	public function view_membership  (Request $request){
+		if(Session::has('membership_form_id')){
+			  $meta = meta(Route::currentRouteName());
+			 
+			  $membership_form_id = Session::get('membership_form_id');
+			  $type = 'view';
+			  $membership = Membership::where('id',$membership_form_id)->firstorfail();
+			 return view('front.pages.membership.view-membership')->with(compact('meta','membership','type'));
+			 
+			 	
+			 $membership ='';
+			 $type = 'download';
+			 $pdf = Pdf::loadView('front.pages.membership.view-membership',[
+					'type' => $type,
+					'membership' => $membership,
+					'date'   => now()->format('d/m/Y'),
+					])
+					->setPaper('a4', 'portrait')
+					->setOptions([
+						'defaultFont'       => 'sans-serif',
+						'isRemoteEnabled'   => true,
+						'isHtml5ParserEnabled' => true,
+						'dpi'               => 150,
+					]);
+
+				return $pdf->download('DTBA-Membership-Form.pdf');
+			 
+			 
+			 
+			 
+			 
+			 
+		}
+		
+	}
+	
+	
 	
 	public function members_directory (Request $request){
 		 if($request->isMethod('post')){

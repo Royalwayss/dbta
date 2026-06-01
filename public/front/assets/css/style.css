@@ -1447,7 +1447,7 @@ p.subheading.paragraph {
 /*learning-start*/
 .learning_sec_wrap {
   padding: 100px 0px;
-  border-bottom: 1px solid #e1ecf7;
+  border-bottom: 4px solid #e1ecf7;
 }
 .learning_heading {
   color: #00608e;
@@ -1647,3 +1647,115 @@ section.media_galery_wrapper.our_sponser{
     font-weight: 400;
     letter-spacing: .5px;
 }
+
+/* Meeting page pagination css start */
+.meeting-pagination nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+  .meeting-pagination a {
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #00608f !important;
+    color: #fff;
+    transition: all 0.3s ease;
+    padding: 16px 4px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+
+  .meeting-pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f5f5f5;
+    color: #999;
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  .meeting-pagination a:hover {
+    background: #0d6efd;
+    color: #fff;
+    border-color: #0d6efd;
+  }
+
+  .meeting-pagination .active span,
+  .meeting-pagination span[aria-current="page"] {
+    background: #0d6efd;
+    color: #fff;
+    border-color: #0d6efd;
+    display: none;
+  }
+
+  .meeting-pagination .disabled span {
+    background: #f5f5f5;
+    color: #999;
+  }
+
+  .meeting-pagination svg {
+    width: 16px;
+    height: 16px;
+  }
+/* Meeting page pagination css end */
+
+/* Membership form css start */
+ .membership-file-upload {
+    position: relative;
+    width: 100%;
+  }
+
+  .membership-file-upload input[type="file"] {
+    display: none;
+  }
+
+  .membership-file-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    border: 2px dashed #0d6efd;
+    border-radius: 10px;
+    background: #f8fbff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+
+  .membership-file-label:hover {
+    background: #eef5ff;
+    border-color: #084298;
+  }
+
+  .membership-file-label i {
+    font-size: 40px;
+    color: #0d6efd;
+    margin-bottom: 10px;
+  }
+
+  .membership-file-label span {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .membership-file-label small {
+    color: #666;
+    margin-top: 5px;
+  }
+  
+  /* Membership form css end */

@@ -58,6 +58,8 @@ class ExecutivebodyController extends Controller
 			}
 	         $row->name = $data['name']; 
 	         $row->destination = $data['destination']; 
+	         $row->email = $data['email']; 
+	         $row->phone = $data['phone']; 
 			 if($request->hasFile('image')) {
 				$file = $request->file('image');       
 				$extension = $file->getClientOriginalExtension();

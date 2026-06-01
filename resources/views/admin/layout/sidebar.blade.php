@@ -105,7 +105,9 @@
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <input type="text" id="menuSearch" class="form-control mb-2" placeholder="Search Menu...">
+	
+	  <ul class="nav nav-pills nav-sidebar flex-column" id="sidebarMenu" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         @if(Session::get('page')=="dashboard")

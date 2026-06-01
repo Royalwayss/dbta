@@ -322,7 +322,27 @@
       </script>
 
 
+<script>
+$(document).ready(function () {
 
+    $("#menuSearch").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+
+        $("#sidebarMenu .nav-item").filter(function () {
+
+            var text = $(this).text().toLowerCase();
+
+            if (text.indexOf(value) > -1) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+
+        });
+    });
+
+});
+</script>
 
 
 </body>

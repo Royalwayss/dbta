@@ -108,12 +108,22 @@
 				  
 				   <div class="form-group col-md-6">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" @if(!empty($row['name'])) value="{{ $row['name'] }}" @else value="{{ old('name') }}" @endif >
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" @if(!empty($row['name'])) value="{{ $row['name'] }}" @else value="{{ old('name') }}" @endif  required>
+                  </div>
+				  
+				   <div class="form-group col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" @if(!empty($row['email'])) value="{{ $row['email'] }}" @else value="{{ old('email') }}" @endif  >
+                  </div>
+				  
+				  <div class="form-group col-md-6">
+                    <label for="phone">Phone</label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter Phone" @if(!empty($row['phone'])) value="{{ $row['phone'] }}" @else value="{{ old('phone') }}" @endif  >
                   </div>
 				  
 				  <div class="form-group col-md-6">
                     <label for="destination">Destination</label>
-                    <input type="text" class="form-control" id="destination" name="destination" placeholder="Enter Destination" @if(!empty($row['destination'])) value="{{ $row['destination'] }}" @else value="{{ old('destination') }}" @endif >
+                    <input type="text" class="form-control" id="destination" name="destination" placeholder="Enter Destination" @if(!empty($row['destination'])) value="{{ $row['destination'] }}" @else value="{{ old('destination') }}" @endif  required>
                   </div>
 				    
 				  
@@ -143,7 +153,7 @@
                     </div>
 					
 				  <div class="form-group col-md-6">
-                      <label for="link">Show In Homw</label>
+                      <label for="link">Show In Home</label>
                       <select class="form-control"  name="show_on_home" required="">
 						   <label for="status">Status*</label>
 						   <option  value="1" @if(empty($row['show_on_home']) || $row['show_on_home'] == '1') selected @endif  >Yes</option>

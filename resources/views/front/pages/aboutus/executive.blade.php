@@ -1,4 +1,7 @@
 @extends('front.layout.layout')
+<style>
+.contact-info a{ color: #006090;    text-decoration: none; }
+</style>
 @section('content')
 	<main>
 		<section class="team-section  committes_wrap_sec">
@@ -17,6 +20,12 @@
 									<img src="{{ asset('front/images/executive-body/'.$val['image']) }}" alt="" class="img-fluid mb-3">
 									<h6>{{ $val['name'] }}</h6>
 									<p class="subheading text-center">{{ $val['destination'] }}</p>
+									@if($val['phone'] != '')
+									<p class="contact-info text-center"><i class="bi bi-telephone-fill"></i> <a href="tel:+{{ $val['phone'] }}">{{ $val['phone'] }}</a></p>
+									@endif
+									@if($val['email'] != '')
+									<p class="contact-info text-center"><i class="bi bi-envelope-fill"></i> <a href="mailto:{{ $val['email'] }}">{{ $val['email'] }}</a></p>
+								    @endif
 								</div>
 							</div>
                           @endforeach
