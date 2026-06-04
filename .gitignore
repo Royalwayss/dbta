@@ -5,6 +5,9 @@
 /vendor
 /public/front/images/banners
 /public/front/images/banners/*.key
+/public/front/images/home-media/
+/public/front/images/home-media/*.key
+
 .env
 .env.backup
 .env.production
