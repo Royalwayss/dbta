@@ -1,5 +1,14 @@
 @extends('front.layout.layout')
 @section('content')
+<style>
+.input_field_list input,textarea,select {
+	color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
+}
+</style>
 <main>
   <section class="list_committes_wrap_sec">
     <div class="heading-one heading_one_dtba" data-aos="fade-up">
@@ -101,7 +110,23 @@
               <p class="error-message" id="form-err-office_address"></p>
             </div>
           </div>
-
+		  
+		  <div class="row">
+		  <!-- Office -->
+		   <div class="col-md-6 mb-4">
+              <label class="form-label">Aadhaar Card No</label>
+              <input type="text" class="form-control" name="aadhaar_no" id="form-aadhaar_no">
+              <p class="error-message" id="form-err-aadhaar_no"></p>
+            </div>
+		  
+          
+		  <!-- Pan -->
+		   <div class="col-md-6 mb-4">
+              <label class="form-label">Pan Card No</label>
+              <input type="text" class="form-control" name="pan_no" id="form-pan_no">
+              <p class="error-message" id="form-err-pan_no"></p>
+            </div>
+            </div>
           <hr>
           <!-- Enclosures Section -->
           <h5 class="mb-3">Enclosures (Upload Documents)</h5>
@@ -109,11 +134,11 @@
 
             @php
             $upload_files = [
-            'kyc' => 'KYC Document (Aadhaar / PAN / Passport)',
-            'qualification_proof' => 'Proof of Qualification',
-            'practice_certificate' => 'Practice Certificate / Evidence of Practice',
-            'signature_of_applicant' => 'Signature of Applicant',
-            'photo' => 'Passport Size Photo'
+					'kyc' => 'KYC Document (Aadhaar / PAN / Passport)',
+					'qualification_proof' => 'Proof of Qualification',
+					'practice_certificate' => 'Practice Certificate / Evidence of Practice',
+					'signature_of_applicant' => 'Signature of Applicant',
+					'photo' => 'Passport Size Photo'
             ];
             @endphp
             <div class="row">

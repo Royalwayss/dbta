@@ -7,7 +7,9 @@ use App\Http\Controllers\Admin\EventsController;
 use App\Http\Controllers\Admin\PublicNoticeController;
 use App\Http\Controllers\Admin\MettingController;
 use App\Http\Controllers\Admin\NewslettersController;
+use App\Http\Controllers\Admin\ArticlesController;
 use App\Http\Controllers\Admin\DownloadsController;
+use App\Http\Controllers\Admin\DepartmentOfficersController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\CommitteesController;
 use App\Http\Controllers\Admin\CaselawsController;
@@ -93,9 +95,23 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('newsletters',[NewslettersController::class,'newsletters']);
         Route::match(['get','post'],'add-edit-newsletter/{id?}',[NewslettersController::class,'addEditNewsletter']);
 	   
+	   // Articles
+        Route::get('articles',[ArticlesController::class,'articles']);
+        Route::match(['get','post'],'add-edit-article/{id?}',[ArticlesController::class,'addEditArticle']);
+	   
+	   
+	   
+	   
+	   
 	   // Downloads
         Route::get('downloads',[DownloadsController::class,'downloads']);
         Route::match(['get','post'],'add-edit-download/{id?}',[DownloadsController::class,'addEditDownload']);
+	   
+	   //  Department Officers
+        Route::get('department-officers',[DepartmentOfficersController::class,'departmentofficers']);
+        Route::match(['get','post'],'add-edit-department-officer/{id?}',[DepartmentOfficersController::class,'addEditDepartmentOfficers']);
+	   
+	  
 	   
 	   
 	    // Media
@@ -144,6 +160,9 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
 		
 		Route::get('members-directory',[MembersdirectoryController::class,'members_directory']);
         Route::match(['get','post'],'add-edit-member-directory/{id?}',[MembersdirectoryController::class,'addedit_member_directory']);
+        Route::match(['get','post'],'update-members-directory',[MembersdirectoryController::class,'update_member_directory']);
+        Route::post('export-member-directory',[MembersdirectoryController::class,'export_member_directory']);
+        Route::post('import-member-directory',[MembersdirectoryController::class,'import_member_directory']);
 		
 		
 		
@@ -174,6 +193,7 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
     Route::get('downloads', [IndexController::class,'downloads'])->name('downloads');
     Route::get('media', [IndexController::class,'media'])->name('media');
     Route::get('case-laws', [IndexController::class,'case_laws'])->name('case_laws');
+    Route::get('department-officers', [IndexController::class,'department_officers'])->name('department_officers');
     Route::match(['get','post'],'members-directory',[IndexController::class,'members_directory'])->name('members_directory');
 		
     $meeting_types = meeting_types();

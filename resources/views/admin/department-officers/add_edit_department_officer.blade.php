@@ -39,7 +39,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Events Management</h1>
+            <h1>Department Officers Management</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -74,10 +74,10 @@
               <div class="col-12">
                 <div style="float:right;">
                 @if($prevId!=0)
-                  <a href="{{ url('admin/add-edit-member-directory/'.$prevId) }}" class="btn btn-primary btn-animated-link"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Previous Member Directory</a>
+                  <a href="{{ url('admin/add-edit-department-officer/'.$prevId) }}" class="btn btn-primary btn-animated-link"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Previous Department Officer</a>
                 @endif
                 @if($nextId!=0)
-                  <a href="{{ url('admin/add-edit-member-directory/'.$nextId) }}" class="btn btn-primary btn-animated-link"> Next Member Directory  <i class="fas fa-arrow-right"></i> </a>
+                  <a href="{{ url('admin/add-edit-department-officer/'.$nextId) }}" class="btn btn-primary btn-animated-link"> Next Department Officer  <i class="fas fa-arrow-right"></i> </a>
                 @endif
                 </div>
                 </div>
@@ -98,89 +98,41 @@
                   </button>
                 </div>
                 @endif
-                <form name="categoryForm" id="categoryForm" action="{{ url('admin/add-edit-member-directory') }}" method="post" enctype="multipart/form-data">@csrf
+                <form name="categoryForm" id="categoryForm" action="{{ url('admin/add-edit-department-officer') }}" method="post" enctype="multipart/form-data">@csrf
                 @if(!empty($row['id']))
                   <input type="hidden" name="id" value="{{ $row['id'] }}">
                 @endif
                 <div class="card-body">
                   <div class="row">
-				 
-                   
-				   
-				   <div class="form-group col-md-6" style="display:none">
-                    <label for="role">Role*</label>
-                    <input type="text" class="form-control" id="role" name="role" placeholder="Role" @if(!empty($row['role'])) value="{{ $row['role'] }}" @else value="{{ old('role') }}" @endif  >
-                  </div>
-				   
-				   
-				   
-				   <div class="form-group col-md-6">
-                    <label for="title">Designation Prefix*</label>
-                    <select class="form-control" id="designation_prefix" name="designation_prefix"  required>
-						<option value="">Select Designation</option>
-						@foreach($designation_list as $designation_prefix)
-						<option value="{{ $designation_prefix['designation_prefix'] }}" @if(!empty($row['designation_prefix']) && $row['designation_prefix'] == $designation_prefix['designation_prefix']) selected  @endif>{{ $designation_prefix['designation_prefix'] }}</option>
-						@endforeach
-					</select>
-                  </div>
 				  <div class="form-group col-md-6">
-                    <label for="mediasort">Member Name*</label>
-                    <input type="text" class="form-control" id="member_name" name="member_name" placeholder="Name" @if(!empty($row['member_name'])) value="{{ $row['member_name'] }}" @else value="{{ old('member_name') }}" @endif  required>
+                    <label for="category_name">Title*</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" @if(!empty($row['title'])) value="{{ $row['title'] }}" @else value="{{ old('title') }}" @endif  required>
                   </div>
-				  
+                   <div class="form-group col-md-6">
+                    <label for="pdf">File</label>
+                    <input type="File" class="form-control" id="file" name="file">
+					@if(!empty($row['file']))
+					<a target="_black" href="{{ asset('front/department-officers/'.$row['file']) }}">View File</a>
+				   @endif
+                  </div>
                   
-                  <div class="form-group col-md-6">
-                    <label for="serial_no">Serial No*</label>
-                    <input type="text" class="form-control" id="serial_no" name="serial_no" placeholder="Serial No" @if(!empty($row['serial_no'])) value="{{ $row['serial_no'] }}" @else value="{{ old('serial_no') }}" @endif  required>
-                  </div>
-				  
-				   <div class="form-group col-md-6">
-                    <label for="serial_no">Contact No*</label>
-                    <input type="text" class="form-control" id="contact_no" name="contact_no" placeholder="Contact No" @if(!empty($row['contact_no'])) value="{{ $row['contact_no'] }}" @else value="{{ old('contact_no') }}" @endif  required>
-                  </div>
-				  
-				   
-				   <div class="form-group col-md-6">
-                      <label for="admin_image">Profile</label><small><strong> (dimisions - 480x620)</strong></small> <br>
-                      <input type="file" class="form-control" id="profile" name="profile">
-                       
-					  @if(!empty($row['profile']))
-                        <a target="_blank" href="{{ url('uploads/members-directory/profile/'.$row['profile']) }}">View Profile</a>
-                      @endif
-					  
-                    </div>
-				   
-				   
-				  
-				   <div class="form-group col-md-12">
-                    <label for="serial_no">Address*</label>
-                   <input type="text" class="form-control" id="address" name="address" placeholder="Address" @if(!empty($row['address'])) value="{{ $row['address'] }}" @else value="{{ old('address') }}" @endif  required>
-				  </div>
-				  
-				  
-				   <div class="form-group col-md-6">
-                    <label for="serial_no">Email*</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" @if(!empty($row['email'])) value="{{ $row['email'] }}" @else value="{{ old('email') }}" @endif  required>
-                  </div>
+                  
 				  
 				  <div class="form-group col-md-6">
-                    <label for="sort">Sort</label>
-                    <input type="no" class="form-control" id="sort" name="sort" placeholder="Event Sort" @if(!empty($row['sort'])) value="{{ $row['sort'] }}" @else value="{{ old('sort') }}" @endif required>
+                    <label for="event_sort"> Sort</label>
+                    <input type="no" class="form-control" id="pdf_sort" name="pdf_sort" placeholder="Sort" @if(!empty($row['pdf_sort'])) value="{{ $row['pdf_sort'] }}" @else value="{{ old('pdf_sort') }}" @endif required>
                   </div>
                  
-                  
+
 				
-				  
-				 
-                
-                
+                 
                  <div class="form-group col-md-6">
                       <label for="link">Status</label>
-                     <select class="form-control" id="status" name="status" required="">
-                           <option value="">Select</option>
-                           <option @if(empty($row['status']) || $row['status']=="1") selected="" @endif value="1">Active</option>
-                           <option @if( $row['status']=="0") selected="" @endif value="0">InActive</option>
-                    </select>
+                      <select class="form-control"  name="status" required="">
+						   <label for="status">Status*</label>
+						   <option  value="1" @if(empty($row['status']) || $row['status'] == '1') selected @endif  >Active</option>
+						   <option value="0" @if($row['status'] == '0') selected @endif>InActive</option>
+					</select>
                     </div>
                   
                 </div>

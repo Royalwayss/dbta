@@ -3,6 +3,8 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2026/03/28/06/20260328064231-383M37AG.js" defer></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
     AOS.init({
@@ -39,7 +41,7 @@
 			nav: true,
 			dots: false,
 			autoplay: true,
-			autoplayTimeout: 4000,
+			autoplayTimeout: 8000,
 			autoplayHoverPause: true,
 			navText: [
 				'<span class="carousel-nav prev">‹</span>',

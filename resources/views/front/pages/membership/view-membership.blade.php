@@ -142,6 +142,7 @@
         width: 100%;
         height: 16px;
         display: block;
+        font-size: 15px;
       }
 
       .field-box {
@@ -150,6 +151,7 @@
         height: 28px;
         display: block;
         margin-top: 2px;
+        font-size: 15px;
       }
 
       /* ── SECTION BAR ── */
@@ -193,15 +195,23 @@
       .checkbox-wrap {
         display: inline-block;
         margin-right: 12px;
-        font-size: 12px;
+        font-size: 15px;
         color: black !important;
         font-weight: bold;
       }
 
+      .checkbox-wrap small {
+        font-weight: normal;
+        font-size: 15px;
+        color: #555;
+        text-transform: none;
+        letter-spacing: 0;
+      }
+
       .chk {
         display: inline-block;
-        width: 10px;
-        height: 10px;
+        width: 15px;
+        height: 15px;
         border: 1px solid #333;
         margin-right: 3px;
         vertical-align: middle;
@@ -383,11 +393,56 @@
         padding: 6px 0 8px;
         margin-top: 4px;
       }
+
+      .photo-box img {
+        margin-top: -28px;
+        max-width: 100px;
+      }
+
+      .invoice-actions {
+        text-align: center;
+        gap: 10px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+
+      .btn {
+        padding: 8px 14px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      .btn-primary {
+        background: #007bff;
+        color: white;
+      }
+
+      .btn-success {
+        background: #28a745;
+        color: white;
+      }
+
+      @media print {
+        .invoice-actions {
+          display: none;
+        }
+      }
     </style>
   </head>
 
   <body>
+    @if($type =='view')
+    <div class="invoice-actions">
+
+      <button onclick="downloadPDF()" class="btn btn-success">
+        Download PDF
+      </button>
+    </div>
+    @endif
+
     <div style="display:flex; justify-content:center; padding:30px 10px; min-height:100vh; background:#dde3ed;">
+
       <div class="page">
 
         {{-- HEADER --}}
@@ -414,15 +469,27 @@
                   <span class="field-label">Full Name
                     <span class="field-sublabel">(Name in Block / Capital Letters)</span>
                   </span>
-                  <div class="field-line">muthu</div>
+                  <div class="field-line">{{ $membership['name'] }}</div>
                 </div>
                 <div class="field" style="margin-top:6px;">
                   <span class="field-label">Son of / Daughter of</span>
-                  <div class="field-line">velusamy</div>
+                  <div class="field-line">{{ $membership['parent_name'] }}</div>
                 </div>
               </td>
               <td style="width:108px; padding-left:12px; vertical-align:top;">
-                <div class="photo-box">Passport<br>Size<br>Photo</div>
+                <div class="photo-box">
+
+                  @if($membership['photo'] != '')
+                  @if($type =='download')
+                  <img src="data:image/png;base64,{{ base64_encode(file_get_contents( public_path('uploads/photo/'.$membership['photo']) )) }}" alt="photo">
+                  @else
+                  <img src="{{ asset('uploads/photo/'.$membership['photo']) }}" alt="photo">
+                  @endif
+
+                  @else
+                  Passport<br>Size<br>Photo
+                  @endif
+                </div>
                 <div class="photo-caption">Photograph</div>
               </td>
             </tr>
@@ -433,55 +500,62 @@
 
           <div class="field">
             <span class="field-label">Residential Address</span>
-            <div class="field-box"></div>
+            <div class="field-box">{{ $membership['residence_address'] }}</div>
           </div>
 
           <div class="field">
             <span class="field-label">Office Address</span>
-            <div class="field-box"></div>
+            <div class="field-box">{{ $membership['office_address'] }}</div>
           </div>
 
           <table class="row-table">
             <tr>
               <td>
                 <span class="field-label">Ph. (Office)</span>
-                <div class="field-line"></div>
+                <div class="field-line">{{ $membership['phone_office'] }}</div>
               </td>
               <td>
                 <span class="field-label">Ph. (Residence)</span>
-                <div class="field-line"></div>
+                <div class="field-line">{{ $membership['phone_residence'] }}</div>
               </td>
               <td>
                 <span class="field-label">Mobile No.</span>
-                <div class="field-line"></div>
+                <div class="field-line">{{ $membership['mobile'] }}</div>
               </td>
             </tr>
           </table>
 
           <div class="field" style="margin-top:8px;">
             <span class="field-label">Email Address</span>
-            <div class="field-line"></div>
+            <div class="field-line">{{ $membership['email'] }}</div>
           </div>
 
           {{-- PROFESSIONAL DETAILS --}}
           <div class="section-bar">Professional Details</div>
 
-          <div class="field prof-row">
+          <?php /* <div class="field prof-row" style="margin-top:20px;margin-bottom:20px;">
             <span class="field-label" style="display:inline;">Professional Area:</span>
             &nbsp;&nbsp;
-            <span class="checkbox-wrap"><span class="chk"></span> CA</span>
-            <span class="checkbox-wrap"><span class="chk"></span> CS</span>
-            <span class="checkbox-wrap"><span class="chk"></span> Advocate</span>
-            <span class="checkbox-wrap"><span class="chk"></span> ITP</span>
+            <input type="checkbox" class="chk" @if($membership['professional_area'] == 'CA' ) checked @endif>  <small>CA</small>
+            <input type="checkbox" class="chk" @if($membership['professional_area'] == 'CS' ) checked @endif><small>CS</small>
+            <input type="checkbox" class="chk" @if($membership['professional_area'] == 'Advocate' ) checked @endif><small>Advocate</small>
+            <input type="checkbox" class="chk" @if($membership['professional_area'] == 'ITP' ) checked @endif><small>ITP</small></span>
+            <input type="checkbox" class="chk" @if($membership['professional_area'] == 'Other' ) checked @endif><small>Other</small></span>
             <span class="tick-note">(Please tick one only)</span>
-          </div>
+          </div> */ ?>
 
-          <div class="field">
-            <span class="field-label">Membership / Enrolment No.
-              <span class="field-sublabel">(if applicable)</span>
-            </span>
-            <div class="field-line"></div>
-          </div>
+          <table class="kyc-aadhaar">
+            <tr>
+              <td>
+                <span class="field-label">Professional Area</span>
+                <div class="field-line">{{ $membership['professional_area'] }}</div>
+              </td>
+              <td>
+                <span class="field-label">Membership / Enrolment No.</span>
+                <div class="field-line">{{ $membership['membership_no'] }}</div>
+              </td>
+            </tr>
+          </table>
 
           {{-- KYC & ENCLOSURES --}}
           <div class="section-bar">KYC &amp; Enclosures</div>
@@ -490,75 +564,41 @@
             <tr>
               <td>
                 <span class="field-label">Aadhaar Card No.</span>
-                <div class="field-line"></div>
+                <div class="field-line">{{ $membership['aadhaar_no'] }}</div>
               </td>
               <td>
                 <span class="field-label">PAN Card No.</span>
-                <div class="field-line"></div>
+                <div class="field-line">{{ $membership['pan_no'] }}</div>
               </td>
             </tr>
           </table>
 
           <table class="kyc-list-table" style="margin-top:6px;">
+
             <tr>
-              <td>
-                <table width="100%">
-                  <tr>
-                    <td style="width:14px; vertical-align:bottom; padding-bottom:2px;">
-                      <span class="kyc-num">1.</span>
-                    </td>
-                    <td style="vertical-align:bottom; padding-bottom:2px; padding-right:4px;">
-                      <span class="kyc-text">KYC Document (Aadhaar / PAN / Passport)</span>
-                    </td>
-                    <td style="vertical-align:bottom;">
-                      <div class="field-line"></div>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-              <td>
-                <table width="100%">
-                  <tr>
-                    <td style="width:14px; vertical-align:bottom; padding-bottom:2px;">
-                      <span class="kyc-num">2.</span>
-                    </td>
-                    <td style="vertical-align:bottom; padding-bottom:2px; padding-right:4px;">
-                      <span class="kyc-text">Proof of Qualification</span>
-                    </td>
-                    <td style="vertical-align:bottom;">
-                      <div class="field-line"></div>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-            <tr>
+
               <td style="padding-top:6px;">
                 <table width="100%">
                   <tr>
-                    <td style="width:14px; vertical-align:bottom; padding-bottom:2px;">
-                      <span class="kyc-num">3.</span>
-                    </td>
-                    <td style="vertical-align:bottom; padding-bottom:2px; padding-right:4px;">
-                      <span class="kyc-text">Practice Certificate or evidence of practice</span>
-                    </td>
-                    <td style="vertical-align:bottom;">
-                      <div class="field-line"></div>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-              <td style="padding-top:6px;">
-                <table width="100%">
-                  <tr>
-                    <td style="width:14px; vertical-align:bottom; padding-bottom:2px;">
-                      <span class="kyc-num">4.</span>
-                    </td>
+
                     <td style="vertical-align:bottom; padding-bottom:2px; padding-right:4px;">
                       <span class="kyc-text">Fees Paid — Amount (Rs.)</span>
                     </td>
                     <td style="vertical-align:bottom;">
-                      <div class="field-line"></div>
+                      <div class="field-line">{{ $formatted = number_format($membership['fees_paid_amount'], 2);  }}</div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <td style="padding-top:6px;">
+                <table width="100%">
+                  <tr>
+
+                    <td style="vertical-align:bottom; padding-bottom:2px; padding-right:4px;">
+                      <span class="kyc-text">Date of Payment</span>
+                    </td>
+                    <td style="vertical-align:bottom;">
+                      <div class="field-line"> {{ date("d-m-Y", strtotime($membership['date_of_payment'])); }}</div>
                     </td>
                   </tr>
                 </table>
@@ -568,33 +608,17 @@
               <td style="padding-top:6px;">
                 <table width="100%">
                   <tr>
-                    <td style="width:14px; vertical-align:bottom; padding-bottom:2px;">
-                      <span class="kyc-num">5.</span>
-                    </td>
+
                     <td style="vertical-align:bottom; padding-bottom:2px; padding-right:4px;">
-                      <span class="kyc-text">Transaction No. / Cheque No. / Receipt No.</span>
+                      <span class="kyc-text">Transaction/Cheque/ Receipt No.</span>
                     </td>
                     <td style="vertical-align:bottom;">
-                      <div class="field-line"></div>
+                      <div class="field-line">{{ $membership['transaction_id'] }}</div>
                     </td>
                   </tr>
                 </table>
               </td>
-              <td style="padding-top:6px;">
-                <table width="100%">
-                  <tr>
-                    <td style="width:14px; vertical-align:bottom; padding-bottom:2px;">
-                      <span class="kyc-num">6.</span>
-                    </td>
-                    <td style="vertical-align:bottom; padding-bottom:2px; padding-right:4px;">
-                      <span class="kyc-text">Date of Payment</span>
-                    </td>
-                    <td style="vertical-align:bottom;">
-                      <div class="field-line"></div>
-                    </td>
-                  </tr>
-                </table>
-              </td>
+
             </tr>
           </table>
 
@@ -663,6 +687,11 @@
 
       </div>
     </div>
+    <script>
+      function downloadPDF() {
+        window.location.href = 'http://127.0.0.1:8000/view-membership?download=true';
+      }
+    </script>
   </body>
 
 </html>

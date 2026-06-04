@@ -1322,14 +1322,10 @@ p.subheading.paragraph {
   border-radius: 5px;
   border: none;
 }
-.input_field_list textarea {
-  background: #f1f1f1;
-  border-radius: 5px;
-  border: none;
-}
+
 .input_field_list select {
   height: 50px;
-  background-color: #f1f1f1;
+  
 }
 .input_field_list label {
   font-size: 16px;

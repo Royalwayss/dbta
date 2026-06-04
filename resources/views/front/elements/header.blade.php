@@ -44,6 +44,7 @@
 							<li class="nav-item"><a class="nav-link" href="{{ route('members_directory') }}">Members Directory</a></li>
 							<li class="nav-item"><a class="nav-link" href="{{ route('contactus') }}">Contact</a></li>
 							<li class="nav-item"><a class="nav-link" href="{{ route('downloads') }}">Downloads</a></li>
+							<li class="nav-item"><a class="nav-link" href="{{ route('department_officers') }}">Department Officers</a></li>
 							<li class="nav-item"><a class="nav-link" href="{{ route('media') }}">Media</a></li>
 							<li class="nav-item"><a class="nav-link" href="{{ route('case_laws') }}">Case Laws</a></li>
 							<!-- <div class="login_btn mobile_view_show">

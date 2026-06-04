@@ -228,6 +228,23 @@
         </li>
 		
 		
+		
+		@if(Session::get('page')=="articles")
+            @php $active="active" @endphp
+        @else
+            @php $active = "" @endphp
+        @endif
+		
+		<li class="nav-item">
+          <a href="{{ url('admin/articles') }}" class="nav-link {{ $active }}">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Articles
+            </p>
+          </a>
+        </li>
+		
+		
 		@if(Session::get('page')=="downloads")
             @php $active="active" @endphp
         @else
@@ -242,6 +259,28 @@
             </p>
           </a>
         </li>
+		
+		
+		@if(Session::get('page')=="departmentofficer")
+            @php $active="active" @endphp
+        @else
+            @php $active = "" @endphp
+        @endif
+		
+		<li class="nav-item">
+          <a href="{{ url('admin/department-officers') }}" class="nav-link {{ $active }}">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+             Department Officers
+            </p>
+          </a>
+        </li>
+		
+		
+		
+		
+		
+		
 		
 		
 		@if(Session::get('page')=="media")

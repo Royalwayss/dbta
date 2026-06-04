@@ -12,6 +12,8 @@ use App\Models\Committee;
 use App\Models\Meeting;
 use App\Models\MeetingType;
 use App\Models\Newsletter;
+use App\Models\DepartmentOfficer;
+use App\Models\Article;
 use App\Models\Event;
 use App\Models\Downloads;
 use App\Models\Media;
@@ -28,6 +30,7 @@ use App\Models\Mails;
 use Validator;
 use Session;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 
 use App\Services\Front\HomeWidgetService;
 
@@ -39,7 +42,7 @@ class IndexController extends Controller
         return view('front.pages.website_under_construction.coming_soon');
     }
    
-    public function index(){ 
+    public function index(){   
 	    $meta = meta(Route::currentRouteName());
         $this->checkVistor();	
         $banners =Banner::where('status','1')->orderby('sort','asc')->get()->toArray(); 
@@ -51,9 +54,41 @@ class IndexController extends Controller
 		$media_images = HomeMedia::where('status',1)->where('media_type','image')->orderby('sort','asc')->get()->toArray();  
 		$media_videos = HomeMedia::where('status',1)->where('media_type','video')->orderby('sort','asc')->get()->toArray(); 
 		
-		return view('front.pages.home.index')->with(compact('banners','meeting_types','publicnotices','publicnotice_count','events','executive_body','media_images','media_videos'));
+		if(Session::has('tax_feeds')){
+			$tax_feeds = Session::get('tax_feeds'); 
+		}else{
+			$tax_feeds = [
+					'1' => $this->fetchtaxFeedsData('https://wmstatic-prd.incometaxindia.gov.in/press-release-rss-feed/-/asset_publisher/bxhj/rss'),
+					'2' => $this->fetchtaxFeedsData('https://wmstatic-prd.incometaxindia.gov.in/circular-rss-feed/-/asset_publisher/bxhj/rss'),
+					'3' => $this->fetchtaxFeedsData('https://wmstatic-prd.incometaxindia.gov.in/notification-rss-feed/-/asset_publisher/bxhj/rss'),
+			];
+			$tax_feeds = json_decode(json_encode($tax_feeds),true);
+			
+			Session::put('tax_feeds',$tax_feeds); 
+			
+		}
+		$tax_feeds = array_filter($tax_feeds);
+		
+		return view('front.pages.home.index')->with(compact('banners','meeting_types','publicnotices','publicnotice_count','events','executive_body','media_images','media_videos','tax_feeds'));
     }
+    public function fetchtaxFeedsData($url){
+				$rss_url = urlencode($url);
+				$api_url = 'https://api.rss2json.com/v1/api.json?rss_url=' . $rss_url;
 
+				$ch = curl_init($api_url);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+				$response = curl_exec($ch);
+				curl_close($ch);
+
+				$data = json_decode($response, true); 
+				if ($data && $data['status'] === 'ok') {
+					$data = json_decode(json_encode($data),true);
+				return $data;
+			} else {
+				return [];
+			}
+	}
 
     
 	public function aboutus (){
@@ -92,7 +127,8 @@ class IndexController extends Controller
 	 public function newsletter (){
 		$meta = meta(Route::currentRouteName());
 		$newsletters =Newsletter::where('status',1)->orderby('newsletter_sort','asc')->get()->toArray();
-        return view('front.pages.newsletter.newsletter')->with(compact('meta','newsletters'));
+		$articles =Article::where('status',1)->orderby('sort','asc')->get()->toArray();
+        return view('front.pages.newsletter.newsletter')->with(compact('meta','newsletters','articles'));
     }
 	
 	 public function new_membership (){
@@ -172,6 +208,13 @@ class IndexController extends Controller
         return view('front.pages.case_laws.case_laws')->with(compact('meta','caselaw_sections'));
     } 
 	
+	
+	public function department_officers (){
+		$meta = meta(Route::currentRouteName());
+        $department_officers =DepartmentOfficer::where('status',1)->orderby('pdf_sort','asc')->get()->toArray();
+        return view('front.pages.department_officers.department_officers')->with(compact('meta','department_officers'));
+    }  
+	
 	public function save_membership(Request $request){
 		
 		 
@@ -190,6 +233,9 @@ class IndexController extends Controller
 				'email' => 'required|string|regex:/^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i|max:255',
 
 				'professional_area' => 'required',
+				'aadhaar_no' => 'regex:/^[2-9][0-9]{11}$/',
+				'pan_no'     => 'regex:/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/',
+
 
 				'kyc' => 'required|file|max:2000|mimes:pdf,jpg,png',
 				'qualification_proof' => 'required|file|max:2000|mimes:pdf,jpg,png',
@@ -213,6 +259,8 @@ class IndexController extends Controller
 				'email.max' => 'Email address may not be greater than 255 characters.',
 
 				'professional_area.required' => 'Please select your professional area.',
+				'aadhaar_no.regex' => 'Please enter a valid Aadhaar number.',
+                'pan_no.regex'     => 'Please enter a valid PAN number.',
 
 				'kyc.required' => 'Please upload a KYC document.',
 				'kyc.mimes' => 'KYC document must be a PDF, JPG, or PNG file.',
@@ -250,6 +298,8 @@ class IndexController extends Controller
                 $membership->mobile = $data['mobile']; 
                 $membership->email = $data['email']; 
                 $membership->professional_area = $data['professional_area']; 
+                $membership->aadhaar_no = $data['aadhaar_no']; 
+                $membership->pan_no = $data['pan_no']; 
                 $membership->membership_no = $data['membership_no']; 
                 $membership->fees_paid_amount = $data['fees_paid_amount']; 
                 $membership->transaction_id = $data['transaction_id']; 
@@ -304,15 +354,17 @@ class IndexController extends Controller
 	
 	public function view_membership  (Request $request){
 		if(Session::has('membership_form_id')){
-			  $meta = meta(Route::currentRouteName());
-			 
-			  $membership_form_id = Session::get('membership_form_id');
-			  $type = 'view';
-			  $membership = Membership::where('id',$membership_form_id)->firstorfail();
-			 return view('front.pages.membership.view-membership')->with(compact('meta','membership','type'));
-			 
+			$membership_form_id = Session::get('membership_form_id');
+			  $data = $request->all(); 
+			  if(!isset($data['download'])){
+				  $meta = meta(Route::currentRouteName());
+				  
+				  $type = 'view';
+				  $membership = Membership::where('id',$membership_form_id)->firstorfail();
+				  return view('front.pages.membership.view-membership')->with(compact('meta','membership','type'));
+			  }else{
 			 	
-			 $membership ='';
+			  $membership = Membership::where('id',$membership_form_id)->first(); 
 			 $type = 'download';
 			 $pdf = Pdf::loadView('front.pages.membership.view-membership',[
 					'type' => $type,
@@ -329,11 +381,9 @@ class IndexController extends Controller
 
 				return $pdf->download('DTBA-Membership-Form.pdf');
 			 
-			 
-			 
-			 
-			 
-			 
+			  }
+		}else{
+			abort(404);
 		}
 		
 	}

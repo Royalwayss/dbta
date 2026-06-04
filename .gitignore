@@ -3,6 +3,8 @@
 /storage/
 /storage/*.key
 /vendor
+/public/front/images/banners
+/public/front/images/banners/*.key
 .env
 .env.backup
 .env.production
