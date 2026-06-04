@@ -233,8 +233,7 @@ class IndexController extends Controller
 				'email' => 'required|string|regex:/^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i|max:255',
 
 				'professional_area' => 'required',
-				'aadhaar_no' => 'regex:/^[2-9][0-9]{11}$/',
-				'pan_no'     => 'regex:/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/',
+				
 
 
 				'kyc' => 'required|file|max:2000|mimes:pdf,jpg,png',

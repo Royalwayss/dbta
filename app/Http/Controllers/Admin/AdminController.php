@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\AdminsRole;
 use App\Models\Category;
+use App\Models\Contact;
+use App\Models\Membership;
 use App\Models\Product;
 use App\Models\Brand;
 use App\Models\User;
@@ -34,13 +36,12 @@ class AdminController extends Controller
     public function dashboard(){
         Session::put('page','dashboard');
         /*echo "<pre>"; print_r(Auth::guard('admin')->user()); die;*/
-        $categoriesCount = 0;
-        $productsCount = 0;
-        $usersCount = 0;
-        $couponsCount = 0;
-        $ordersCount = 0;
-        $pagesCount = 0;
-        return view('admin.dashboard')->with(compact('categoriesCount','productsCount','usersCount','couponsCount','ordersCount','pagesCount'));
+        $contactCount = Contact::count();
+        $newcontactCount = Contact::where('view_status','0')->count();
+        $membershipCount = Membership::count();
+        $newmembershipCount = Membership::where('view_status','0')->count();
+        
+        return view('admin.dashboard')->with(compact('contactCount','newcontactCount','membershipCount','newmembershipCount'));
     }
 
     public function login(){

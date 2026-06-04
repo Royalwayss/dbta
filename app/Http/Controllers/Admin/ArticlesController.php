@@ -37,12 +37,13 @@ class ArticlesController extends Controller
 		if($request->isMethod('post')){
 			
 			$rules = [
-				'month' => 'required',
+				'title' => 'required',
 				'sort' => 'required',
 				
 			];
 			$customMessages = [
-				'month.required' => 'Enter the month',
+				'title.required' => 'Enter the title',
+				'author.required' => 'Enter the author ',
 				'sort.required' => 'Enter the sort',
 			];
 			
@@ -56,11 +57,11 @@ class ArticlesController extends Controller
 				$row = new Article;
 				$message = "Article added successfully!";    
 			}
-	          
+	         $row->title = $data['title'];
 			 if($request->hasFile('pdf')) {
 				$file = $request->file('pdf');       
 				$extension = $file->getClientOriginalExtension();
-				$allowed_extension = array('pdf','PDF');
+				$allowed_extension = array('pdf','PDF','jpg','png','jpeg');
 				if(in_array($extension, $allowed_extension)){
 					$file_name = time().''.rand(100,999).'.'.$extension; 
 					$destinationPath = 'front/pdf/articles/';
@@ -71,8 +72,9 @@ class ArticlesController extends Controller
 			}
 			
 		
-			$row->month = $data['month']; 
-		
+			
+			
+			$row->author = $data['author'];
 			$row->sort = $data['sort'];
 			if(!empty($data['status'])){
 				$row->status = 1;

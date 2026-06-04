@@ -106,6 +106,19 @@ class MembersdirectoryController extends Controller
 		return view('admin.members_directory.add_edit_members_directory')->with(compact('title','row','designation_list','prevId','nextId')); 
 	}
 	
+	public function getNextSerial(Request $request)
+		{
+			$letter = strtoupper($request->letter);
+
+			$count = MembersDirectory::whereRaw('UPPER(SUBSTR(TRIM(member_name), 1, 1)) = ?', [$letter])
+						->count();
+
+			return response()->json([
+				'status'      => true,
+				'next_serial' => $letter . ($count + 1),
+			]);
+		}
+	
 	 public function update_member_directory (request $request){
 		 $title = 'Update Member Directory';
 		 return view('admin.members_directory.update_member_directory')->with(compact('title')); 
@@ -242,6 +255,33 @@ public function import_member_directory(Request $request)
     $message = 'Members directory updated successfully.';
 	return redirect('admin/members-directory')->with('success_message',$message);
 }
+	
+	public function updateMemberSerialNumbers()
+	{
+		$members = MembersDirectory::select('id', 'member_name', 'serial_no')
+			->orderBy('member_name', 'asc')
+			->get();
+       
+		// Group members by first letter of member_name
+		$grouped = $members->groupBy(function ($member) {
+			return strtoupper(substr(trim($member->member_name), 0, 1));
+		});
+
+		foreach ($grouped as $letter => $group) {
+			$counter = 1;
+			foreach ($group as $member) {
+				$member->serial_no = $letter . $counter;
+				$member->save();
+				$counter++;
+			}
+		}
+
+		return response()->json([
+			'status'  => true,
+			'message' => 'Serial numbers updated successfully',
+		]);
+	}		
+	
 	
 	
 }

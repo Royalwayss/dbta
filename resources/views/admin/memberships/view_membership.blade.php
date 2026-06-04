@@ -70,13 +70,8 @@
                               <td style="width:70%">{{ $contact['parent_name'] }}</td>
                            </tr>
                            <tr>
-                              <th style="width:30%">Residence Address</th>
-                              <td style="width:70%">{{ $contact['residence_address'] }}</td>
-                           </tr>
-                           <tr>
-                              <th style="width:30%">Office Address</th>
-                              <td style="width:70%">{{ $contact['office_address'] }}</td>
-                           </tr>
+                         
+						   
                            <tr>
                               <th style="width:30%"> Phone Office</th>
                               <td style="width:70%">{{ $contact['phone_office'] }}</td>
@@ -93,10 +88,29 @@
                               <th>Email</th>
                               <td>{{ $contact['email'] }}</td>
                            </tr>
+						   
+						        <th style="width:30%">Residence Address</th>
+                              <td style="width:70%">{{ $contact['residence_address'] }}</td>
+                           </tr>
+                           <tr>
+                              <th style="width:30%">Office Address</th>
+                              <td style="width:70%">{{ $contact['office_address'] }}</td>
+                           </tr>
+						   <tr>
+                              <th style="width:30%"> Aadhaar Card No</th>
+                              <td style="width:70%">{{ $contact['aadhaar_no'] }}</td>
+                           </tr>
+						  <tr>
+                              <th style="width:30%"> Pan Card No</th>
+                              <td style="width:70%">{{ $contact['pan_no'] }}</td>
+                           </tr>
                            <tr>
                               <th>Professional Area</th>
                               <td>{{ $contact['professional_area'] }}</td>
                            </tr>
+						   
+						   
+						   
                            <tr style="display:none">
                               <th>Membership No. (or other Enrolment No., if applicable)</th>
                               <td>{{ $contact['membership_no'] }}</td>
@@ -146,6 +160,14 @@
                               <td>
                                  @if(!empty($contact['signature_of_applicant']))
                                  <a target="_black" href="{{ asset('uploads/signature_of_applicant/'.$contact['signature_of_applicant']) }}">View File</a>
+                                 @endif
+                              </td>
+                           </tr>
+						   <tr>
+                              <th>Profile Photo</th>
+                              <td>
+                                 @if(!empty($contact['photo']))
+                                 <a target="_black" href="{{ asset('uploads/photo/'.$contact['photo']) }}">View Profile</a>
                                  @endif
                               </td>
                            </tr>

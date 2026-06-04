@@ -1,3 +1,5 @@
+@extends('admin.layout.layout')
+@section('content')
 <style>
   .btn-animated-link {
   display: inline-flex;
@@ -29,8 +31,6 @@
   transform: translateX(5px);
 }    
 </style>
-@extends('admin.layout.layout')
-@section('content')
 
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -131,7 +131,7 @@
                   
                   <div class="form-group col-md-6">
                     <label for="serial_no">Serial No*</label>
-                    <input type="text" class="form-control" id="serial_no" name="serial_no" placeholder="Serial No" @if(!empty($row['serial_no'])) value="{{ $row['serial_no'] }}" @else value="{{ old('serial_no') }}" @endif  required>
+                    <input type="text" class="form-control" id="serial_no" name="serial_no" placeholder="Serial No" @if(!empty($row['serial_no'])) value="{{ $row['serial_no'] }}" @else value="{{ old('serial_no') }}" @endif  readonly required>
                   </div>
 				  
 				   <div class="form-group col-md-6">
@@ -212,6 +212,48 @@
 <script src="{{ asset('admin/plugins/jquery/jquery.min.js') }}"></script>
 <script>
 $(document).ready(function () {
+	 
+	  $('#member_name').on('input', function () {
+        
+		 @if(empty($row['id']))
+		var name = $(this).val().trim();
+
+        if (name.length === 0) {
+            $('#serial_no').val('');
+            return;
+        }
+
+        var firstLetter = name.charAt(0).toUpperCase();
+
+        // Only trigger if first letter is alphabet
+        if (!/^[A-Z]$/.test(firstLetter)) {
+            $('#serial_no').val('');
+            return;
+        }
+
+        $.ajax({
+            url: '{{ route("members.getNextSerial") }}',
+            type: 'GET',
+            data: { letter: firstLetter },
+            success: function (res) {
+                if (res.status) {
+                    $('#serial_no').val(res.next_serial);
+                }
+            },
+            error: function () {
+                $('#serial_no').val('');
+            }
+        });
+		@endif
+    });
+
+});
+	 
+	 
+	 
+	 
+	 
+	 
 	 $('#event_description').summernote()
     
     
@@ -220,7 +262,7 @@ $(document).ready(function () {
 	  var event_slug = generateSlug(event_title); 
 	  $("#event_slug").val(event_slug);
 	});
-});
+
 
 function generateSlug(event_title) {
         let slug = event_title.toLowerCase();

@@ -104,9 +104,15 @@
                 @endif
                 <div class="card-body">
                   <div class="row">
+				 
+				  
 				  <div class="form-group col-md-6">
-                    <label for="category_name">Month/Year*</label>
-                    <input type="month" class="form-control" id="month" name="month" placeholder="Enter Month" @if(!empty($row['month'])) value="{{ $row['month'] }}" @else value="{{ old('month') }}" @endif  required>
+                    <label for="category_name">Title*</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" @if(!empty($row['title'])) value="{{ $row['title'] }}" @else value="{{ old('title') }}" @endif  required>
+                  </div>
+				   <div class="form-group col-md-6">
+                    <label for="category_name">Author*</label>
+                    <input type="text" class="form-control" id="author" name="author" placeholder="Enter Author" @if(!empty($row['author'])) value="{{ $row['author'] }}" @else value="{{ old('author') }}" @endif  required>
                   </div>
                    <div class="form-group col-md-6">
                     <label for="pdf">Pdf</label>

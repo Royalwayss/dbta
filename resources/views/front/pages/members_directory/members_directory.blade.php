@@ -117,7 +117,11 @@
     margin-bottom: 8px;
     line-height: 1.5;
   }
-
+	.member-card .name {
+		font-size: 18px;
+		font-weight: 600;
+		color: #00608e;
+	}
   @media (max-width: 576px) {
     .member-content {
       flex-direction: column;
@@ -144,7 +148,7 @@
     <div class="container">
       <!-- Search Box -->
       <input type="text" id="search-box" placeholder="Search by name or prefix or serial number..." class="search-box" />
-
+    
       <!-- Grid Container -->
       <div class="grid-container" id="members_directory">
         @include('front.pages.members_directory.members_directory_list')
@@ -160,8 +164,69 @@
 </div>
 <script type="text/javascript" src="{{ asset('front/assets/js/ajax_jquery.min.js') }}"></script>
 <script>
+$(document).ready(function () {
+
+    var total = $('.member-card').length;
+   
+    $('#search-box').on('input', function () {
+        var keyword = $(this).val().trim().toLowerCase();
+        var matched = 0;
+
+        $('.member-card').each(function () {
+            // Name includes designation_prefix + member_name
+            var name        = $(this).find('.name').text().trim().toLowerCase();
+            // Serial No
+            var serialNo    = $(this).find('.details div:first-child').text().trim().toLowerCase();
+
+            if (
+                name.includes(keyword)     ||  // matches name or prefix
+                serialNo.includes(keyword)     // matches serial no
+            ) {
+                $(this).show();
+                matched++;
+            } else {
+                $(this).hide();
+            }
+        });
+
+        
+
+        if (matched === 0) {
+            if ($('#no-result').length === 0) {
+                $('<div id="no-result">No members found.</div>').insertAfter('#search-box');
+            }
+        } else {
+            $('#no-result').remove();
+        }
+    });
+
+    // Clear on ESC key
+    $(document).on('keydown', function (e) {
+        if (e.key === 'Escape') {
+            $('#search-box').val('');
+            $('.member-card').show();
+            $('#no-result').remove();
+            $('#member-count').text('Showing ' + total + ' of ' + total + ' members');
+        }
+    });
+
+});
+
+ function showPopup(src) { 
+    document.getElementById('popupImg').src = src;
+    document.getElementById('imgPopup').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePopup() {
+    document.getElementById('imgPopup').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+</script>
+<?php /*
+<script>
   $(document).ready(function() {
-    $("#search-box").keyup(function() {
+    $("#search-box1").keyup(function() {
       var keyword = $(this).val();
       $('.PleaseWaitDiv').show();
       $.ajax({
@@ -180,17 +245,6 @@
       });
     });
   });
-
-  function showPopup(src) { 
-    document.getElementById('popupImg').src = src;
-    document.getElementById('imgPopup').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closePopup() {
-    document.getElementById('imgPopup').style.display = 'none';
-    document.body.style.overflow = '';
-  }
-  
 </script>
+*/ ?>
 @endsection

@@ -163,6 +163,8 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::match(['get','post'],'update-members-directory',[MembersdirectoryController::class,'update_member_directory']);
         Route::post('export-member-directory',[MembersdirectoryController::class,'export_member_directory']);
         Route::post('import-member-directory',[MembersdirectoryController::class,'import_member_directory']);
+        Route::get('update-serial-no',[MembersdirectoryController::class,'updateMemberSerialNumbers']);
+		Route::get('members/get-next-serial', [MembersDirectoryController::class, 'getNextSerial'])->name('members.getNextSerial');
 		
 		
 		

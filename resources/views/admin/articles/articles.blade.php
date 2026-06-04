@@ -77,7 +77,8 @@
                         <thead>
                            <tr>
                               <th>ID</th>
-                              <th>Month</th>
+                              <th>Title</th>
+                              <th>Author</th>
                               <th>Pdf</th>
                               <th>Sort</th>
                               <th>Created on</th>
@@ -88,7 +89,9 @@
                            @foreach($rows as $row)
                            <tr>
                               <td>{{ $row['id'] }}</td>
-                              <td>{{ date("F Y", strtotime($row['month'])); }}</td>
+                              <td>{{ $row['title'] }}</td>
+                              <td>{{ $row['author'] }}</td>
+                              
                               <td>
 								  @if(!empty($row['pdf']))
 								  <a target="_block" href="{{ asset('front/pdf/articles/'.$row['pdf']) }}">{{ $row['pdf'] }}</a>

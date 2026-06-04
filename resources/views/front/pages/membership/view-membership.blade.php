@@ -598,8 +598,12 @@
                       <span class="kyc-text">Date of Payment</span>
                     </td>
                     <td style="vertical-align:bottom;">
-                      <div class="field-line"> {{ date("d-m-Y", strtotime($membership['date_of_payment'])); }}</div>
-                    </td>
+                       <div class="field-line">
+					  @if($membership['date_of_payment'] != '')
+					  {{ date("d-m-Y", strtotime($membership['date_of_payment'])); }}
+                      @endif
+					  </div>
+					</td>
                   </tr>
                 </table>
               </td>

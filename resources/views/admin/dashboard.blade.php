@@ -23,7 +23,7 @@
 .info-box .info-box-icon:hover {
   background-color: rgba(0, 123, 255, 0.8); /* Change icon background on hover */
 }
-
+.info-box-content small { color:red; }
 </style>
 
 <!-- Content Wrapper. Contains page content -->
@@ -60,18 +60,40 @@
     <div class="container-fluid">
       <!-- Info boxes -->
       <div class="row">
-        <?php /*
+       
 		
 		<div class="col-12 col-sm-6 col-md-3">
-          <a href="{{ url('admin/categories') }}">
+          <a href="{{ url('admin/contacts') }}">
           <div class="info-box">
             <span class="info-box-icon bg-info elevation-1"><i class="fas fa-tasks"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Categories</span>
+              <span class="info-box-text">Contacts</span>
               <span class="info-box-number">
-                {{ $categoriesCount }}
-                <!-- <small>%</small> -->
+                {{ $contactCount }}
+				@if(!empty($newcontactCount))
+                 <small> (  {{$newcontactCount }} Unseen)</small> 
+			    @endif
+              </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div></a>
+          <!-- /.info-box -->
+        </div>
+		
+		
+		<div class="col-12 col-sm-6 col-md-3">
+          <a href="{{ url('admin/memberships') }}">
+          <div class="info-box">
+            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-tasks"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Membership</span>
+              <span class="info-box-number">
+                {{ $membershipCount }}
+				@if(!empty($newmembershipCount))
+                 <small> ( {{$newmembershipCount }} Unseen )</small> 
+			    @endif
               </span>
             </div>
             <!-- /.info-box-content -->
@@ -79,7 +101,7 @@
           <!-- /.info-box -->
         </div>
        
-         */ ?>
+         
     
 	 </div>
       <!-- /.row -->

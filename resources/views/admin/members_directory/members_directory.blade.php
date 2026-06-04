@@ -93,7 +93,11 @@
                            @foreach($rows as $row)
                            <tr>
                               <td>{{ $row['id'] }}</td>
-							  <td><img src="{{ url('uploads/members-directory/profile/'.$row['profile']) }}" style="max-width:80px"></td>
+							  <td>
+							  @if(!empty($row['profile']))
+							     <img src="{{ url('uploads/members-directory/profile/'.$row['profile']) }}" style="max-width:80px">
+						      @endif
+							  </td>
                               <td>{{ $row['designation_prefix'] }}</td>
                               
                               <td>{{ $row['member_name'] }}</td>
