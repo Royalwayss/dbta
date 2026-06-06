@@ -300,7 +300,8 @@
             }
           } else {
              $('#membership-signup')[0].reset();
-             window.location.href=data.url;
+             //window.location.href=data.url;
+			 window.open(data.url, '_blank');
           }
         },
         error: function() {
