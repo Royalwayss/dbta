@@ -218,12 +218,13 @@
             </div>
           </div>
          
-          @foreach($tax_feeds as $key=>$tax_feed)
+          @foreach($tax_feeds as $key=>$tax_feed)<?php  $key2 = 0; ?>
           <a href="javascript:;" onclick="show_tab('tax_feed-{{ $key }}')">{{ $tax_feed['feed']['title'] }}</a>
           @endforeach
-           
+           <?php  $key2 = 0; ?>
           @foreach($tax_feeds as $key=> $tax_feed)
-          <div class="cards" id="tax_feed-{{ $key }}" @if($key != 1) style="display:none" @endif>
+		  <?php $key2++; ?>
+          <div class="cards" id="tax_feed-{{ $key2 }}" @if($key2 != 1) style="display:none" @endif>
             @foreach($tax_feed['items'] as $no => $val)
             <div class="card">
               <div class="card-content">

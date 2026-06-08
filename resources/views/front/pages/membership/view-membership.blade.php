@@ -693,7 +693,7 @@
     </div>
     <script>
       function downloadPDF() {
-        window.location.href = 'http://127.0.0.1:8000/view-membership?download=true';
+        window.location.href = '{{ url("/") }}/view-membership?download=true';
       }
     </script>
   </body>
