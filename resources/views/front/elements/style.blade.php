@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ asset('front/assets/css/style.css') }}?v=2.4">
+<link rel="stylesheet" href="{{ asset('front/assets/css/style.css') }}?v=2.5">
 	<link rel="stylesheet" href="{{ asset('front/assets/css/responsive.css') }}?v=2.4">
 	<link rel="stylesheet" href="{{ asset('front/assets/css/dev.css') }}?v=2.5">
 	<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.0.0/css/all.css">
