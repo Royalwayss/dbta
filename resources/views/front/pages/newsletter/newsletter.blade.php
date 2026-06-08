@@ -68,7 +68,7 @@
                   <td><strong>{{ date("F", strtotime($newsletter['month'])) }}</strong></td>
                   <td><span class="badge yellow-badge">{{ date("Y", strtotime($newsletter['month'])) }}</span></td>
                   <td>
-                    <a @if($newsletter['pdf']) href="{{ asset('front/pdf/newsletters/'.$newsletter['pdf']) }}" @else href="javascript:;"> @endif class="btn btn-sm pdf_icon" target="_blank"><i class="fa-solid fa-file-pdf"></i></a>
+                    <a @if($newsletter['pdf']) href="{{ asset('front/pdf/newsletters/'.$newsletter['pdf']) }}" @else href="javascript:;"> @endif class="btn btn-sm pdf_icon" target="_blank"><i class="bi bi-download"></i></a>
                   </td>
                 </tr>
                 @endforeach
@@ -101,7 +101,7 @@
                   <td><strong>{{  $article['author']  }}</strong></td>
                   
                   <td>
-                    <a @if($article['pdf']) href="{{ asset('front/pdf/articles/'.$article['pdf']) }}" @else href="javascript:;" @endif class="btn btn-sm pdf_icon" target="_blank"><i class="fa-solid fa-file-pdf"></i></a>
+                    <a @if($article['pdf']) href="{{ asset('front/pdf/articles/'.$article['pdf']) }}" @else href="javascript:;" @endif class="btn btn-sm pdf_icon" target="_blank"><i class="bi bi-download"></i></a>
                   </td>
                 </tr>
                 @endforeach

@@ -27,7 +27,7 @@
             <tr>
               <td><strong>{{ $download['title']  }}</strong></td>
               <td>
-                <a href="{{ asset('front/downloads/'.$download['file']) }}" class="btn btn-sm pdf_icon" target="_blank"><i class="fa-solid fa-cloud-arrow-down"></i></a>
+                <a href="{{ asset('front/downloads/'.$download['file']) }}" class="btn btn-sm pdf_icon" target="_blank"><i class="bi bi-download"></i></a>
               </td>
             @endforeach
 
