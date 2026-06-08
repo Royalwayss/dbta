@@ -135,24 +135,26 @@ class MembersdirectoryController extends Controller
 
         // Set the column headers
          
-                $sheet->setCellValue('A1', 'SERIAL NO')
-					  ->setCellValue('B1', 'PHONE(editable)')
-					  ->setCellValue('C1', 'EMAIL(editable)')
-					  ->setCellValue('D1', 'ADDRESS(editable)')
-					  ->setCellValue('E1', 'Profile(editable)');
+                $sheet->setCellValue('A1', 'Name')
+                      ->setCellValue('B1', 'SERIAL NO')
+					  ->setCellValue('C1', 'PHONE(editable)')
+					  ->setCellValue('D1', 'EMAIL(editable)')
+					  ->setCellValue('E1', 'ADDRESS(editable)')
+					  ->setCellValue('F1', 'Profile(editable)');
+					  
 			  
-		$sheet->getStyle('A1:E1')->getFont()->setBold(true); // Make text bold
-        $sheet->getStyle('A1:E1')->getFont()->setSize(14);  // Set font size to 14
-        //$sheet->getStyle('A1:E1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER); // Center align text
-        $sheet->getStyle('A1:E1')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID); // Solid fill
-        $sheet->getStyle('A1:E1')->getFill()->getStartColor()->setRGB('007bff'); // Set background color to green (change the color as needed)	  
+		$sheet->getStyle('A1:F1')->getFont()->setBold(true); // Make text bold
+        $sheet->getStyle('A1:F1')->getFont()->setSize(14);  // Set font size to 14
+        //$sheet->getStyle('A1:F1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER); // Center align text
+        $sheet->getStyle('A1:F1')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID); // Solid fill
+        $sheet->getStyle('A1:F1')->getFill()->getStartColor()->setRGB('007bff'); // Set background color to green (change the color as needed)	  
 			  
 			  
 			  
 			  
 			  
 	   $membersdirectory = MembersDirectory::query()
-			->select('id', 'serial_no', 'contact_no', 'email', 'address', 'profile');
+			->select('id','member_name', 'serial_no', 'contact_no', 'email', 'address', 'profile');
 
 		if (!empty($filter['from_serial_no'])) {
 			$membersdirectory->where('serial_no', '>=', $filter['from_serial_no']);
@@ -172,24 +174,25 @@ class MembersdirectoryController extends Controller
 		foreach ($membersdirectory as $member) {
            
 		
-			$sheet->setCellValue('A' . $row, $member['serial_no'])
-                  ->setCellValue('B' . $row, $member['contact_no'])
-                  ->setCellValue('C' . $row, $member['email'])
-                  ->setCellValue('D' . $row, $member['address'])
-                  ->setCellValue('E' . $row, $member['profile']);
+			$sheet->setCellValue('A' . $row, $member['member_name'])
+				  ->setCellValue('B' . $row, $member['serial_no'])
+                  ->setCellValue('C' . $row, $member['contact_no'])
+                  ->setCellValue('D' . $row, $member['email'])
+                  ->setCellValue('E' . $row, $member['address'])
+                  ->setCellValue('F' . $row, $member['profile']);
             $row++;
         }
 		
 	
-		 $sheet->getStyle('A1:E' . $row)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+		 $sheet->getStyle('A1:F' . $row)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
-		foreach (range('A', 'E') as $columnID) {
+		foreach (range('A', 'F') as $columnID) {
             $sheet->getColumnDimension($columnID)->setAutoSize(true);
         }
 
         // Set the response headers for downloading the Excel file
         $writer = new Xlsx($spreadsheet);
-        $filename = 'DTBA_Members_Directory .xlsx';
+        $filename = 'DTBA_Members_Directory_'.date('d_m_Y_H:i:s').'.xlsx';
 
         // Output the file directly to the browser
         return response()->stream(
@@ -223,23 +226,34 @@ public function import_member_directory(Request $request)
     ]);
 
     $file = $request->file('file');
-    
-    // Load the spreadsheet
-    $spreadsheet = IOFactory::load($file->getPathname());
-    $sheet = $spreadsheet->getActiveSheet();
-    $rows = $sheet->toArray();
+
+	// Load the spreadsheet
+	$spreadsheet = IOFactory::load($file->getPathname());
+	$sheet = $spreadsheet->getActiveSheet();
+	$rows = $sheet->toArray();
+
+	// First row as headers
+	$headers = array_shift($rows);
+
+	$sheet_data = [];
+
+	foreach ($rows as $row) {
+		$sheet_data[] = array_combine($headers, $row);
+	}
+
+	
 
     // Start from row 2 (assuming row 1 is headers)
-    foreach ($rows as $index => $row) { 
-        if ($index === 0) continue; // Skip header row
+    foreach ($sheet_data as $index => $row) { 
+       
 
-        $serial_no = $row[0] ?? null;
-        $contact_no = $row[1] ?? null;
-        $email = $row[2] ?? null;
-        $address = $row[3] ?? null;
-        $profile = $profile[4] ?? null;
+        $serial_no = $row['SERIAL NO'] ?? null;
+        $contact_no = $row['PHONE(editable)'] ?? null;  
+        $email = $row['EMAIL(editable)'] ?? null;
+        $address = $row['ADDRESS(editable)'] ?? null;
+        $profile = $row['Profile(editable)'] ?? null; 
 
-        if ($serial_no && !empty($contact_no) && !empty($email) && !empty($address) ) {
+        if ($serial_no && !empty($contact_no) && !empty($email) && !empty($address) ) { 
             // Update the member by serial_no
             MembersDirectory::where('serial_no',$serial_no)->update(
                 [

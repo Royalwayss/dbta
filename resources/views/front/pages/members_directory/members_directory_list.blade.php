@@ -3,7 +3,7 @@
 <div class="member-card">
 
     <div class="name">
-        {{ $member['designation_prefix'] }} {{ $member['member_name'] }}
+       <span class="designation_prefix"> {{ $member['designation_prefix'] }}</span> <span class="member_name">{{ $member['member_name'] }}<span>
     </div>
 
     <div class="member-content">

@@ -54,7 +54,9 @@
   <!-- Main content -->
   <section class="content">
     <section class="row">
-      <div class="col-md-6">
+     
+    <?pHp /*
+	 <div class="col-md-6">
         <div class="container-fluid">
 
           <div class="card card-default">
@@ -90,12 +92,12 @@
                   <div class="card-body">
                     <div class="row">
 
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-md-6" style="display:none">
                         <label for="from_serial_no">From Serial No</label>
                         <input type="number" class="form-control" id="from_serial_no" name="from_serial_no" placeholder="From Serial No">
                       </div>
 					  
-					  <div class="form-group col-md-6">
+					  <div class="form-group col-md-6" style="display:none">
                         <label for="to_serial_no">To Serial No</label>
                         <input type="number" class="form-control" id="to_serial_no" name="to_serial_no" placeholder="To Serial No">
                       </div>
@@ -107,7 +109,7 @@
                   <!-- /.card-body -->
 
                   <div>
-                    <button type="submit" class="btn btn-primary">Export Excel Sheet</button>
+                    <button type="submit" class="btn btn-primary">Export Member Directory</button>
                   </div>
                 </form>
                 <!-- /.form-group -->
@@ -125,8 +127,8 @@
           <!-- /.row -->
         </div>
       </div>
-
-     <div class="col-md-6">
+     */ ?>
+     <div class="col-md-8">
         <div class="container-fluid">
 
           <div class="card card-default">
@@ -169,6 +171,22 @@
                   @endif
                   <div class="card-body">
                     <div class="row">
+
+
+
+                   
+
+					<div class="form-group col-md-12">
+                        <label for="file">Export all member</label>
+                        <a href="{{ url('admin/export-member-directory') }}">Export</a>
+                     </div>
+					 
+					 <div class="form-group col-md-12">
+                        <label for="file">Download sample sheet</label>
+                        <a download href="{{ url('front/sample/Member-Directory.xlsx') }}">Download</a>
+                     </div>
+					  
+
 
                       <div class="form-group col-md-12">
                         <label for="file">File (xlsx)</label>

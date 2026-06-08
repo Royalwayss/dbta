@@ -8,7 +8,10 @@
     margin: 30px auto;
     padding: 20px;
   }
-
+.members-container {
+    display: flex;
+    flex-wrap: wrap;
+}
   /* Search Box */
   .search-box {
     width: 100%;
@@ -163,33 +166,42 @@
     <img id="popupImg" src="" alt="" style="max-width:90%;max-height:90vh;object-fit:contain;border-radius:6px;box-shadow:0 8px 40px rgba(0,0,0,0.6);">
 </div>
 <script type="text/javascript" src="{{ asset('front/assets/js/ajax_jquery.min.js') }}"></script>
+
 <script>
 $(document).ready(function () {
-
     var total = $('.member-card').length;
-   
+
     $('#search-box').on('input', function () {
         var keyword = $(this).val().trim().toLowerCase();
+
+        if (keyword === '') {
+            $('.member-card').show().css('order', '');
+            $('#no-result').remove();
+            return;
+        }
+
         var matched = 0;
 
         $('.member-card').each(function () {
-            // Name includes designation_prefix + member_name
-            var name        = $(this).find('.name').text().trim().toLowerCase();
-            // Serial No
-            var serialNo    = $(this).find('.details div:first-child').text().trim().toLowerCase();
+            var memberName = $(this).find('.member_name').text().trim().toLowerCase();
+            var prefix     = $(this).find('.designation_prefix').text().trim().toLowerCase();
+            var serialNo   = $(this).find('.details div:first-child').text().trim().toLowerCase();
 
-            if (
-                name.includes(keyword)     ||  // matches name or prefix
-                serialNo.includes(keyword)     // matches serial no
-            ) {
+            var nameMatch   = memberName.includes(keyword);
+            var prefixMatch = prefix.includes(keyword);
+            var serialMatch = serialNo.includes(keyword);
+
+            if (nameMatch || prefixMatch || serialMatch) {
                 $(this).show();
                 matched++;
+
+                var priority = memberName.startsWith(keyword) ? 1 : 2;
+                $(this).css('order', priority);
             } else {
                 $(this).hide();
+                $(this).css('order', '');
             }
         });
-
-        
 
         if (matched === 0) {
             if ($('#no-result').length === 0) {
@@ -204,14 +216,14 @@ $(document).ready(function () {
     $(document).on('keydown', function (e) {
         if (e.key === 'Escape') {
             $('#search-box').val('');
-            $('.member-card').show();
+            $('.member-card').show().css('order', '');
             $('#no-result').remove();
-            $('#member-count').text('Showing ' + total + ' of ' + total + ' members');
         }
     });
-
 });
+</script>
 
+<script>
  function showPopup(src) { 
     document.getElementById('popupImg').src = src;
     document.getElementById('imgPopup').style.display = 'flex';
