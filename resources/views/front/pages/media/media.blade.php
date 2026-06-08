@@ -7,8 +7,8 @@
       <div class="underline mx-auto mt-2"></div>
     </div>
   </section>
-  @if(!empty($media))
-  @foreach($media as $val)
+  @if(!empty($media_list))
+  @foreach($media_list as $val)
   <section class="media_galery_wrapper gallery_image_wrapper_sec">
     <div class="container">
       <div class="mb-4 text-left">
@@ -33,6 +33,14 @@
   </section>
   @endforeach
   @endif
+  
+  <section>
+    <div class="container">
+      <div class="row align-items-end table-pagination">
+        {{ $media->links() }}
+      </div>
+    </div>
+  </section>
 </main>
 @include('front.pages.media.gallery-zoom')
 @endsection

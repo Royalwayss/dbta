@@ -76,7 +76,7 @@
 
   <section>
     <div class="container">
-      <div class="row align-items-end meeting-pagination">
+      <div class="row align-items-end table-pagination">
         {{ $meetings->links() }}
       </div>
     </div>

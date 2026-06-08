@@ -113,7 +113,7 @@ class IndexController extends Controller
 		$meta = meta(Route::currentRouteName()); 
         $seo = Route::getFacadeRoot()->current()->uri(); 
 		$meetings = Meeting::where('meeting_type',$seo)->where('status',1)->orderby('meeting_sort','asc')
-		            ->simplePaginate(4); 
+		            ->simplePaginate(4);  
         $meeting_type = MeetingType::where('slug',$seo)->first();
 		return view('front.pages.meeting.meeting')->with(compact('meta','seo','meetings','meeting_type'));
     }
@@ -198,8 +198,10 @@ class IndexController extends Controller
 	
 	public function media (){
 		$meta = meta(Route::currentRouteName());
-        $media = Media::with('active_media_images')->where('status',1)->orderby('media_sort','asc')->get()->toArray();
-        return view('front.pages.media.media')->with(compact('meta','media'));
+        $media = Media::with('active_media_images')->where('status',1)->orderby('media_sort','asc')->simplePaginate(2); ; 
+		$media_array = json_decode(json_encode($media),true); 
+		$media_list = $media_array['data'];
+		return view('front.pages.media.media')->with(compact('meta','media','media_list'));
     } 
 	
 	public function case_laws (){
