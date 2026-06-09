@@ -170,8 +170,8 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
 		
 		
 		
-		
-		
+		//Common
+		Route::post('delete-file',[AdminController::class,'delete_file'])->name('delete_file');
 		
 		
     });

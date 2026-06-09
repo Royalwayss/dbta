@@ -145,8 +145,11 @@
                       <input type="file" class="form-control" id="profile" name="profile">
                        
 					  @if(!empty($row['profile']))
-                        <a target="_blank" href="{{ url('uploads/members-directory/profile/'.$row['profile']) }}">View Profile</a>
-                      @endif
+                        <div class="fileAction" id="fileAction-profile">
+							<a target="_blank" class="btn btn-success" href="{{ url('uploads/members-directory/profile/'.$row['profile']) }}">View Profile</a>
+							<a  href="javascript:;" class="btn btn-danger deleteFile"  data-id="{{ $row['id'] }}" data-column="profile" data-table="members_directories">Delete Profile</a>
+                        </div>
+					  @endif
 					  
                     </div>
 				   
@@ -213,6 +216,38 @@
 <script>
 $(document).ready(function () {
 	 
+	  $('.deleteFile').on('click', function () {
+		   var id = $(this).attr('data-id');
+		   var column = $(this).attr('data-column');
+		   var table = $(this).attr('data-table');
+		   
+		   
+		  $.ajax({
+				url: '{{ route("delete_file") }}',
+				type: 'POST',
+				data: {
+					id: id,
+					column: column,
+					table: table,
+					_token: '{{ csrf_token() }}' 
+				},
+				success: function (res) {
+					if (res.status) {
+						$('#fileAction-' + column).hide();
+					}
+				},
+				error: function () {
+					alert('Something wrent to wrong pleae try later');
+				}
+			});
+		   
+		   
+		   
+		   
+		   
+		   
+	  });  
+		  
 	  $('#member_name').on('input', function () {
         
 		 @if(empty($row['id']))

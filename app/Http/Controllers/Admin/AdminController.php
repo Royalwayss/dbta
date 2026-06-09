@@ -86,6 +86,21 @@ class AdminController extends Controller
     }
 	
 	
+	public function delete_file(Request $request)
+    {
+        if($request->ajax()){
+            $data = $request->all();
+            DB::table($data['table'])->where('id',$data['id'])->update([$data['column']=>null]);
+            return response()->json(['status'=>true]);
+            
+        }
+    }
+	
+	
+	
+	
+	
+	
     public function updatePassword(){
         Session::put('page','update-password');
         return view('admin.update_password');

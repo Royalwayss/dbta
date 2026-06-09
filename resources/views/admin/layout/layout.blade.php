@@ -33,6 +33,7 @@
       border-color:#6c757d;
     }
 	#ui-tooltip-0{ display:none !important; }
+	.fileAction a{ margin-left:5px; margin-top:5px;}
   </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">

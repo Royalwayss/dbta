@@ -25,6 +25,7 @@ use App\Models\ExecutiveBody;
 use App\Models\MembersDirectory;
 use App\Models\HomeMedia;
 use App\Models\PublicNotice;
+use App\Models\TaxFeed;
 use App\Models\Visitor;
 use App\Models\Mails;
 use Validator;
@@ -55,18 +56,54 @@ class IndexController extends Controller
 		$media_videos = HomeMedia::where('status',1)->where('media_type','video')->orderby('sort','asc')->get()->toArray(); 
 		
 		if(Session::has('tax_feeds')){
-			$tax_feeds = Session::get('tax_feeds'); 
+			$taxfeeds = Session::get('tax_feeds'); 
 		}else{
-			$tax_feeds = [
+			$taxfeeds = [
 					'1' => $this->fetchtaxFeedsData('https://wmstatic-prd.incometaxindia.gov.in/press-release-rss-feed/-/asset_publisher/bxhj/rss'),
 					'2' => $this->fetchtaxFeedsData('https://wmstatic-prd.incometaxindia.gov.in/circular-rss-feed/-/asset_publisher/bxhj/rss'),
 					'3' => $this->fetchtaxFeedsData('https://wmstatic-prd.incometaxindia.gov.in/notification-rss-feed/-/asset_publisher/bxhj/rss'),
 			];
-			$tax_feeds = json_decode(json_encode($tax_feeds),true);
 			
-			Session::put('tax_feeds',$tax_feeds); 
+			$taxfeeds = json_decode(json_encode($tax_feeds),true);
 			
 		}
+		
+		
+		if(!empty($taxfeeds[1])){ 
+			$press_release = $taxfeeds[1];
+		}else{
+			$get_pressrelease = TaxFeed::where('id','1')->first();
+			$press_release['feed'] =  json_decode($get_pressrelease['feed_json'], true);
+			$press_release['items'] =  json_decode($get_pressrelease['items_json'], true);
+			$press_release = json_decode(json_encode($press_release),true);
+		}
+		
+		if(!empty($taxfeeds[2])){
+			$circular = $taxfeeds[2];
+		}else{
+			$get_circular  = TaxFeed::where('id','2')->first();
+			$circular['feed'] =  json_decode($get_circular['feed_json'], true);
+			$circular['items'] =  json_decode($get_circular['items_json'], true);
+			$circular = json_decode(json_encode($circular),true);
+		}
+		
+		if(!empty($taxfeeds[3])){
+			$notification = $taxfeeds[3];
+		}else{
+			$get_notification  = TaxFeed::where('id','3')->first();
+			$notification['feed'] =  json_decode($get_notification['feed_json'], true);
+			$notification['items'] =  json_decode($get_notification['items_json'], true);
+			$notification = json_decode(json_encode($notification),true);
+		}
+		
+		$tax_feeds = [
+		       '1'=>$press_release,
+		       '2'=>$circular,
+		       '3'=>$notification
+		];
+		
+		
+		Session::put('tax_feeds',$tax_feeds); 
 		$tax_feeds = array_filter($tax_feeds);
 		
 		return view('front.pages.home.index')->with(compact('banners','meeting_types','publicnotices','publicnotice_count','events','executive_body','media_images','media_videos','tax_feeds'));
@@ -80,11 +117,10 @@ class IndexController extends Controller
 				curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 				$response = curl_exec($ch);
 				curl_close($ch);
-
 				$data = json_decode($response, true); 
 				if ($data && $data['status'] === 'ok') {
 					$data = json_decode(json_encode($data),true);
-				return $data;
+				    return $data;
 			} else {
 				return [];
 			}
