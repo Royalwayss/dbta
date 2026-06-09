@@ -237,7 +237,7 @@ $(document).ready(function () {
 					}
 				},
 				error: function () {
-					alert('Something wrent to wrong pleae try later');
+					alert('Something went to wrong pleae try later');
 				}
 			});
 		   
