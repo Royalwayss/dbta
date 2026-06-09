@@ -64,7 +64,7 @@ class IndexController extends Controller
 					'3' => $this->fetchtaxFeedsData('https://wmstatic-prd.incometaxindia.gov.in/notification-rss-feed/-/asset_publisher/bxhj/rss'),
 			];
 			
-			$taxfeeds = json_decode(json_encode($tax_feeds),true);
+			$taxfeeds = json_decode(json_encode($taxfeeds),true);
 			
 		}
 		

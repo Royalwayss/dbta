@@ -14,21 +14,20 @@
     text-align: center;
     padding: 10px 16px;
     border-radius: 8px;
-    background: #f0f4ff;
-    color: #3b7ef8;
+    background: #ffffff;
+    color: #006090;
     font-size: 0.85rem;
     font-weight: 600;
     text-decoration: none;
     border: 1px solid #d0e0ff;
     transition: all 0.2s ease;
 }
-
-#mob-tab a:hover,
-#mob-tab a.active {
-    background: #3b7ef8;
+#mob-tab a: hover, #mob-tab a.active {
+    background: #006090;
     color: #ffffff;
-    border-color: #3b7ef8;
+    border-color: #006090;
 }
+
 </style>
 <main>
   <!-- <section class="contact_us_wrapper_sec">

@@ -1,5 +1,11 @@
 @extends('front.layout.layout')
 @section('content')
+<style>
+.blog-card img {
+    object-fit: contain!important;
+    height: 300px!important;
+}
+</style>
 <main>
   <section class="list_committes_wrap_sec">
     <div class="heading-one heading_one_dtba" data-aos="fade-up">
