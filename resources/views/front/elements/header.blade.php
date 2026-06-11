@@ -40,6 +40,7 @@
 							<li class="nav-item"><a class="nav-link" href="{{ route('newsletter') }}">Newsletter & Publications</a>
 							</li>
 							<li class="nav-item"><a class="nav-link" href="{{ route('executive') }}">Executive Committee</a></li>
+							<li class="nav-item"><a class="nav-link" href="{{ route('past_dignitaries') }}">Past Dignitaries</a></li>
 							<li class="nav-item"><a class="nav-link" href="{{ route('new_membership') }}">Membership</a></li>
 							<li class="nav-item"><a class="nav-link" href="{{ route('members_directory') }}">Members Directory</a></li>
 							<li class="nav-item"><a class="nav-link" href="{{ route('contactus') }}">Contact</a></li>

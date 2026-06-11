@@ -26,6 +26,7 @@ use App\Models\MembersDirectory;
 use App\Models\HomeMedia;
 use App\Models\PublicNotice;
 use App\Models\TaxFeed;
+use App\Models\PastDignitary;
 use App\Models\Visitor;
 use App\Models\Mails;
 use Validator;
@@ -143,6 +144,13 @@ class IndexController extends Controller
         $executive_body = ExecutiveBody::where('status',1)->orderby('sort','asc')->get()->toArray(); 
         return view('front.pages.aboutus.executive')->with(compact('meta','executive_body'));
     }
+	public function past_dignitaries(){
+		$meta = meta(Route::currentRouteName());
+        $past_dignitaries = PastDignitary::where('status',1)->orderby('year','desc')->get()->toArray(); 
+        return view('front.pages.past_dignitaries.past_dignitaries')->with(compact('meta','past_dignitaries'));
+    }
+	
+	 
 	
 	
 	public function meeting(request $request){

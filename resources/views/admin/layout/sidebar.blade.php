@@ -387,6 +387,30 @@
         </li>
 		
 		
+		
+		
+		
+		@if(Session::get('page')=="past-dignitaries")
+            @php $active="active" @endphp
+        @else
+            @php $active = "" @endphp
+        @endif
+		
+		<li class="nav-item">
+          <a href="{{ url('admin/past-dignitaries') }}" class="nav-link {{ $active }}">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Past Dignitaries
+            </p>
+          </a>
+        </li>
+		
+		
+		
+		
+		
+		
+		
 		@if(Session::get('page')=="members-directory")
             @php $active="active" @endphp
         @else

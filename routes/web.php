@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\EventsController;
 use App\Http\Controllers\Admin\PublicNoticeController;
 use App\Http\Controllers\Admin\MettingController;
+use App\Http\Controllers\Admin\PastDignitariesController;
 use App\Http\Controllers\Admin\NewslettersController;
 use App\Http\Controllers\Admin\ArticlesController;
 use App\Http\Controllers\Admin\DownloadsController;
@@ -70,13 +71,6 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('public-notice',[PublicNoticeController::class,'public_notice']);
         Route::match(['get','post'],'add-edit-public-notice/{id?}',[PublicNoticeController::class,'addEditPublicNotice']);
         
-	   
-	   
-	   
-	   
-	   
-	   
-	   
 	   // Meeting
         Route::get('meetings',[MettingController::class,'meeting']);
         Route::match(['get','post'],'add-edit-meeting/{id?}',[MettingController::class,'addEditMeeting']);
@@ -86,11 +80,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('metting-types',[MettingController::class,'meeting_types']);
         Route::match(['get','post'],'add-edit-metting-type/{id?}',[MettingController::class,'addEditMeetingType']);
         
-       
-	 
-	   
-	   
-	   
+      
 	    // Newsletters
         Route::get('newsletters',[NewslettersController::class,'newsletters']);
         Route::match(['get','post'],'add-edit-newsletter/{id?}',[NewslettersController::class,'addEditNewsletter']);
@@ -99,21 +89,24 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('articles',[ArticlesController::class,'articles']);
         Route::match(['get','post'],'add-edit-article/{id?}',[ArticlesController::class,'addEditArticle']);
 	   
-	   
-	   
-	   
-	   
+	 
 	   // Downloads
         Route::get('downloads',[DownloadsController::class,'downloads']);
         Route::match(['get','post'],'add-edit-download/{id?}',[DownloadsController::class,'addEditDownload']);
 	   
+	   
+	   
+	   // Past Dignitaries
+        Route::get('past-dignitaries',[PastDignitariesController::class,'pastdignitaries']);
+        Route::match(['get','post'],'add-edit-pastdignitary/{id?}',[PastDignitariesController::class,'addEditPastdignitary']);
+	   
+	   
+	   
+	   
 	   //  Department Officers
         Route::get('department-officers',[DepartmentOfficersController::class,'departmentofficers']);
         Route::match(['get','post'],'add-edit-department-officer/{id?}',[DepartmentOfficersController::class,'addEditDepartmentOfficers']);
-	   
 	  
-	   
-	   
 	    // Media
         Route::get('media',[MediaController::class,'media']);
         Route::match(['get','post'],'add-edit-media/{id?}',[MediaController::class,'addEditMedia']);
@@ -128,8 +121,6 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::match(['get','post'],'add-edit-committee/{id?}',[CommitteesController::class,'addEditMedia']);
         Route::get('delete-member/{id}',[CommitteesController::class,'deleteMember']);
 		
-       
-        
          // case-laws
         Route::get('case-laws',[CaselawsController::class,'caselaws']);
         Route::match(['get','post'],'add-edit-case-law/{id?}',[CaselawsController::class,'addEditCaselaw']);
@@ -139,7 +130,6 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::match(['get','post'],'add-edit-case-law-section/{id?}',[CaselawsController::class,'addEditCaselawSection']);
         Route::get('delete-law-section-pdf/{id}',[CaselawsController::class,'deleteCaselawSection']);
 	    
-		
         //executive-body
 		
 		Route::get('executive-body',[ExecutivebodyController::class,'executivebody']);
@@ -149,8 +139,6 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
 	   //contacts
         Route::get('contacts',[UserController::class,'contacts']);
         Route::get('view-contact/{id}',[UserController::class,'viewContact']);
-		
-		
 		
 		//memberships
 		
@@ -184,6 +172,7 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
     Route::get('/', [IndexController::class,'index'])->name('home');
     Route::get('public-notice', [IndexController::class,'public_notice'])->name('public_notice');
     Route::get('about-us', [IndexController::class,'aboutus'])->name('aboutus');
+    Route::get('past-dignitaries', [IndexController::class,'past_dignitaries'])->name('past_dignitaries');
     Route::get('executive-body-2026-27', [IndexController::class,'executive'])->name('executive');
     Route::get('list-of-dtba-committees', [IndexController::class,'committes'])->name('committes');
     Route::get('newsletter-and-publications', [IndexController::class,'newsletter'])->name('newsletter');
