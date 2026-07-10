@@ -157,7 +157,7 @@ class IndexController extends Controller
 		$meta = meta(Route::currentRouteName()); 
         $seo = Route::getFacadeRoot()->current()->uri(); 
 		$meetings = Meeting::where('meeting_type',$seo)->where('status',1)->orderby('meeting_sort','asc')
-		            ->simplePaginate(4);  
+		            ->simplePaginate(2);  
         $meeting_type = MeetingType::where('slug',$seo)->first();
 		return view('front.pages.meeting.meeting')->with(compact('meta','seo','meetings','meeting_type'));
     }
