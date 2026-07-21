@@ -45,20 +45,7 @@ class IndexController extends Controller
     }
    
     public function index(){   
-	    
-		
-		
-		
 
-	
-		
-		//$tax_feeds = [ '1'=>$press_release, '2'=>$circular, '3'=>$notification ];
-		       
-		       
-		       
-		
-		
-		
 		$meta = meta(Route::currentRouteName());
         $this->checkVistor();	
         $banners =Banner::where('status','1')->orderby('sort','asc')->get()->toArray(); 
