@@ -45,7 +45,21 @@ class IndexController extends Controller
     }
    
     public function index(){   
-	    $meta = meta(Route::currentRouteName());
+	    
+		
+		
+		
+
+	
+		
+		//$tax_feeds = [ '1'=>$press_release, '2'=>$circular, '3'=>$notification ];
+		       
+		       
+		       
+		
+		
+		
+		$meta = meta(Route::currentRouteName());
         $this->checkVistor();	
         $banners =Banner::where('status','1')->orderby('sort','asc')->get()->toArray(); 
         $publicnotice_count =PublicNotice::where('status','1')->count(); 
@@ -55,7 +69,7 @@ class IndexController extends Controller
 		$executive_body = ExecutiveBody::where('show_on_home',1)->where('status',1)->orderby('sort','asc')->get()->toArray(); 
 		$media_images = HomeMedia::where('status',1)->where('media_type','image')->orderby('sort','asc')->get()->toArray();  
 		$media_videos = HomeMedia::where('status',1)->where('media_type','video')->orderby('sort','asc')->get()->toArray(); 
-		
+		/*
 		if(Session::has('tax_feeds')){
 			$taxfeeds = Session::get('tax_feeds'); 
 		}else{
@@ -97,8 +111,80 @@ class IndexController extends Controller
 			$notification = json_decode(json_encode($notification),true);
 		}
 		
+		
+		*/
+		
+		
+	$xml = simplexml_load_file('front/tax-feeds/press-release.xml');
+	$pressReleases['feed'] = [
+							'title'       => (string)$xml->channel->title,
+							'link'        => (string)$xml->channel->link,
+							'description' => (string)$xml->channel->description,
+							'pubDate'     => (string)$xml->channel->pubDate,
+							'date'        => (string)$xml->channel->children('dc', true)->date,
+					   ];
+	foreach ($xml->channel->item as $item) {
+	  
+		$pressReleases['items'][] = [
+			'title'       => (string) $item->title,
+			'link'        => (string) $item->link,
+			'description' => (string) $item->description,
+			'pubDate'     => (string) $item->pubDate,
+			'guid'        => (string) $item->guid,
+			'author'      => (string) $item->children('dc', true)->creator,
+			'date'        => (string) $item->children('dc', true)->date,
+		];
+	}
+	$pressReleases = json_decode(json_encode($pressReleases),true);		
+		
+	
+	$circular_xml = simplexml_load_file('front/tax-feeds/circular.xml');
+	$circular['feed'] = [
+							'title'       => (string)$circular_xml->channel->title,
+							'link'        => (string)$circular_xml->channel->link,
+							'description' => (string)$circular_xml->channel->description,
+							'pubDate'     => (string)$circular_xml->channel->pubDate,
+							'date'        => (string)$circular_xml->channel->children('dc', true)->date,
+					   ];
+	foreach ($circular_xml->channel->item as $item) {
+	  
+		$circular['items'][] = [
+			'title'       => (string) $item->title,
+			'link'        => (string) $item->link,
+			'description' => (string) $item->description,
+			'pubDate'     => (string) $item->pubDate,
+			'guid'        => (string) $item->guid,
+			'author'      => (string) $item->children('dc', true)->creator,
+			'date'        => (string) $item->children('dc', true)->date,
+		];
+	}
+	$circular = json_decode(json_encode($circular),true);	
+
+
+
+	$notification_xml = simplexml_load_file('front/tax-feeds/notifications.xml');
+	$notification['feed'] = [
+							'title'       => (string)$notification_xml->channel->title,
+							'link'        => (string)$notification_xml->channel->link,
+							'description' => (string)$notification_xml->channel->description,
+							'pubDate'     => (string)$notification_xml->channel->pubDate,
+							'date'        => (string)$notification_xml->channel->children('dc', true)->date,
+					   ];
+	foreach ($notification_xml->channel->item as $item) {
+	  
+		$notification['items'][] = [
+			'title'       => (string) $item->title,
+			'link'        => (string) $item->link,
+			'description' => (string) $item->description,
+			'pubDate'     => (string) $item->pubDate,
+			'guid'        => (string) $item->guid,
+			'author'      => (string) $item->children('dc', true)->creator,
+			'date'        => (string) $item->children('dc', true)->date,
+		];
+	}
+	 $notification = json_decode(json_encode($notification),true);	
 		$tax_feeds = [
-		       '1'=>$press_release,
+		       '1'=>$pressReleases,
 		       '2'=>$circular,
 		       '3'=>$notification
 		];
