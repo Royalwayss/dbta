@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\UserController;
 
 
 use App\Http\Controllers\Front\IndexController;
+use App\Http\Controllers\Front\CronController;
 
 
 /*Route::get('/', function () {
@@ -186,6 +187,11 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
     Route::get('case-laws', [IndexController::class,'case_laws'])->name('case_laws');
     Route::get('department-officers', [IndexController::class,'department_officers'])->name('department_officers');
     Route::match(['get','post'],'members-directory',[IndexController::class,'members_directory'])->name('members_directory');
+	
+	
+	/* CRON JOB */
+	
+    Route::get('cron/api/taxfeed',[CronController::class,'taxfeed'])->name('taxfeed');
 		
     $meeting_types = meeting_types();
 	foreach($meeting_types as $meeting_type){
